@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="logo_dashboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAv0AAAISCAYAAABf1HBDAAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF7s
         nQWAVmX2xodm6Jju7i4aQRQMBKS7FbsQQZCQhumeoZXuRrGwE3PV1XXVXbd03d2/G7a753+ec+/7zZ2P
@@ -2951,45 +2951,45 @@
         rFVnCupWAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="PictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="logo_dashboard.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, 24</value>
   </data>
-  <data name="PictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="logo_dashboard.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 158</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+  <data name="logo_dashboard.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PictureBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="logo_dashboard.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Name" xml:space="preserve">
-    <value>PictureBox1</value>
+  <data name="&gt;&gt;logo_dashboard.Name" xml:space="preserve">
+    <value>logo_dashboard</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;logo_dashboard.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;logo_dashboard.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;logo_dashboard.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="Button7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="Button7.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="LogOut.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button7.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="LogOut.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="LogOut.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button7.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="LogOut.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="LogOut.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAH
         XgAAB14BODEn8gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACKSURBVDhPY6AV
@@ -2998,56 +2998,56 @@
         4npATA3AwAAA+08uOjBdg5YAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Button7.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="LogOut.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="LogOut.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 556</value>
+  <data name="LogOut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 551</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Button7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="LogOut.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 32</value>
+  <data name="LogOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 36</value>
   </data>
-  <data name="Button7.TabIndex" type="System.Int32, mscorlib">
+  <data name="LogOut.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="Button7.Text" xml:space="preserve">
+  <data name="LogOut.Text" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="Button7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="LogOut.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button7.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="LogOut.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button7.Name" xml:space="preserve">
-    <value>Button7</value>
+  <data name="&gt;&gt;LogOut.Name" xml:space="preserve">
+    <value>LogOut</value>
   </data>
-  <data name="&gt;&gt;Button7.Type" xml:space="preserve">
+  <data name="&gt;&gt;LogOut.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button7.Parent" xml:space="preserve">
+  <data name="&gt;&gt;LogOut.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button7.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LogOut.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="Button6.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="Employee.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button6.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="Employee.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button6.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Employee.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Employee.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEoSURBVDhPhdNL
@@ -3059,55 +3059,55 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="Button6.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Employee.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="Employee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Employee.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 378</value>
   </data>
-  <data name="Button6.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Employee.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Employee.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 32</value>
   </data>
-  <data name="Button6.TabIndex" type="System.Int32, mscorlib">
+  <data name="Employee.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="Button6.Text" xml:space="preserve">
+  <data name="Employee.Text" xml:space="preserve">
     <value>Employee</value>
   </data>
-  <data name="Button6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Employee.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button6.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="Employee.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button6.Name" xml:space="preserve">
-    <value>Button6</value>
+  <data name="&gt;&gt;Employee.Name" xml:space="preserve">
+    <value>Employee</value>
   </data>
-  <data name="&gt;&gt;Button6.Type" xml:space="preserve">
+  <data name="&gt;&gt;Employee.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button6.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Employee.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button6.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Employee.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="Button5.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="Supplier.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button5.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="Supplier.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button5.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Supplier.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Supplier.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEySURBVDhPldKx
@@ -3119,55 +3119,55 @@
         94etos0AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Button5.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Supplier.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="Supplier.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button5.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Supplier.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 340</value>
   </data>
-  <data name="Button5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Supplier.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Supplier.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 32</value>
   </data>
-  <data name="Button5.TabIndex" type="System.Int32, mscorlib">
+  <data name="Supplier.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="Button5.Text" xml:space="preserve">
+  <data name="Supplier.Text" xml:space="preserve">
     <value>Supplier</value>
   </data>
-  <data name="Button5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Supplier.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button5.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="Supplier.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button5.Name" xml:space="preserve">
-    <value>Button5</value>
+  <data name="&gt;&gt;Supplier.Name" xml:space="preserve">
+    <value>Supplier</value>
   </data>
-  <data name="&gt;&gt;Button5.Type" xml:space="preserve">
+  <data name="&gt;&gt;Supplier.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Supplier.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button5.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Supplier.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="Button4.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="Customer.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button4.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="Customer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button4.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Customer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Customer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFDSURBVDhPhZJL
@@ -3179,55 +3179,55 @@
         Gj/WDr4U90bmnLUQwjefVTedmpX+kgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="Button4.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Customer.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="Customer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Customer.Location" type="System.Drawing.Point, System.Drawing">
     <value>-1, 302</value>
   </data>
-  <data name="Button4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Customer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Customer.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 32</value>
   </data>
-  <data name="Button4.TabIndex" type="System.Int32, mscorlib">
+  <data name="Customer.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="Button4.Text" xml:space="preserve">
+  <data name="Customer.Text" xml:space="preserve">
     <value>Customer</value>
   </data>
-  <data name="Button4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Customer.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button4.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="Customer.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button4.Name" xml:space="preserve">
-    <value>Button4</value>
+  <data name="&gt;&gt;Customer.Name" xml:space="preserve">
+    <value>Customer</value>
   </data>
-  <data name="&gt;&gt;Button4.Type" xml:space="preserve">
+  <data name="&gt;&gt;Customer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Customer.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button4.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Customer.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="Button3.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="Warranty.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="Warranty.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button3.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Warranty.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Warranty.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAE4SURBVDhPjZM7
@@ -3239,55 +3239,55 @@
         J8kvmNQtyO7BN2UAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Button3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Warranty.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="Warranty.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Warranty.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 264</value>
   </data>
-  <data name="Button3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Warranty.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Warranty.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 32</value>
   </data>
-  <data name="Button3.TabIndex" type="System.Int32, mscorlib">
+  <data name="Warranty.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="Button3.Text" xml:space="preserve">
+  <data name="Warranty.Text" xml:space="preserve">
     <value>Warranty</value>
   </data>
-  <data name="Button3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Warranty.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button3.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="Warranty.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button3.Name" xml:space="preserve">
-    <value>Button3</value>
+  <data name="&gt;&gt;Warranty.Name" xml:space="preserve">
+    <value>Warranty</value>
   </data>
-  <data name="&gt;&gt;Button3.Type" xml:space="preserve">
+  <data name="&gt;&gt;Warranty.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Warranty.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Warranty.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="Button2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="Product.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Button2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="Product.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="Button2.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Product.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="Button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Product.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         VAAAAFQBo63EFQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADwSURBVDhPvdE9
@@ -3298,43 +3298,43 @@
         AAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Button2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Product.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="Product.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="Button2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Product.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 226</value>
   </data>
-  <data name="Button2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Product.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 0, 0</value>
   </data>
-  <data name="Button2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="Product.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 32</value>
   </data>
-  <data name="Button2.TabIndex" type="System.Int32, mscorlib">
+  <data name="Product.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="Button2.Text" xml:space="preserve">
+  <data name="Product.Text" xml:space="preserve">
     <value>Product</value>
   </data>
-  <data name="Button2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="Product.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="Button2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+  <data name="Product.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
-  <data name="&gt;&gt;Button2.Name" xml:space="preserve">
-    <value>Button2</value>
+  <data name="&gt;&gt;Product.Name" xml:space="preserve">
+    <value>Product</value>
   </data>
-  <data name="&gt;&gt;Button2.Type" xml:space="preserve">
+  <data name="&gt;&gt;Product.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Button2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Product.Parent" xml:space="preserve">
     <value>Sidebar</value>
   </data>
-  <data name="&gt;&gt;Button2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Product.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="Button1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
@@ -3345,16 +3345,6 @@
   </data>
   <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="Button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        VAAAAFQBo63EFQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADkSURBVDhPrdK/
-        CkFhGMfxV0omk8niEsiCQSI3YDVbLAZ2ZTFZmGSQXIBLUAYzk0UpbsAkG77P+563HH/On/KrTz3PqedX
-        53SUR7I44oyiPAgTOZbDKvLOHLgkA3tsk4M8K+vNI9+ObXxLvI5tfpYEObb5KLEfrKK3YHF92D1qMoRM
-        AScZdhgiTEkJAxxkSWGEpSwBM8MUab0Ref/XggRWuDg2SMJGCupmNHkvaGKOiN6UGqNrRh3fgg56ZtRp
-        o29Gnf8XyM+xRVxv3gUxrOH6b+RdJ7ji4WjBpoE75PkNC0SVUuoJIRg2yYiOwJsAAAAASUVORK5CYII=
-</value>
   </data>
   <data name="Button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>

@@ -24,96 +24,97 @@ Partial Class DASHBOARD
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DASHBOARD))
         Sidebar = New Panel()
-        PictureBox1 = New PictureBox()
-        Button7 = New Button()
-        Button6 = New Button()
-        Button5 = New Button()
-        Button4 = New Button()
-        Button3 = New Button()
-        Button2 = New Button()
+        logo_dashboard = New PictureBox()
+        LogOut = New Button()
+        Employee = New Button()
+        Supplier = New Button()
+        Customer = New Button()
+        Warranty = New Button()
+        Product = New Button()
         Button1 = New Button()
         Panel1 = New Panel()
         Panel3 = New Panel()
         Contents = New Panel()
         Sidebar.SuspendLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(logo_dashboard, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Sidebar
         ' 
         Sidebar.BackColor = SystemColors.ControlLightLight
         Sidebar.BorderStyle = BorderStyle.FixedSingle
-        Sidebar.Controls.Add(PictureBox1)
-        Sidebar.Controls.Add(Button7)
-        Sidebar.Controls.Add(Button6)
-        Sidebar.Controls.Add(Button5)
-        Sidebar.Controls.Add(Button4)
-        Sidebar.Controls.Add(Button3)
-        Sidebar.Controls.Add(Button2)
+        Sidebar.Controls.Add(logo_dashboard)
+        Sidebar.Controls.Add(LogOut)
+        Sidebar.Controls.Add(Employee)
+        Sidebar.Controls.Add(Supplier)
+        Sidebar.Controls.Add(Customer)
+        Sidebar.Controls.Add(Warranty)
+        Sidebar.Controls.Add(Product)
         Sidebar.Controls.Add(Button1)
         Sidebar.Controls.Add(Panel1)
         resources.ApplyResources(Sidebar, "Sidebar")
         Sidebar.Name = "Sidebar"
         ' 
-        ' PictureBox1
+        ' logo_dashboard
         ' 
-        resources.ApplyResources(PictureBox1, "PictureBox1")
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.TabStop = False
+        resources.ApplyResources(logo_dashboard, "logo_dashboard")
+        logo_dashboard.Name = "logo_dashboard"
+        logo_dashboard.TabStop = False
         ' 
-        ' Button7
+        ' LogOut
         ' 
-        resources.ApplyResources(Button7, "Button7")
-        Button7.FlatAppearance.BorderSize = 0
-        Button7.ForeColor = SystemColors.ActiveCaptionText
-        Button7.Name = "Button7"
-        Button7.UseVisualStyleBackColor = True
+        resources.ApplyResources(LogOut, "LogOut")
+        LogOut.FlatAppearance.BorderSize = 0
+        LogOut.ForeColor = SystemColors.ActiveCaptionText
+        LogOut.Name = "LogOut"
+        LogOut.UseVisualStyleBackColor = True
         ' 
-        ' Button6
+        ' Employee
         ' 
-        resources.ApplyResources(Button6, "Button6")
-        Button6.FlatAppearance.BorderSize = 0
-        Button6.ForeColor = SystemColors.ActiveCaptionText
-        Button6.Name = "Button6"
-        Button6.UseVisualStyleBackColor = True
+        resources.ApplyResources(Employee, "Employee")
+        Employee.FlatAppearance.BorderSize = 0
+        Employee.ForeColor = SystemColors.ActiveCaptionText
+        Employee.Name = "Employee"
+        Employee.UseVisualStyleBackColor = True
         ' 
-        ' Button5
+        ' Supplier
         ' 
-        resources.ApplyResources(Button5, "Button5")
-        Button5.FlatAppearance.BorderSize = 0
-        Button5.ForeColor = SystemColors.ActiveCaptionText
-        Button5.Name = "Button5"
-        Button5.UseVisualStyleBackColor = True
+        resources.ApplyResources(Supplier, "Supplier")
+        Supplier.FlatAppearance.BorderSize = 0
+        Supplier.ForeColor = SystemColors.ActiveCaptionText
+        Supplier.Name = "Supplier"
+        Supplier.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' Customer
         ' 
-        resources.ApplyResources(Button4, "Button4")
-        Button4.FlatAppearance.BorderSize = 0
-        Button4.ForeColor = SystemColors.ActiveCaptionText
-        Button4.Name = "Button4"
-        Button4.UseVisualStyleBackColor = True
+        resources.ApplyResources(Customer, "Customer")
+        Customer.FlatAppearance.BorderSize = 0
+        Customer.ForeColor = SystemColors.ActiveCaptionText
+        Customer.Name = "Customer"
+        Customer.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' Warranty
         ' 
-        resources.ApplyResources(Button3, "Button3")
-        Button3.FlatAppearance.BorderSize = 0
-        Button3.ForeColor = SystemColors.ActiveCaptionText
-        Button3.Name = "Button3"
-        Button3.UseVisualStyleBackColor = True
+        resources.ApplyResources(Warranty, "Warranty")
+        Warranty.FlatAppearance.BorderSize = 0
+        Warranty.ForeColor = SystemColors.ActiveCaptionText
+        Warranty.Name = "Warranty"
+        Warranty.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' Product
         ' 
-        resources.ApplyResources(Button2, "Button2")
-        Button2.FlatAppearance.BorderSize = 0
-        Button2.ForeColor = SystemColors.ActiveCaptionText
-        Button2.Name = "Button2"
-        Button2.UseVisualStyleBackColor = True
+        resources.ApplyResources(Product, "Product")
+        Product.FlatAppearance.BorderSize = 0
+        Product.ForeColor = SystemColors.ActiveCaptionText
+        Product.Name = "Product"
+        Product.UseVisualStyleBackColor = True
         ' 
         ' Button1
         ' 
         resources.ApplyResources(Button1, "Button1")
         Button1.FlatAppearance.BorderSize = 0
         Button1.ForeColor = SystemColors.ActiveCaptionText
+        Button1.Image = My.Resources.Resources.home__3_
         Button1.Name = "Button1"
         Button1.UseVisualStyleBackColor = True
         ' 
@@ -144,7 +145,7 @@ Partial Class DASHBOARD
         Controls.Add(Sidebar)
         Name = "DASHBOARD"
         Sidebar.ResumeLayout(False)
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(logo_dashboard, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -152,13 +153,13 @@ Partial Class DASHBOARD
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Product As Button
+    Friend WithEvents Employee As Button
+    Friend WithEvents Supplier As Button
+    Friend WithEvents Customer As Button
+    Friend WithEvents Warranty As Button
+    Friend WithEvents LogOut As Button
+    Friend WithEvents logo_dashboard As PictureBox
     Friend WithEvents Contents As Panel
 
 End Class

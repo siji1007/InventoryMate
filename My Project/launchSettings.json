@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\xTIaN\\source\\repos\\InventoryMate",
+      "remoteDebugEnabled": false
+    },
+    "Profile 2": {
+      "commandName": "Executable"
+    }
+  }
+}
