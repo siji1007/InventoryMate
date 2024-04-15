@@ -1,7 +1,5 @@
 ﻿
 Imports MySql.Data.MySqlClient
-
-
 Public Class PRODUCT
 
     Private Sub Product_title_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -35,8 +33,6 @@ Public Class PRODUCT
             MessageBox.Show("Please enter a product name.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf String.IsNullOrWhiteSpace(P_model) Then
             MessageBox.Show("Please enter a product model.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf String.IsNullOrWhiteSpace(P_color) Then
-            MessageBox.Show("Please enter a product color.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf Not Integer.TryParse(txt_stocks.Text.Trim(), P_stocks) Then
             MessageBox.Show("Please enter a valid number for stocks.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf Not Integer.TryParse(txt_price.Text.Trim(), P_price) Then
@@ -83,7 +79,16 @@ Public Class PRODUCT
                 Dim query As New MySqlCommand("SELECT * FROM products", Conn) ' Assuming Conn is your MySqlConnection object from openDB()
                 Using dr As MySqlDataReader = query.ExecuteReader
                     While dr.Read
-                        prod_datagridview.Rows.Add(dr.Item("prod_id"), dr.Item("prod_name"), dr.Item("prod_model"), dr.Item("prod_color"), dr.Item("prod_stocks"), dr.Item("prod_price"))
+                        Dim price As Double = Convert.ToDouble(dr.Item("prod_price"))
+                        Dim formattedPrice As String = FormatPrice(price) ' Format the price with peso sign and commas
+
+                        Dim rowIndex As Integer = prod_datagridview.Rows.Add(dr.Item("prod_id"), dr.Item("prod_name"), dr.Item("prod_model"), dr.Item("prod_color"), dr.Item("prod_stocks"), formattedPrice)
+
+                        ' Check and set row color based on prod_stocks value
+                        Dim stocks As Integer = Convert.ToInt32(dr.Item("prod_stocks"))
+                        If stocks = 0 Then
+                            prod_datagridview.Rows(rowIndex).DefaultCellStyle.BackColor = Color.Red
+                        End If
                     End While
                 End Using
             Else
@@ -94,9 +99,12 @@ Public Class PRODUCT
         End Try
     End Sub
 
-    Private Sub prod_search_Click(sender As Object, e As EventArgs) Handles prod_search.Click
-        prod_search.Clear()
-    End Sub
+    Private Function FormatPrice(price As Double) As String
+        ' Format the price with peso sign and commas
+        Return "₱" & price.ToString("N0")
+    End Function
+
+
 
     Private Sub prod_datagridview_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles prod_datagridview.CellContentClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then ' Check if a valid cell is clicked
@@ -108,8 +116,10 @@ Public Class PRODUCT
             Dim prodModel As String = selectedRow.Cells("prod_model_dt").Value.ToString()
             Dim prodColor As String = selectedRow.Cells("prod_color_dt").Value.ToString()
             Dim prodStocks As Integer = Convert.ToInt32(selectedRow.Cells("prod_stocks_dt").Value)
-            Dim prodPrice As Integer = Convert.ToInt32(selectedRow.Cells("prod_price_dt").Value)
+            Dim prodPriceFormatted As String = selectedRow.Cells("prod_price_dt").Value.ToString()
 
+            ' Remove peso sign and commas from formatted price
+            Dim prodPrice As Integer = Convert.ToInt32(prodPriceFormatted.Replace("₱", "").Replace(",", ""))
 
             ' Make all rows active (selected) horizontally
             For Each row As DataGridViewRow In prod_datagridview.Rows
@@ -120,16 +130,15 @@ Public Class PRODUCT
                 End If
             Next
 
+            ' Update TextBoxes with data
             txt_product_name.Text = prodName
             txt_product_model.Text = prodModel
             txt_product_color.Text = prodColor
-            txt_stocks.Text = prodStocks
-            txt_price.Text = prodPrice
-
+            txt_stocks.Text = prodStocks.ToString()
+            txt_price.Text = prodPriceFormatted ' Display the formatted price in the TextBox
         End If
-
-
     End Sub
+
 
     Private Sub Btn_update_prod_Click(sender As Object, e As EventArgs) Handles Btn_update_prod.Click
         Dim P_id As Integer ' Assuming you have a product ID to identify the record to update

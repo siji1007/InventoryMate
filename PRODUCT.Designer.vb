@@ -58,7 +58,9 @@ Partial Class PRODUCT
         ' Product_title
         ' 
         Product_title.AutoSize = True
+        Product_title.BackColor = Color.Transparent
         Product_title.Font = New Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Product_title.ForeColor = SystemColors.ControlLightLight
         Product_title.Location = New Point(0, 0)
         Product_title.Name = "Product_title"
         Product_title.Size = New Size(178, 33)
@@ -97,7 +99,7 @@ Partial Class PRODUCT
         DataGridViewCellStyle4.WrapMode = DataGridViewTriState.False
         prod_datagridview.DefaultCellStyle = DataGridViewCellStyle4
         prod_datagridview.GridColor = Color.White
-        prod_datagridview.Location = New Point(-2, 127)
+        prod_datagridview.Location = New Point(12, 127)
         prod_datagridview.Name = "prod_datagridview"
         prod_datagridview.ReadOnly = True
         DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -118,7 +120,7 @@ Partial Class PRODUCT
         DataGridViewCellStyle6.SelectionForeColor = Color.White
         prod_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle6
         prod_datagridview.ScrollBars = ScrollBars.Vertical
-        prod_datagridview.Size = New Size(841, 301)
+        prod_datagridview.Size = New Size(1109, 301)
         prod_datagridview.TabIndex = 1
         ' 
         ' prod_id
@@ -175,7 +177,9 @@ Partial Class PRODUCT
         ' 
         prod_name_label.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         prod_name_label.AutoSize = True
+        prod_name_label.BackColor = Color.Transparent
         prod_name_label.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        prod_name_label.ForeColor = SystemColors.ControlLightLight
         prod_name_label.Location = New Point(27, 453)
         prod_name_label.Name = "prod_name_label"
         prod_name_label.Size = New Size(110, 20)
@@ -186,7 +190,9 @@ Partial Class PRODUCT
         ' 
         product_model_label.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         product_model_label.AutoSize = True
+        product_model_label.BackColor = Color.Transparent
         product_model_label.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        product_model_label.ForeColor = SystemColors.ControlLightLight
         product_model_label.Location = New Point(27, 495)
         product_model_label.Name = "product_model_label"
         product_model_label.Size = New Size(111, 20)
@@ -197,7 +203,9 @@ Partial Class PRODUCT
         ' 
         product_color_label.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         product_color_label.AutoSize = True
+        product_color_label.BackColor = Color.Transparent
         product_color_label.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        product_color_label.ForeColor = SystemColors.ControlLightLight
         product_color_label.Location = New Point(27, 537)
         product_color_label.Name = "product_color_label"
         product_color_label.Size = New Size(105, 20)
@@ -208,8 +216,10 @@ Partial Class PRODUCT
         ' 
         Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         Label1.AutoSize = True
+        Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(501, 453)
+        Label1.ForeColor = SystemColors.ActiveCaptionText
+        Label1.Location = New Point(648, 453)
         Label1.Name = "Label1"
         Label1.Size = New Size(58, 20)
         Label1.TabIndex = 5
@@ -219,8 +229,10 @@ Partial Class PRODUCT
         ' 
         Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
         Label2.AutoSize = True
+        Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(501, 495)
+        Label2.ForeColor = SystemColors.ActiveCaptionText
+        Label2.Location = New Point(648, 495)
         Label2.Name = "Label2"
         Label2.Size = New Size(44, 20)
         Label2.TabIndex = 6
@@ -249,14 +261,14 @@ Partial Class PRODUCT
         ' 
         ' txt_stocks
         ' 
-        txt_stocks.Location = New Point(565, 450)
+        txt_stocks.Location = New Point(712, 450)
         txt_stocks.Name = "txt_stocks"
         txt_stocks.Size = New Size(230, 23)
         txt_stocks.TabIndex = 10
         ' 
         ' txt_price
         ' 
-        txt_price.Location = New Point(565, 492)
+        txt_price.Location = New Point(712, 492)
         txt_price.Name = "txt_price"
         txt_price.Size = New Size(230, 23)
         txt_price.TabIndex = 11
@@ -266,9 +278,9 @@ Partial Class PRODUCT
         Btn_add_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         Btn_add_prod.FlatStyle = FlatStyle.Flat
         Btn_add_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_add_prod.Location = New Point(27, 611)
+        Btn_add_prod.Location = New Point(27, 814)
         Btn_add_prod.Name = "Btn_add_prod"
-        Btn_add_prod.Size = New Size(94, 30)
+        Btn_add_prod.Size = New Size(111, 53)
         Btn_add_prod.TabIndex = 12
         Btn_add_prod.Text = "CREATE"
         Btn_add_prod.UseVisualStyleBackColor = True
@@ -278,33 +290,33 @@ Partial Class PRODUCT
         Btn_update_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         Btn_update_prod.FlatStyle = FlatStyle.Flat
         Btn_update_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_update_prod.Location = New Point(266, 611)
+        Btn_update_prod.Location = New Point(266, 814)
         Btn_update_prod.Name = "Btn_update_prod"
-        Btn_update_prod.Size = New Size(94, 30)
+        Btn_update_prod.Size = New Size(111, 53)
         Btn_update_prod.TabIndex = 13
         Btn_update_prod.Text = "UPDATE"
         Btn_update_prod.UseVisualStyleBackColor = True
         ' 
         ' Btn_delete_prod
         ' 
-        Btn_delete_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Btn_delete_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_delete_prod.FlatStyle = FlatStyle.Flat
         Btn_delete_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_delete_prod.Location = New Point(507, 611)
+        Btn_delete_prod.Location = New Point(789, 814)
         Btn_delete_prod.Name = "Btn_delete_prod"
-        Btn_delete_prod.Size = New Size(94, 30)
+        Btn_delete_prod.Size = New Size(111, 53)
         Btn_delete_prod.TabIndex = 14
         Btn_delete_prod.Text = "DELETE"
         Btn_delete_prod.UseVisualStyleBackColor = True
         ' 
         ' Btn_clear_prod
         ' 
-        Btn_clear_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Btn_clear_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_clear_prod.FlatStyle = FlatStyle.Flat
         Btn_clear_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_clear_prod.Location = New Point(747, 611)
+        Btn_clear_prod.Location = New Point(1012, 814)
         Btn_clear_prod.Name = "Btn_clear_prod"
-        Btn_clear_prod.Size = New Size(94, 30)
+        Btn_clear_prod.Size = New Size(111, 53)
         Btn_clear_prod.TabIndex = 15
         Btn_clear_prod.Text = "CLEAR"
         Btn_clear_prod.UseVisualStyleBackColor = True
@@ -312,7 +324,7 @@ Partial Class PRODUCT
         ' prod_search
         ' 
         prod_search.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        prod_search.Location = New Point(628, 98)
+        prod_search.Location = New Point(910, 98)
         prod_search.Name = "prod_search"
         prod_search.PlaceholderText = "Search"
         prod_search.Size = New Size(213, 23)
@@ -323,7 +335,7 @@ Partial Class PRODUCT
         Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label3.AutoSize = True
         Label3.Image = My.Resources.Resources.loupe__1_
-        Label3.Location = New Point(599, 102)
+        Label3.Location = New Point(881, 102)
         Label3.Name = "Label3"
         Label3.Size = New Size(28, 15)
         Label3.TabIndex = 17
@@ -334,7 +346,9 @@ Partial Class PRODUCT
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         AutoSizeMode = AutoSizeMode.GrowAndShrink
-        ClientSize = New Size(851, 687)
+        BackgroundImage = My.Resources.Resources.m0sag04
+        BackgroundImageLayout = ImageLayout.Center
+        ClientSize = New Size(1133, 890)
         ControlBox = False
         Controls.Add(Label3)
         Controls.Add(prod_search)
