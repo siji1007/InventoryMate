@@ -14,9 +14,13 @@ Public Class DASHBOARD
 
         WindowState = FormWindowState.Maximized
 
+
     End Sub
 
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
+
+        Me.DoubleBuffered = True ' For forms
+
         If isProductFormOpen Then
             MessageBox.Show("The PRODUCT form is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else

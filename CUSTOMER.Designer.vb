@@ -23,6 +23,8 @@ Partial Class CUSTOMER
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Lbl_customer = New Label()
+        DataGridView1 = New DataGridView()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Lbl_customer
@@ -37,19 +39,32 @@ Partial Class CUSTOMER
         Lbl_customer.TabIndex = 0
         Lbl_customer.Text = "CUSTOMER"
         ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        DataGridView1.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Location = New Point(12, 86)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.Size = New Size(1109, 301)
+        DataGridView1.TabIndex = 1
+        ' 
         ' CUSTOMER
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(1133, 890)
         ControlBox = False
+        Controls.Add(DataGridView1)
         Controls.Add(Lbl_customer)
         Name = "CUSTOMER"
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Lbl_customer As Label
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

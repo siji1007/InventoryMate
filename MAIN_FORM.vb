@@ -74,6 +74,7 @@
         dashboard.Show()
     End Sub
 
+    Private Sub main_container_Paint(sender As Object, e As PaintEventArgs) Handles main_container.Paint
 
-
+    End Sub
 End Class

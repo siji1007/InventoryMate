@@ -22,12 +22,12 @@ Partial Class PRODUCT
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Product_title = New Label()
         prod_datagridview = New DataGridView()
         prod_id = New DataGridViewTextBoxColumn()
@@ -69,56 +69,56 @@ Partial Class PRODUCT
         ' 
         ' prod_datagridview
         ' 
-        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle7.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle7.ForeColor = Color.White
-        DataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = Color.White
-        prod_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.White
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = Color.White
+        prod_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         prod_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         prod_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         prod_datagridview.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle8.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle8.ForeColor = Color.White
-        DataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
-        prod_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        prod_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         prod_datagridview.ColumnHeadersHeight = 50
         prod_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         prod_datagridview.Columns.AddRange(New DataGridViewColumn() {prod_id, prod_name_dt, prod_model_dt, prod_color_dt, prod_stocks_dt, prod_price_dt})
-        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle10.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle10.ForeColor = Color.White
-        DataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = DataGridViewTriState.False
-        prod_datagridview.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle4.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.White
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.False
+        prod_datagridview.DefaultCellStyle = DataGridViewCellStyle4
         prod_datagridview.GridColor = Color.White
         prod_datagridview.Location = New Point(12, 127)
         prod_datagridview.Name = "prod_datagridview"
         prod_datagridview.ReadOnly = True
-        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle11.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle11.ForeColor = Color.White
-        DataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.True
-        prod_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.White
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
+        prod_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
         prod_datagridview.RowHeadersVisible = False
         prod_datagridview.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle12.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle12.ForeColor = Color.White
-        DataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle12.SelectionForeColor = Color.White
-        prod_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle6.ForeColor = Color.White
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = Color.White
+        prod_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle6
         prod_datagridview.ScrollBars = ScrollBars.Vertical
         prod_datagridview.Size = New Size(1109, 301)
         prod_datagridview.TabIndex = 1
@@ -126,15 +126,15 @@ Partial Class PRODUCT
         ' prod_id
         ' 
         prod_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
-        DataGridViewCellStyle9.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle9.ForeColor = Color.White
-        prod_id.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
+        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.White
+        prod_id.DefaultCellStyle = DataGridViewCellStyle3
         prod_id.HeaderText = "ID"
         prod_id.Name = "prod_id"
         prod_id.ReadOnly = True
-        prod_id.Width = 44
+        prod_id.Width = 52
         ' 
         ' prod_name_dt
         ' 
@@ -163,7 +163,7 @@ Partial Class PRODUCT
         prod_stocks_dt.HeaderText = "STOCKS"
         prod_stocks_dt.Name = "prod_stocks_dt"
         prod_stocks_dt.ReadOnly = True
-        prod_stocks_dt.Width = 80
+        prod_stocks_dt.Width = 111
         ' 
         ' prod_price_dt
         ' 
@@ -171,7 +171,7 @@ Partial Class PRODUCT
         prod_price_dt.HeaderText = "PRICE"
         prod_price_dt.Name = "prod_price_dt"
         prod_price_dt.ReadOnly = True
-        prod_price_dt.Width = 68
+        prod_price_dt.Width = 90
         ' 
         ' prod_name_label
         ' 
@@ -276,8 +276,9 @@ Partial Class PRODUCT
         ' Btn_add_prod
         ' 
         Btn_add_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Btn_add_prod.BackgroundImageLayout = ImageLayout.None
         Btn_add_prod.FlatStyle = FlatStyle.Flat
-        Btn_add_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Btn_add_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Btn_add_prod.Location = New Point(27, 814)
         Btn_add_prod.Name = "Btn_add_prod"
         Btn_add_prod.Size = New Size(111, 53)
@@ -289,7 +290,7 @@ Partial Class PRODUCT
         ' 
         Btn_update_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         Btn_update_prod.FlatStyle = FlatStyle.Flat
-        Btn_update_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Btn_update_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Btn_update_prod.Location = New Point(266, 814)
         Btn_update_prod.Name = "Btn_update_prod"
         Btn_update_prod.Size = New Size(111, 53)
@@ -301,7 +302,7 @@ Partial Class PRODUCT
         ' 
         Btn_delete_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_delete_prod.FlatStyle = FlatStyle.Flat
-        Btn_delete_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Btn_delete_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Btn_delete_prod.Location = New Point(789, 814)
         Btn_delete_prod.Name = "Btn_delete_prod"
         Btn_delete_prod.Size = New Size(111, 53)
@@ -313,7 +314,7 @@ Partial Class PRODUCT
         ' 
         Btn_clear_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_clear_prod.FlatStyle = FlatStyle.Flat
-        Btn_clear_prod.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Btn_clear_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Btn_clear_prod.Location = New Point(1012, 814)
         Btn_clear_prod.Name = "Btn_clear_prod"
         Btn_clear_prod.Size = New Size(111, 53)

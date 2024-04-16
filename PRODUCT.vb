@@ -2,7 +2,18 @@
 Imports MySql.Data.MySqlClient
 Public Class PRODUCT
 
+    Private Sub PRODUCT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.DoubleBuffered = True
+
+    End Sub
+
+
+
+
+
     Private Sub Product_title_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
         ' Set the form's start position to CenterScreen
         Me.StartPosition = FormStartPosition.CenterScreen
 
