@@ -22,29 +22,34 @@ Partial Class CUSTOMER
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
+        Lbl_customer = New Label()
         SuspendLayout()
         ' 
-        ' Label1
+        ' Lbl_customer
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(0, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(67, 15)
-        Label1.TabIndex = 0
-        Label1.Text = "CUSTOMER"
+        Lbl_customer.AutoSize = True
+        Lbl_customer.BackColor = Color.Transparent
+        Lbl_customer.Font = New Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Lbl_customer.ForeColor = Color.White
+        Lbl_customer.Location = New Point(0, 0)
+        Lbl_customer.Name = "Lbl_customer"
+        Lbl_customer.Size = New Size(181, 33)
+        Lbl_customer.TabIndex = 0
+        Lbl_customer.Text = "CUSTOMER"
         ' 
         ' CUSTOMER
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackgroundImage = My.Resources.Resources.m0sag04
+        BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(800, 450)
         ControlBox = False
-        Controls.Add(Label1)
+        Controls.Add(Lbl_customer)
         Name = "CUSTOMER"
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Lbl_customer As Label
 End Class

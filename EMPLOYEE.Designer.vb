@@ -22,30 +22,34 @@ Partial Class EMPLOYEE
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
+        lbl_employee = New Label()
         SuspendLayout()
         ' 
-        ' Label1
+        ' lbl_employee
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(366, 18)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(113, 30)
-        Label1.TabIndex = 0
-        Label1.Text = "EMPLOYEE"
+        lbl_employee.AutoSize = True
+        lbl_employee.BackColor = Color.Transparent
+        lbl_employee.Font = New Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lbl_employee.ForeColor = Color.White
+        lbl_employee.Location = New Point(0, 0)
+        lbl_employee.Name = "lbl_employee"
+        lbl_employee.Size = New Size(174, 33)
+        lbl_employee.TabIndex = 0
+        lbl_employee.Text = "EMPLOYEE"
         ' 
         ' EMPLOYEE
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackgroundImage = My.Resources.Resources.m0sag04
+        BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(800, 450)
         ControlBox = False
-        Controls.Add(Label1)
+        Controls.Add(lbl_employee)
         Name = "EMPLOYEE"
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lbl_employee As Label
 End Class

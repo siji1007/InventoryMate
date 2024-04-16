@@ -131,6 +131,17 @@ Public Class DASHBOARD
 
     End Sub
 
+    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
+        ' Change button color to green on mouse enter
+        Button1.BackColor = Color.FromArgb(&H1, &H19, &H10)
+        Button1.ForeColor = Color.White
 
+    End Sub
+
+    Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles Button1.MouseLeave
+        ' Change button color back to its original color on mouse leave
+        Button1.BackColor = Color.Transparent ' You can set it to any default color or the color it had before the hover
+        Button1.ForeColor = Color.Black
+    End Sub
 
 End Class

@@ -22,30 +22,34 @@ Partial Class SUPPLIER
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
+        Lbl_supplier = New Label()
         SuspendLayout()
         ' 
-        ' Label1
+        ' Lbl_supplier
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(0, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(113, 30)
-        Label1.TabIndex = 0
-        Label1.Text = "SUPPLIER"
+        Lbl_supplier.AutoSize = True
+        Lbl_supplier.BackColor = Color.Transparent
+        Lbl_supplier.Font = New Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Lbl_supplier.ForeColor = Color.White
+        Lbl_supplier.Location = New Point(0, 0)
+        Lbl_supplier.Name = "Lbl_supplier"
+        Lbl_supplier.Size = New Size(157, 33)
+        Lbl_supplier.TabIndex = 0
+        Lbl_supplier.Text = "SUPPLIER"
         ' 
         ' SUPPLIER
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        BackgroundImage = My.Resources.Resources.m0sag04
+        BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(800, 450)
         ControlBox = False
-        Controls.Add(Label1)
+        Controls.Add(Lbl_supplier)
         Name = "SUPPLIER"
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents Lbl_supplier As Label
 End Class

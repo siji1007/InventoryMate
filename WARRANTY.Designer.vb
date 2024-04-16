@@ -22,30 +22,50 @@ Partial Class WARRANTY
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Label1 = New Label()
+        lbl_warranty = New Label()
+        DataGridView1 = New DataGridView()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Label1
+        ' lbl_warranty
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(1, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(99, 21)
-        Label1.TabIndex = 0
-        Label1.Text = "WARRANTY"
+        lbl_warranty.AutoSize = True
+        lbl_warranty.BackColor = Color.Transparent
+        lbl_warranty.Font = New Font("Microsoft Sans Serif", 21.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lbl_warranty.ForeColor = Color.White
+        lbl_warranty.Location = New Point(0, 0)
+        lbl_warranty.Name = "lbl_warranty"
+        lbl_warranty.Size = New Size(181, 33)
+        lbl_warranty.TabIndex = 0
+        lbl_warranty.Text = "WARRANTY"
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        DataGridView1.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Location = New Point(12, 127)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.Size = New Size(1109, 301)
+        DataGridView1.TabIndex = 1
         ' 
         ' WARRANTY
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        BackgroundImage = My.Resources.Resources.m0sag04
+        BackgroundImageLayout = ImageLayout.Center
+        ClientSize = New Size(1133, 890)
         ControlBox = False
-        Controls.Add(Label1)
+        Controls.Add(DataGridView1)
+        Controls.Add(lbl_warranty)
         Name = "WARRANTY"
+        StartPosition = FormStartPosition.CenterScreen
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lbl_warranty As Label
+    Friend WithEvents DataGridView1 As DataGridView
 End Class

@@ -72,51 +72,63 @@ Partial Class DASHBOARD
         ' Employee
         ' 
         resources.ApplyResources(Employee, "Employee")
+        Employee.BackColor = Color.Transparent
         Employee.FlatAppearance.BorderSize = 0
+        Employee.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Employee.ForeColor = SystemColors.ActiveCaptionText
         Employee.Name = "Employee"
-        Employee.UseVisualStyleBackColor = True
+        Employee.UseVisualStyleBackColor = False
         ' 
         ' Supplier
         ' 
         resources.ApplyResources(Supplier, "Supplier")
+        Supplier.BackColor = Color.Transparent
         Supplier.FlatAppearance.BorderSize = 0
+        Supplier.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Supplier.ForeColor = SystemColors.ActiveCaptionText
         Supplier.Name = "Supplier"
-        Supplier.UseVisualStyleBackColor = True
+        Supplier.UseVisualStyleBackColor = False
         ' 
         ' Customer
         ' 
         resources.ApplyResources(Customer, "Customer")
+        Customer.BackColor = Color.Transparent
         Customer.FlatAppearance.BorderSize = 0
+        Customer.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Customer.ForeColor = SystemColors.ActiveCaptionText
         Customer.Name = "Customer"
-        Customer.UseVisualStyleBackColor = True
+        Customer.UseVisualStyleBackColor = False
         ' 
         ' Warranty
         ' 
         resources.ApplyResources(Warranty, "Warranty")
+        Warranty.BackColor = Color.Transparent
         Warranty.FlatAppearance.BorderSize = 0
+        Warranty.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Warranty.ForeColor = SystemColors.ActiveCaptionText
         Warranty.Name = "Warranty"
-        Warranty.UseVisualStyleBackColor = True
+        Warranty.UseVisualStyleBackColor = False
         ' 
         ' Product
         ' 
         resources.ApplyResources(Product, "Product")
+        Product.BackColor = Color.Transparent
         Product.FlatAppearance.BorderSize = 0
+        Product.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Product.ForeColor = SystemColors.ActiveCaptionText
         Product.Name = "Product"
-        Product.UseVisualStyleBackColor = True
+        Product.UseVisualStyleBackColor = False
         ' 
         ' Button1
         ' 
         resources.ApplyResources(Button1, "Button1")
+        Button1.BackColor = Color.Transparent
         Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Button1.ForeColor = SystemColors.ActiveCaptionText
         Button1.Image = My.Resources.Resources.home__3_
         Button1.Name = "Button1"
-        Button1.UseVisualStyleBackColor = True
+        Button1.UseVisualStyleBackColor = False
         ' 
         ' Panel1
         ' 
