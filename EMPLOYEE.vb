@@ -89,10 +89,9 @@ Public Class EMPLOYEE
         Dim Emp_name As String = txt_emp_name.Text.Trim()
         Dim Emp_address As String = txt_emp_address.Text.Trim()
 
-        ' Remove "+63" prefix from phone number if present
         Dim Emp_cnumber As String = txt_emp_cnumber.Text.Trim()
         If Emp_cnumber.StartsWith("+63") Then
-            Emp_cnumber = Emp_cnumber.Substring(3) ' Remove "+63" prefix
+            Emp_cnumber = Emp_cnumber.Substring(3) ' Remove "+63" potangina
         End If
 
         ' Ensure Emp_cnumber contains exactly 10 digits
@@ -119,6 +118,8 @@ Public Class EMPLOYEE
                     txt_emp_cnumber.Clear()
                     emp_birthdate.Value = DateTime.Today
                     Button1.Text = ">>"
+
+
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try
@@ -189,8 +190,8 @@ Public Class EMPLOYEE
                 Dim query As String = "UPDATE employee SET Emp_name = @Emp_name, Emp_address = @Emp_address, Emp_cnumber = @Emp_cnumber, Emp_bdate = @Emp_bdate, Emp_status = @Emp_status WHERE Emp_ID = @Emp_ID"
                 Dim cmd As New MySqlCommand(query, Conn)
                 cmd.Parameters.AddWithValue("@Emp_ID", Emp_ID)
-                cmd.Parameters.AddWithValue("@Emp_name", Emp_name)
-                cmd.Parameters.AddWithValue("@Emp_address", Emp_address)
+                cmd.Parameters.AddWithValue("@Emp_name", Emp_name.ToUpper())
+                cmd.Parameters.AddWithValue("@Emp_address", Emp_address.ToUpper())
                 cmd.Parameters.AddWithValue("@Emp_cnumber", Emp_cnumber)
                 cmd.Parameters.AddWithValue("@Emp_bdate", Emp_bdate)
                 cmd.Parameters.AddWithValue("@Emp_status", Emp_status)
@@ -202,9 +203,12 @@ Public Class EMPLOYEE
 
                     txt_emp_name.Clear()
                     txt_emp_address.Clear()
-                    txt_emp_cnumber.Clear()
+                    txt_emp_cnumber.Text = "63"
                     emp_birthdate.Value = DateTime.Today
                     Button1.Text = ">>"
+
+
+
                     MessageBox.Show("Employee successfully updated!")
                 Catch ex As Exception
                     MessageBox.Show($"Error: {ex.Message}")
@@ -232,6 +236,63 @@ Public Class EMPLOYEE
                 End If
             End If
         Next
+
+
+
+    End Sub
+
+    Private Sub Btn_delete_Click(sender As Object, e As EventArgs) Handles Btn_delete.Click
+        If emp_datagridview.SelectedRows.Count > 0 Then
+            Dim selectedRow As DataGridViewRow = emp_datagridview.SelectedRows(0)
+            Dim EmpId As Integer = Convert.ToInt32(selectedRow.Cells("Emp_ID").Value)
+
+            If openDB() Then
+                Dim query As String = "DELETE FROM employee WHERE Emp_ID = @EmpId"
+                Dim cmd As New MySqlCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@EmpId", EmpId)
+                Try
+                    cmd.ExecuteNonQuery()
+                    emp_datagridview.Rows.Clear()
+                    DataLoadEmployee()
+
+                    txt_emp_name.Clear()
+                    txt_emp_address.Clear()
+                    txt_emp_cnumber.Text = "63"
+                    emp_birthdate.Value = DateTime.Today
+                    Button1.Text = ">>"
+
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                Finally
+                    closeDB()
+
+                End Try
+            Else
+                MessageBox.Show("Failed to connect to database")
+
+            End If
+
+
+
+
+        End If
+    End Sub
+
+    Private Sub Btn_clear_Click(sender As Object, e As EventArgs) Handles Btn_clear.Click
+        If emp_datagridview.SelectedRows.Count > 0 Then
+            emp_datagridview.ClearSelection()
+        End If
+
+        txt_emp_name.Clear()
+        txt_emp_address.Clear()
+        txt_emp_cnumber.Text = "63"
+        emp_birthdate.Value = DateTime.Today
+        Button1.Text = ">>"
+
+
+
+
 
 
 

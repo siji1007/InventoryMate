@@ -28,7 +28,8 @@ Public Class SUPPLIER
                 Dim query As New MySqlCommand("SELECT * FROM supplier", Conn)
                 Using dr As MySqlDataReader = query.ExecuteReader
                     While dr.Read
-                        Dim rowIndex As Integer = sup_datagridview.Rows.Add(dr.Item("Supp_ID"), dr.Item("Supp_name"), dr.Item("Supp_store"), dr.Item("Supp_address"), dr.Item("Supp_email"), dr.Item("Supp_cnumber"))
+                        Dim formattedCnumber As String = "+63" & dr.Item("Supp_cnumber").ToString()
+                        Dim rowIndex As Integer = sup_datagridview.Rows.Add(dr.Item("Supp_ID"), dr.Item("Supp_name"), dr.Item("Supp_store"), dr.Item("Supp_address"), dr.Item("Supp_email"), formattedCnumber)
                     End While
                 End Using
             Else
@@ -47,9 +48,7 @@ Public Class SUPPLIER
             Dim supStore As String = SelectedRow.Cells("Supp_store").Value.ToString()
             Dim supAddress As String = SelectedRow.Cells("Supp_address").Value.ToString()
             Dim supEmail As String = SelectedRow.Cells("Supp_email").Value.ToString()
-            Dim supContact As Integer = Convert.ToInt64(SelectedRow.Cells("Supp_cnumber").Value)
-
-
+            Dim supContact As String = SelectedRow.Cells("Supp_cnumber").Value.ToString()
 
             For Each row_sup As DataGridViewRow In sup_datagridview.Rows
                 If row_sup.Index = e.RowIndex Then
@@ -63,22 +62,32 @@ Public Class SUPPLIER
             txt_store_name.Text = supStore
             txt_sup_address.Text = supAddress
             txt_sup_email.Text = supEmail
-            txt_sup_cnumber.Text = supContact.ToString()
-
+            txt_sup_cnumber.Text = supContact ' Assuming supContact already has the country code
         End If
     End Sub
 
-    Private Sub Btn_create_Click(sender As Object, e As EventArgs) Handles Btn_create.Click
-        Dim S_name = txt_sup_name.Text.Trim()
-        Dim S_store = txt_store_name.Text.Trim()
-        Dim S_address = txt_sup_address.Text.Trim()
-        Dim S_email = txt_sup_email.Text.Trim()
-        Dim S_contact As Integer
 
-        If String.IsNullOrWhiteSpace(S_name) OrElse String.IsNullOrWhiteSpace(S_store) OrElse String.IsNullOrWhiteSpace(S_address) OrElse String.IsNullOrWhiteSpace(S_email) OrElse Not Integer.TryParse(txt_sup_cnumber.Text.Trim(), S_contact) Then
+    Private Sub Btn_create_Click(sender As Object, e As EventArgs) Handles Btn_create.Click
+        Dim S_name As String = txt_sup_name.Text.Trim()
+        Dim S_store As String = txt_store_name.Text.Trim()
+        Dim S_address As String = txt_sup_address.Text.Trim()
+        Dim S_email As String = txt_sup_email.Text.Trim()
+
+        Dim S_contact As String = txt_sup_cnumber.Text.Trim()
+        If S_contact.StartsWith("+63") Then
+            S_contact = S_contact.Substring(3) ' Remove "+63" prefix
+        End If
+
+        ' Validate contact number format (optional)
+        Dim isValidContact As Boolean = S_contact.All(AddressOf Char.IsDigit) AndAlso S_contact.Length = 10
+        If Not isValidContact Then
+            MessageBox.Show("Please enter a valid 10-digit contact number.", "Invalid Contact Number", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return ' Exit the method if contact number is invalid
+        End If
+
+        If String.IsNullOrWhiteSpace(S_name) OrElse String.IsNullOrWhiteSpace(S_store) OrElse String.IsNullOrWhiteSpace(S_address) OrElse String.IsNullOrWhiteSpace(S_email) Then
             MessageBox.Show("Please fill all information properly.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-
             If openDB() Then
                 Dim query As String = "INSERT INTO supplier VALUES(NULL, @S_name, @S_store, @S_address, @S_email, @S_contact)"
                 Dim cmd As New MySqlCommand(query, Conn)
@@ -88,63 +97,59 @@ Public Class SUPPLIER
                 cmd.Parameters.AddWithValue("@S_email", S_email.ToUpper())
                 cmd.Parameters.AddWithValue("@S_contact", S_contact)
 
-
                 Try
                     cmd.ExecuteNonQuery()
-                    MessageBox.Show("Supplier added Succesfully")
+                    MessageBox.Show("Supplier added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     sup_datagridview.Rows.Clear()
                     LoadDataSup()
-
 
                     txt_sup_name.Clear()
                     txt_store_name.Clear()
                     txt_sup_address.Clear()
                     txt_sup_email.Clear()
                     txt_sup_cnumber.Clear()
-
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-
+                    MessageBox.Show("An error occurred while adding the supplier. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Finally
                     closeDB()
                 End Try
             Else
-                MessageBox.Show("Failed to Connect database")
-
+                MessageBox.Show("Failed to connect to the database.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-
         End If
     End Sub
+
 
     Private Sub Btn_update_Click(sender As Object, e As EventArgs) Handles Btn_update.Click
         Dim S_id As Integer
         If Integer.TryParse(sup_datagridview.CurrentRow.Cells("Supp_ID").Value.ToString(), S_id) Then
-
             Dim S_name As String = txt_sup_name.Text
             Dim S_store As String = txt_store_name.Text
             Dim S_address As String = txt_sup_address.Text
             Dim S_email As String = txt_sup_email.Text
-            Dim S_contact As Integer
+            Dim S_contact As String = txt_sup_cnumber.Text.Trim()
 
-            If String.IsNullOrWhiteSpace(S_name) OrElse String.IsNullOrWhiteSpace(S_store) OrElse String.IsNullOrWhiteSpace(S_address) OrElse String.IsNullOrWhiteSpace(S_email) OrElse Not Integer.TryParse(txt_sup_cnumber.Text, S_contact) Then
-                MessageBox.Show("Please fill the information properly", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Check if the contact number starts with "+63" and remove it
+            If S_contact.StartsWith("+63") AndAlso S_contact.Length > 3 Then
+                S_contact = S_contact.Substring(3) ' Remove "+63"
+            End If
 
+            If String.IsNullOrWhiteSpace(S_name) OrElse String.IsNullOrWhiteSpace(S_store) OrElse String.IsNullOrWhiteSpace(S_address) OrElse String.IsNullOrWhiteSpace(S_email) OrElse String.IsNullOrWhiteSpace(S_contact) OrElse S_contact.Length <> 10 Then
+                MessageBox.Show("Please fill the information properly.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 If openDB() Then
-                    Dim query As String = "UPDATE supplier SET Supp_name = @S_name, Supp_store = @S_store, Supp_address = @S_address , Supp_email = @S_email, Supp_cnumber = @S_contact WHERE Supp_ID = @S_id"
+                    Dim query As String = "UPDATE supplier SET Supp_name = @S_name, Supp_store = @S_store, Supp_address = @S_address, Supp_email = @S_email, Supp_cnumber = @S_contact WHERE Supp_ID = @S_id"
                     Dim cmd As New MySqlCommand(query, Conn)
                     cmd.Parameters.AddWithValue("@S_id", S_id)
-                    cmd.Parameters.AddWithValue("@S_name", S_name)
-                    cmd.Parameters.AddWithValue("@S_store", S_store)
-                    cmd.Parameters.AddWithValue("@S_address", S_address)
-                    cmd.Parameters.AddWithValue("@S_email", S_email)
+                    cmd.Parameters.AddWithValue("@S_name", S_name.ToUpper())
+                    cmd.Parameters.AddWithValue("@S_store", S_store.ToUpper())
+                    cmd.Parameters.AddWithValue("@S_address", S_address.ToUpper())
+                    cmd.Parameters.AddWithValue("@S_email", S_email.ToUpper())
                     cmd.Parameters.AddWithValue("@S_contact", S_contact)
-
-
 
                     Try
                         cmd.ExecuteNonQuery()
-                        MessageBox.Show("Supplier updated successfully ")
+                        MessageBox.Show("Supplier updated successfully.")
                         sup_datagridview.Rows.Clear()
                         LoadDataSup()
 
@@ -153,29 +158,20 @@ Public Class SUPPLIER
                         txt_sup_address.Clear()
                         txt_sup_email.Clear()
                         txt_sup_cnumber.Clear()
-
-
-
-
-
                     Catch ex As Exception
                         MessageBox.Show(ex.Message)
-
                     Finally
                         closeDB()
                     End Try
-
                 Else
-                    MessageBox.Show("Failed to connect to the database")
+                    MessageBox.Show("Failed to connect to the database.")
                 End If
             End If
-
         Else
             MessageBox.Show("Please select a product to update.")
-
         End If
-
     End Sub
+
 
 
 

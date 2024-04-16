@@ -181,6 +181,7 @@ Partial Class SUPPLIER
         txt_sup_cnumber.Name = "txt_sup_cnumber"
         txt_sup_cnumber.Size = New Size(230, 23)
         txt_sup_cnumber.TabIndex = 6
+        txt_sup_cnumber.Text = "+63"
         ' 
         ' lbl_name_sup
         ' 

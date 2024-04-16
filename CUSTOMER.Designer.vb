@@ -161,6 +161,7 @@ Partial Class CUSTOMER
         txt_cnumber.Name = "txt_cnumber"
         txt_cnumber.Size = New Size(230, 23)
         txt_cnumber.TabIndex = 5
+        txt_cnumber.Text = "+63"
         ' 
         ' Label1
         ' 
