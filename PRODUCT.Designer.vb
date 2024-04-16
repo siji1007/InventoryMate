@@ -22,12 +22,12 @@ Partial Class PRODUCT
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Product_title = New Label()
         prod_datagridview = New DataGridView()
         prod_id = New DataGridViewTextBoxColumn()
@@ -69,56 +69,56 @@ Partial Class PRODUCT
         ' 
         ' prod_datagridview
         ' 
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = Color.White
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = Color.White
-        prod_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle7.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle7.ForeColor = Color.White
+        DataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = Color.White
+        prod_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         prod_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         prod_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         prod_datagridview.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        prod_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle8.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle8.ForeColor = Color.White
+        DataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
+        prod_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         prod_datagridview.ColumnHeadersHeight = 50
         prod_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         prod_datagridview.Columns.AddRange(New DataGridViewColumn() {prod_id, prod_name_dt, prod_model_dt, prod_color_dt, prod_stocks_dt, prod_price_dt})
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle4.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle4.ForeColor = Color.White
-        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.False
-        prod_datagridview.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle10.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle10.ForeColor = Color.White
+        DataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = DataGridViewTriState.False
+        prod_datagridview.DefaultCellStyle = DataGridViewCellStyle10
         prod_datagridview.GridColor = Color.White
         prod_datagridview.Location = New Point(12, 127)
         prod_datagridview.Name = "prod_datagridview"
         prod_datagridview.ReadOnly = True
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle5.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle5.ForeColor = Color.White
-        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
-        prod_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle11.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle11.ForeColor = Color.White
+        DataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = DataGridViewTriState.True
+        prod_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle11
         prod_datagridview.RowHeadersVisible = False
         prod_datagridview.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle6.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle6.ForeColor = Color.White
-        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = Color.White
-        prod_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle12.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle12.ForeColor = Color.White
+        DataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = Color.White
+        prod_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle12
         prod_datagridview.ScrollBars = ScrollBars.Vertical
         prod_datagridview.Size = New Size(1109, 301)
         prod_datagridview.TabIndex = 1
@@ -126,11 +126,11 @@ Partial Class PRODUCT
         ' prod_id
         ' 
         prod_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        prod_id.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
+        DataGridViewCellStyle9.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle9.ForeColor = Color.White
+        prod_id.DefaultCellStyle = DataGridViewCellStyle9
         prod_id.HeaderText = "ID"
         prod_id.Name = "prod_id"
         prod_id.ReadOnly = True
@@ -334,7 +334,8 @@ Partial Class PRODUCT
         ' 
         Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label3.AutoSize = True
-        Label3.Image = My.Resources.Resources.loupe__1_
+        Label3.BackColor = Color.Transparent
+        Label3.Image = My.Resources.Resources.search
         Label3.Location = New Point(881, 102)
         Label3.Name = "Label3"
         Label3.Size = New Size(28, 15)
