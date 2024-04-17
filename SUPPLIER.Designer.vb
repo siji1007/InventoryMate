@@ -151,6 +151,7 @@ Partial Class SUPPLIER
         ' 
         txt_sup_name.Location = New Point(143, 450)
         txt_sup_name.Name = "txt_sup_name"
+        txt_sup_name.PlaceholderText = "ex. Christian John Ibanez"
         txt_sup_name.Size = New Size(230, 23)
         txt_sup_name.TabIndex = 2
         ' 
@@ -158,6 +159,7 @@ Partial Class SUPPLIER
         ' 
         txt_store_name.Location = New Point(143, 492)
         txt_store_name.Name = "txt_store_name"
+        txt_store_name.PlaceholderText = "ex. RBRS Gadget Store"
         txt_store_name.Size = New Size(230, 23)
         txt_store_name.TabIndex = 3
         ' 
@@ -165,6 +167,7 @@ Partial Class SUPPLIER
         ' 
         txt_sup_address.Location = New Point(143, 534)
         txt_sup_address.Name = "txt_sup_address"
+        txt_sup_address.PlaceholderText = "ex. SM City Daet"
         txt_sup_address.Size = New Size(230, 23)
         txt_sup_address.TabIndex = 4
         ' 
@@ -172,6 +175,7 @@ Partial Class SUPPLIER
         ' 
         txt_sup_email.Location = New Point(731, 450)
         txt_sup_email.Name = "txt_sup_email"
+        txt_sup_email.PlaceholderText = "ex. RBRS2@gmail.com"
         txt_sup_email.Size = New Size(230, 23)
         txt_sup_email.TabIndex = 5
         ' 
@@ -251,7 +255,7 @@ Partial Class SUPPLIER
         ' Btn_create
         ' 
         Btn_create.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Btn_create.Location = New Point(27, 814)
+        Btn_create.Location = New Point(27, 696)
         Btn_create.Name = "Btn_create"
         Btn_create.Size = New Size(111, 53)
         Btn_create.TabIndex = 12
@@ -261,7 +265,7 @@ Partial Class SUPPLIER
         ' Btn_update
         ' 
         Btn_update.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Btn_update.Location = New Point(266, 814)
+        Btn_update.Location = New Point(266, 696)
         Btn_update.Name = "Btn_update"
         Btn_update.Size = New Size(111, 53)
         Btn_update.TabIndex = 13
@@ -271,7 +275,7 @@ Partial Class SUPPLIER
         ' Btn_delete
         ' 
         Btn_delete.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Btn_delete.Location = New Point(789, 814)
+        Btn_delete.Location = New Point(789, 696)
         Btn_delete.Name = "Btn_delete"
         Btn_delete.Size = New Size(111, 53)
         Btn_delete.TabIndex = 14
@@ -281,7 +285,7 @@ Partial Class SUPPLIER
         ' Btn_clear
         ' 
         Btn_clear.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Btn_clear.Location = New Point(1012, 814)
+        Btn_clear.Location = New Point(1012, 696)
         Btn_clear.Name = "Btn_clear"
         Btn_clear.Size = New Size(111, 53)
         Btn_clear.TabIndex = 15
@@ -294,7 +298,7 @@ Partial Class SUPPLIER
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 890)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
         Controls.Add(Btn_clear)
         Controls.Add(Btn_delete)

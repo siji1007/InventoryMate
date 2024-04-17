@@ -237,7 +237,7 @@ Public Class CUSTOMER
 
     End Sub
 
+    Private Sub txt_caddress_TextChanged(sender As Object, e As EventArgs) Handles txt_caddress.TextChanged
 
-
-
+    End Sub
 End Class

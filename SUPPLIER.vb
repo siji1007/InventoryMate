@@ -230,7 +230,7 @@ Public Class SUPPLIER
         txt_store_name.Clear()
         txt_sup_address.Clear()
         txt_sup_email.Clear()
-        txt_sup_cnumber.Clear()
+        txt_sup_cnumber.Text = "+63"
 
     End Sub
 End Class

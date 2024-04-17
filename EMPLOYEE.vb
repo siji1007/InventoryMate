@@ -51,23 +51,6 @@ Public Class EMPLOYEE
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         status_menu.Show(Button1, 0, Button1.Height)
     End Sub
@@ -286,7 +269,7 @@ Public Class EMPLOYEE
 
         txt_emp_name.Clear()
         txt_emp_address.Clear()
-        txt_emp_cnumber.Text = "63"
+        txt_emp_cnumber.Text = "+63"
         emp_birthdate.Value = DateTime.Today
         Button1.Text = ">>"
 

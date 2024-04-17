@@ -23,9 +23,9 @@ Partial Class EMPLOYEE
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
         lbl_employee = New Label()
         emp_datagridview = New DataGridView()
         Emp_ID = New DataGridViewTextBoxColumn()
@@ -52,6 +52,7 @@ Partial Class EMPLOYEE
         txt_emp_address = New TextBox()
         Label4 = New Label()
         txt_search = New TextBox()
+        Label5 = New Label()
         CType(emp_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         status_menu.SuspendLayout()
         SuspendLayout()
@@ -70,38 +71,38 @@ Partial Class EMPLOYEE
         ' 
         ' emp_datagridview
         ' 
-        emp_datagridview.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        emp_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         emp_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = SystemColors.Window
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        emp_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle13.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle13.ForeColor = SystemColors.Window
+        DataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = DataGridViewTriState.True
+        emp_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         emp_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         emp_datagridview.Columns.AddRange(New DataGridViewColumn() {Emp_ID, Emp_name, Emp_address, Emp_cnumber, Emp_bdate, Emp_status})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        emp_datagridview.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle14.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle14.ForeColor = Color.White
+        DataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.False
+        emp_datagridview.DefaultCellStyle = DataGridViewCellStyle14
         emp_datagridview.GridColor = SystemColors.Window
-        emp_datagridview.Location = New Point(12, 85)
+        emp_datagridview.Location = New Point(12, 127)
         emp_datagridview.Name = "emp_datagridview"
         emp_datagridview.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
-        emp_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle15.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle15.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle15.ForeColor = Color.White
+        DataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = DataGridViewTriState.True
+        emp_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
         emp_datagridview.RowHeadersVisible = False
         emp_datagridview.Size = New Size(1109, 301)
         emp_datagridview.TabIndex = 1
@@ -158,12 +159,23 @@ Partial Class EMPLOYEE
         txt_emp_name.Size = New Size(230, 23)
         txt_emp_name.TabIndex = 2
         ' 
+
+        ' txt_emp_address
+        ' 
+        txt_emp_address.Location = New Point(143, 490)
+        txt_emp_address.Name = "txt_emp_address"
+        txt_emp_address.PlaceholderText = " ex. Talisay, Camarines Norte"
+        txt_emp_address.Size = New Size(230, 23)
+        txt_emp_address.TabIndex = 3
+        ' 
+
+
         ' txt_emp_cnumber
         ' 
         txt_emp_cnumber.Location = New Point(143, 535)
         txt_emp_cnumber.Name = "txt_emp_cnumber"
         txt_emp_cnumber.Size = New Size(230, 23)
-        txt_emp_cnumber.TabIndex = 3
+        txt_emp_cnumber.TabIndex = 4
         txt_emp_cnumber.Text = "+63"
         ' 
         ' emp_birthdate
@@ -173,7 +185,7 @@ Partial Class EMPLOYEE
         emp_birthdate.Name = "emp_birthdate"
         emp_birthdate.ShowCheckBox = True
         emp_birthdate.Size = New Size(230, 23)
-        emp_birthdate.TabIndex = 4
+        emp_birthdate.TabIndex = 5
         ' 
         ' Button1
         ' 
@@ -258,7 +270,7 @@ Partial Class EMPLOYEE
         ' Btn_add
         ' 
         Btn_add.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Btn_add.Location = New Point(27, 814)
+        Btn_add.Location = New Point(27, 696)
         Btn_add.Name = "Btn_add"
         Btn_add.Size = New Size(111, 53)
         Btn_add.TabIndex = 12
@@ -268,7 +280,7 @@ Partial Class EMPLOYEE
         ' Btn_update
         ' 
         Btn_update.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Btn_update.Location = New Point(266, 814)
+        Btn_update.Location = New Point(266, 696)
         Btn_update.Name = "Btn_update"
         Btn_update.Size = New Size(111, 53)
         Btn_update.TabIndex = 13
@@ -278,7 +290,7 @@ Partial Class EMPLOYEE
         ' Btn_delete
         ' 
         Btn_delete.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Btn_delete.Location = New Point(789, 814)
+        Btn_delete.Location = New Point(789, 696)
         Btn_delete.Name = "Btn_delete"
         Btn_delete.Size = New Size(111, 53)
         Btn_delete.TabIndex = 14
@@ -288,20 +300,12 @@ Partial Class EMPLOYEE
         ' Btn_clear
         ' 
         Btn_clear.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Btn_clear.Location = New Point(1012, 814)
+        Btn_clear.Location = New Point(1012, 696)
         Btn_clear.Name = "Btn_clear"
         Btn_clear.Size = New Size(111, 53)
         Btn_clear.TabIndex = 15
         Btn_clear.Text = "CLEAR"
         Btn_clear.UseVisualStyleBackColor = True
-        ' 
-        ' txt_emp_address
-        ' 
-        txt_emp_address.Location = New Point(143, 490)
-        txt_emp_address.Name = "txt_emp_address"
-        txt_emp_address.PlaceholderText = " ex. Talisay, Camarines Norte"
-        txt_emp_address.Size = New Size(230, 23)
-        txt_emp_address.TabIndex = 16
         ' 
         ' Label4
         ' 
@@ -318,12 +322,24 @@ Partial Class EMPLOYEE
         ' 
         ' txt_search
         ' 
-        txt_search.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_search.Location = New Point(908, 56)
+        txt_search.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        txt_search.Location = New Point(910, 98)
         txt_search.Name = "txt_search"
         txt_search.PlaceholderText = "Search"
         txt_search.Size = New Size(213, 23)
         txt_search.TabIndex = 18
+        ' 
+        ' Label5
+        ' 
+        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Label5.AutoSize = True
+        Label5.BackColor = Color.Transparent
+        Label5.Image = My.Resources.Resources.search
+        Label5.Location = New Point(881, 102)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(28, 15)
+        Label5.TabIndex = 19
+        Label5.Text = "       "
         ' 
         ' EMPLOYEE
         ' 
@@ -331,8 +347,9 @@ Partial Class EMPLOYEE
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 890)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Label5)
         Controls.Add(txt_search)
         Controls.Add(Label4)
         Controls.Add(txt_emp_address)
@@ -384,4 +401,5 @@ Partial Class EMPLOYEE
     Friend WithEvents txt_emp_address As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txt_search As TextBox
+    Friend WithEvents Label5 As Label
 End Class

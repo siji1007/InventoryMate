@@ -61,7 +61,7 @@ Partial Class CUSTOMER
         ' 
         ' customer_datagridview
         ' 
-        customer_datagridview.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        customer_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         customer_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
@@ -82,7 +82,7 @@ Partial Class CUSTOMER
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
         customer_datagridview.DefaultCellStyle = DataGridViewCellStyle2
         customer_datagridview.GridColor = SystemColors.Window
-        customer_datagridview.Location = New Point(12, 86)
+        customer_datagridview.Location = New Point(12, 127)
         customer_datagridview.Name = "customer_datagridview"
         customer_datagridview.ReadOnly = True
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
@@ -138,6 +138,7 @@ Partial Class CUSTOMER
         ' 
         txt_cname.Location = New Point(143, 450)
         txt_cname.Name = "txt_cname"
+        txt_cname.PlaceholderText = " ex. Christian John D. Ibanez"
         txt_cname.Size = New Size(230, 23)
         txt_cname.TabIndex = 2
         ' 
@@ -145,6 +146,7 @@ Partial Class CUSTOMER
         ' 
         txt_caddress.Location = New Point(143, 492)
         txt_caddress.Name = "txt_caddress"
+        txt_caddress.PlaceholderText = " ex. Poblacion, Talisay Camarines Norte"
         txt_caddress.Size = New Size(230, 23)
         txt_caddress.TabIndex = 3
         ' 
@@ -152,6 +154,7 @@ Partial Class CUSTOMER
         ' 
         txt_cemail.Location = New Point(143, 534)
         txt_cemail.Name = "txt_cemail"
+        txt_cemail.PlaceholderText = " ex. cj@gmail.com"
         txt_cemail.Size = New Size(230, 23)
         txt_cemail.TabIndex = 4
         ' 
@@ -214,7 +217,7 @@ Partial Class CUSTOMER
         ' Add_cust_btn
         ' 
         Add_cust_btn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Add_cust_btn.Location = New Point(27, 814)
+        Add_cust_btn.Location = New Point(27, 696)
         Add_cust_btn.Name = "Add_cust_btn"
         Add_cust_btn.Size = New Size(111, 53)
         Add_cust_btn.TabIndex = 10
@@ -224,7 +227,7 @@ Partial Class CUSTOMER
         ' Update_cust_btn
         ' 
         Update_cust_btn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Update_cust_btn.Location = New Point(266, 814)
+        Update_cust_btn.Location = New Point(266, 696)
         Update_cust_btn.Name = "Update_cust_btn"
         Update_cust_btn.Size = New Size(111, 53)
         Update_cust_btn.TabIndex = 11
@@ -234,7 +237,7 @@ Partial Class CUSTOMER
         ' Delete_cust_btn
         ' 
         Delete_cust_btn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Delete_cust_btn.Location = New Point(789, 814)
+        Delete_cust_btn.Location = New Point(789, 696)
         Delete_cust_btn.Name = "Delete_cust_btn"
         Delete_cust_btn.Size = New Size(111, 53)
         Delete_cust_btn.TabIndex = 12
@@ -244,7 +247,7 @@ Partial Class CUSTOMER
         ' Clear_cust_btn
         ' 
         Clear_cust_btn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Clear_cust_btn.Location = New Point(1012, 814)
+        Clear_cust_btn.Location = New Point(1012, 696)
         Clear_cust_btn.Name = "Clear_cust_btn"
         Clear_cust_btn.Size = New Size(111, 53)
         Clear_cust_btn.TabIndex = 13
@@ -257,7 +260,7 @@ Partial Class CUSTOMER
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 890)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
         Controls.Add(Clear_cust_btn)
         Controls.Add(Delete_cust_btn)
