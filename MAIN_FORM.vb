@@ -1,4 +1,7 @@
-﻿Public Class MAIN_FORM
+﻿Imports MySql.Data.MySqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
+
+Public Class MAIN_FORM
     Private Sub MAIN_FORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Get the screen's working area (excluding taskbar)
         'Dim workingArea As Rectangle = Screen.GetWorkingArea(Me)
@@ -10,6 +13,23 @@
 
         ' Show your login form or any other content
         ShowLogin()
+    End Sub
+
+
+    Private Sub LOGIN_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Try
+            If openDB() Then
+                Dim updateQuery As New MySqlCommand("UPDATE Users SET Status='OFFLINE' WHERE Status = 'ACTIVE' ", Conn)
+
+                updateQuery.ExecuteNonQuery()
+            Else
+                MessageBox.Show("Failed to connect to the database")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error updating user status: " & ex.Message)
+        Finally
+            closeDB()
+        End Try
     End Sub
 
 

@@ -1,5 +1,8 @@
 ﻿Imports System.Reflection.Metadata
 Imports System.Windows.Forms.Design
+Imports MySql.Data.MySqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
+Imports Microsoft.VisualBasic.ApplicationServices
 
 Public Class DASHBOARD
     ' Define boolean variables to track form status
@@ -11,12 +14,69 @@ Public Class DASHBOARD
 
 
     Private Sub LOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        ' Maximize the window
         WindowState = FormWindowState.Maximized
+
+        Try
+            If openDB() Then
+                ' Assuming Product, Warranty, Customer, Supplier, and Employee are the names of your buttons
+
+                ' Check user privilege and status
+                Dim query As New MySqlCommand("SELECT Privilege, Status FROM Users WHERE Status = 'ACTIVE';", Conn)
+
+
+                Dim userPrivilege As String = ""
+                Dim userStatus As String = ""
+
+                Using reader As MySqlDataReader = query.ExecuteReader()
+                    If reader.Read() Then
+                        userPrivilege = reader.GetString("Privilege")
+                        userStatus = reader.GetString("Status")
+                    End If
+                End Using
+
+
+
+                ' Hide buttons based on user privilege and status
+                If userPrivilege = "ADMIN" AndAlso userStatus = "ACTIVE" Then
+                    ' Show or hide buttons based on admin privilege
+                    Product.Visible = True
+                    Warranty.Visible = True
+                    Customer.Visible = True
+                    Supplier.Visible = True
+                    Employee.Visible = True
+                ElseIf userPrivilege = "EMPLOYEE" AndAlso userStatus = "ACTIVE" Then
+                    ' Show or hide buttons based on employee privilege
+                    Product.Visible = True
+                    Warranty.Visible = False
+                    Customer.Visible = False
+                    Supplier.Visible = False
+                    Employee.Visible = False
+                Else
+                    ' Hide all buttons if user privilege or status doesn't match
+                    Product.Visible = False
+                    Warranty.Visible = False
+                    Customer.Visible = False
+                    Supplier.Visible = False
+                    Employee.Visible = False
+                End If
+
+            Else
+                MessageBox.Show("Failed to connect to the database")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            closeDB()
+        End Try
+    End Sub
+
+
+
+    Public Sub ProductBTNShow()
 
 
     End Sub
-
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
 
         Me.DoubleBuffered = True ' For forms
@@ -123,17 +183,40 @@ Public Class DASHBOARD
 
         End If
     End Sub
+
+
+
+
+
+
+
     Private Sub LogOut_Click(sender As Object, e As EventArgs) Handles LogOut.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         Dim mainForm As MAIN_FORM = TryCast(Me.Owner, MAIN_FORM)
         If result = DialogResult.Yes Then
+            Try
+                If openDB() Then
+                    ' Update user status to OFFLINE
+                    Dim updateQuery As New MySqlCommand("UPDATE Users SET Status='OFFLINE' WHERE Status= 'ACTIVE';", Conn)
+
+                    updateQuery.ExecuteNonQuery()
+                Else
+                    MessageBox.Show("Failed to connect to the database")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error updating user status: " & ex.Message)
+            Finally
+                closeDB()
+            End Try
+
             Me.Hide()
             mainForm.ShowLogin()
         Else
             ' User clicked No, do nothing or handle accordingly
         End If
-
     End Sub
+
+
 
     Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
         ' Change button color to green on mouse enter
