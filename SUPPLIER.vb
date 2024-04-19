@@ -233,4 +233,30 @@ Public Class SUPPLIER
         txt_sup_cnumber.Text = "+63"
 
     End Sub
+
+    Private Sub Search_supplier_TextChanged(sender As Object, e As EventArgs) Handles Search_supplier.TextChanged
+        Dim searchValue As String = Search_supplier.Text.Trim().ToLower()
+        For Each row As DataGridViewRow In sup_datagridview.Rows
+            If Not row.IsNewRow Then
+                Dim SupplierName As String = row.Cells("supp_name").Value.ToString().ToLower()
+                If searchValue = "" OrElse SupplierName.Contains(searchValue) Then
+                    row.Visible = True
+                Else
+                    row.Visible = False
+                End If
+            End If
+        Next
+
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
 End Class

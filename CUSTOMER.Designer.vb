@@ -44,6 +44,8 @@ Partial Class CUSTOMER
         Update_cust_btn = New Button()
         Delete_cust_btn = New Button()
         Clear_cust_btn = New Button()
+        Cust_search = New TextBox()
+        Label5 = New Label()
         CType(customer_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -254,6 +256,26 @@ Partial Class CUSTOMER
         Clear_cust_btn.Text = "CLEAR"
         Clear_cust_btn.UseVisualStyleBackColor = True
         ' 
+        ' Cust_search
+        ' 
+        Cust_search.Location = New Point(910, 98)
+        Cust_search.Name = "Cust_search"
+        Cust_search.PlaceholderText = "Search"
+        Cust_search.Size = New Size(213, 23)
+        Cust_search.TabIndex = 14
+        ' 
+        ' Label5
+        ' 
+        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Label5.AutoSize = True
+        Label5.BackColor = Color.Transparent
+        Label5.Image = My.Resources.Resources.search
+        Label5.Location = New Point(862, 101)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(28, 15)
+        Label5.TabIndex = 21
+        Label5.Text = "       "
+        ' 
         ' CUSTOMER
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -262,6 +284,8 @@ Partial Class CUSTOMER
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Label5)
+        Controls.Add(Cust_search)
         Controls.Add(Clear_cust_btn)
         Controls.Add(Delete_cust_btn)
         Controls.Add(Update_cust_btn)
@@ -301,4 +325,6 @@ Partial Class CUSTOMER
     Friend WithEvents CL_ADDRESS As DataGridViewTextBoxColumn
     Friend WithEvents CL_EMAIL As DataGridViewTextBoxColumn
     Friend WithEvents CL_CNUMBER As DataGridViewTextBoxColumn
+    Friend WithEvents Cust_search As TextBox
+    Friend WithEvents Label5 As Label
 End Class

@@ -237,7 +237,21 @@ Public Class CUSTOMER
 
     End Sub
 
-    Private Sub txt_caddress_TextChanged(sender As Object, e As EventArgs) Handles txt_caddress.TextChanged
 
+    Private Sub Cust_search_TextChanged(sender As Object, e As EventArgs) Handles Cust_search.TextChanged
+        Dim searchValue As String = Cust_search.Text.Trim().ToLower()
+        For Each row As DataGridViewRow In customer_datagridview.Rows
+            If Not row.IsNewRow Then
+                Dim CustomerName As String = row.Cells("CL_NAME").Value.ToString().ToLower()
+                If searchValue = "" OrElse CustomerName.Contains(searchValue) Then
+                    row.Visible = True
+                Else
+                    row.Visible = False
+                End If
+            End If
+
+
+
+        Next
     End Sub
 End Class

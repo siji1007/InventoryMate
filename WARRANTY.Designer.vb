@@ -24,6 +24,8 @@ Partial Class WARRANTY
     Private Sub InitializeComponent()
         lbl_warranty = New Label()
         DataGridView1 = New DataGridView()
+        TextBox1 = New TextBox()
+        Label5 = New Label()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -49,14 +51,37 @@ Partial Class WARRANTY
         DataGridView1.Size = New Size(1109, 301)
         DataGridView1.TabIndex = 1
         ' 
+        ' TextBox1
+        ' 
+        TextBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        TextBox1.Location = New Point(910, 98)
+        TextBox1.Name = "TextBox1"
+        TextBox1.PlaceholderText = "Search"
+        TextBox1.Size = New Size(213, 23)
+        TextBox1.TabIndex = 2
+        ' 
+        ' Label5
+        ' 
+        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Label5.AutoSize = True
+        Label5.BackColor = Color.Transparent
+        Label5.Image = My.Resources.Resources.search
+        Label5.Location = New Point(881, 102)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(28, 15)
+        Label5.TabIndex = 22
+        Label5.Text = "       "
+        ' 
         ' WARRANTY
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 890)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Label5)
+        Controls.Add(TextBox1)
         Controls.Add(DataGridView1)
         Controls.Add(lbl_warranty)
         Name = "WARRANTY"
@@ -68,4 +93,6 @@ Partial Class WARRANTY
 
     Friend WithEvents lbl_warranty As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label5 As Label
 End Class

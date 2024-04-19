@@ -22,9 +22,9 @@ Partial Class SUPPLIER
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_supplier = New Label()
         supp_cnumber = New DataGridViewTextBoxColumn()
         supp_email = New DataGridViewTextBoxColumn()
@@ -47,6 +47,8 @@ Partial Class SUPPLIER
         Btn_update = New Button()
         Btn_delete = New Button()
         Btn_clear = New Button()
+        Search_supplier = New TextBox()
+        Label5 = New Label()
         CType(sup_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -112,24 +114,24 @@ Partial Class SUPPLIER
         sup_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader
         sup_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         sup_datagridview.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = Color.White
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        sup_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle4.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.White
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
+        sup_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         sup_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         sup_datagridview.Columns.AddRange(New DataGridViewColumn() {supp_id, supp_name, supp_store, supp_address, supp_email, supp_cnumber})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        sup_datagridview.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.White
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
+        sup_datagridview.DefaultCellStyle = DataGridViewCellStyle5
         sup_datagridview.GridColor = Color.White
         sup_datagridview.Location = New Point(12, 127)
         sup_datagridview.Name = "sup_datagridview"
@@ -138,10 +140,10 @@ Partial Class SUPPLIER
         sup_datagridview.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
         sup_datagridview.RowHeadersVisible = False
         sup_datagridview.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = Color.White
-        sup_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = Color.White
+        sup_datagridview.RowsDefaultCellStyle = DataGridViewCellStyle6
         sup_datagridview.ScrollBars = ScrollBars.Vertical
         sup_datagridview.Size = New Size(1109, 301)
         sup_datagridview.StandardTab = True
@@ -292,6 +294,27 @@ Partial Class SUPPLIER
         Btn_clear.Text = "CLEAR"
         Btn_clear.UseVisualStyleBackColor = True
         ' 
+        ' Search_supplier
+        ' 
+        Search_supplier.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Search_supplier.Location = New Point(910, 98)
+        Search_supplier.Name = "Search_supplier"
+        Search_supplier.PlaceholderText = "Search"
+        Search_supplier.Size = New Size(213, 23)
+        Search_supplier.TabIndex = 16
+        ' 
+        ' Label5
+        ' 
+        Label5.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Label5.AutoSize = True
+        Label5.BackColor = Color.Transparent
+        Label5.Image = My.Resources.Resources.search
+        Label5.Location = New Point(881, 102)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(28, 15)
+        Label5.TabIndex = 20
+        Label5.Text = "       "
+        ' 
         ' SUPPLIER
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -300,6 +323,8 @@ Partial Class SUPPLIER
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Label5)
+        Controls.Add(Search_supplier)
         Controls.Add(Btn_clear)
         Controls.Add(Btn_delete)
         Controls.Add(Btn_update)
@@ -344,4 +369,6 @@ Partial Class SUPPLIER
     Friend WithEvents Btn_update As Button
     Friend WithEvents Btn_delete As Button
     Friend WithEvents Btn_clear As Button
+    Friend WithEvents Search_supplier As TextBox
+    Friend WithEvents Label5 As Label
 End Class

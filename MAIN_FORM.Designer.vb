@@ -42,9 +42,10 @@ Partial Class MAIN_FORM
         Controls.Add(main_container)
         FormBorderStyle = FormBorderStyle.FixedSingle
         MaximizeBox = False
+        MdiChildrenMinimizedAnchorBottom = False
+        MinimizeBox = False
         Name = "MAIN_FORM"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "InventoryMate RBRS"
         ResumeLayout(False)
     End Sub
 

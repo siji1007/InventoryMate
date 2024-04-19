@@ -1,10 +1,12 @@
 ﻿Public Class MAIN_FORM
     Private Sub MAIN_FORM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Get the screen's working area (excluding taskbar)
-        Dim workingArea As Rectangle = Screen.GetWorkingArea(Me)
+        'Dim workingArea As Rectangle = Screen.GetWorkingArea(Me)
 
         ' Set the form's size and position to cover the entire screen
-        Me.Bounds = workingArea
+        'Me.Bounds = workingArea
+
+        Me.WindowState = FormWindowState.Maximized
 
         ' Show your login form or any other content
         ShowLogin()

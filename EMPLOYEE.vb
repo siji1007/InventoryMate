@@ -1,6 +1,4 @@
-﻿Imports System.Net.NetworkInformation
-Imports System.Text.RegularExpressions
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
 
 Public Class EMPLOYEE
 
