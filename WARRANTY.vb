@@ -79,6 +79,26 @@ Public Class WARRANTY
     End Sub
 
 
+
+    'ADD BTN, CREATE A FUNCTION FOR ADD, UPDATE, DELETE AND CLEAR 4/23/2024. DON'T WASTE TIME BITCH. 
+    Private Sub Btn_add_Click(sender As Object, e As EventArgs) Handles Btn_add.Click
+        Dim WarDuration As String = txt_war_days.Text.Trim()
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 End Class
 
 
