@@ -1,9 +1,4 @@
-﻿Imports System.Reflection.Metadata
-Imports System.Windows.Forms.Design
-Imports MySql.Data.MySqlClient
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
-Imports Microsoft.VisualBasic.ApplicationServices
-
+﻿Imports MySql.Data.MySqlClient
 Public Class DASHBOARD
     ' Define boolean variables to track form status
     Private isProductFormOpen As Boolean = False
@@ -11,6 +6,7 @@ Public Class DASHBOARD
     Private isCustomerFormOpen As Boolean = False
     Private isSupplierFormOpen As Boolean = False
     Private isEmployeeFormOpen As Boolean = False
+    Private isTransactionFromOpen As Boolean = False
 
 
     Private Sub LOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -73,10 +69,7 @@ Public Class DASHBOARD
 
 
 
-    Public Sub ProductBTNShow()
 
-
-    End Sub
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
 
         Me.DoubleBuffered = True ' For forms
@@ -98,6 +91,7 @@ Public Class DASHBOARD
             isCustomerFormOpen = False
             isSupplierFormOpen = False
             isEmployeeFormOpen = False
+            isTransactionFromOpen = False
         End If
     End Sub
 
@@ -119,6 +113,7 @@ Public Class DASHBOARD
             isProductFormOpen = False
             isEmployeeFormOpen = False
             isSupplierFormOpen = False
+            isTransactionFromOpen = False
         End If
     End Sub
 
@@ -139,6 +134,7 @@ Public Class DASHBOARD
             isCustomerFormOpen = True
             isEmployeeFormOpen = False
             isSupplierFormOpen = False
+            isTransactionFromOpen = False
         End If
     End Sub
 
@@ -159,9 +155,11 @@ Public Class DASHBOARD
             isProductFormOpen = False
             isCustomerFormOpen = False
             isEmployeeFormOpen = False
+            isTransactionFromOpen = False
         End If
 
     End Sub
+
 
     Private Sub Employee_Click(sender As Object, e As EventArgs) Handles Employee.Click
         If isEmployeeFormOpen Then
@@ -180,9 +178,44 @@ Public Class DASHBOARD
             isProductFormOpen = False
             isCustomerFormOpen = False
             isEmployeeFormOpen = True
+            isTransactionFromOpen = False
 
         End If
     End Sub
+
+
+    Private Sub Transaction_Click(sender As Object, e As EventArgs) Handles Transaction.Click
+        If isTransactionFromOpen Then
+            MessageBox.Show("The Transaction form is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim tran As New Transactions()
+            tran.TopLevel = False
+            Contents.Controls.Add(tran)
+            tran.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+            tran.BringToFront()
+            tran.WindowState() = FormWindowState.Maximized
+            tran.Show()
+
+            isSupplierFormOpen = False
+            isWarrantyFormOpen = False
+            isProductFormOpen = False
+            isCustomerFormOpen = False
+            isEmployeeFormOpen = False
+            isTransactionFromOpen = True
+
+
+        End If
+
+
+    End Sub
+
+
+
+
+
+
+
+
 
 
 
@@ -218,6 +251,10 @@ Public Class DASHBOARD
 
 
 
+
+
+
+
     Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
         ' Change button color to green on mouse enter
         Button1.BackColor = Color.FromArgb(&H1, &H19, &H10)
@@ -230,5 +267,6 @@ Public Class DASHBOARD
         Button1.BackColor = Color.Transparent ' You can set it to any default color or the color it had before the hover
         Button1.ForeColor = Color.Black
     End Sub
+
 
 End Class

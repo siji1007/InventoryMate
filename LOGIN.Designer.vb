@@ -25,6 +25,7 @@ Partial Class LOGIN
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LOGIN))
         LOGIN_FORM = New Panel()
         Panel6 = New Panel()
+        Pass_show = New Button()
         Label4 = New Label()
         Label3 = New Label()
         Label2 = New Label()
@@ -34,7 +35,6 @@ Partial Class LOGIN
         login_title = New Label()
         Username = New TextBox()
         login_logo = New PictureBox()
-        BackgroundWorker1 = New ComponentModel.BackgroundWorker()
         LOGIN_FORM.SuspendLayout()
         Panel6.SuspendLayout()
         CType(login_logo, ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +54,7 @@ Partial Class LOGIN
         ' 
         Panel6.AutoSizeMode = AutoSizeMode.GrowAndShrink
         Panel6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Panel6.Controls.Add(Pass_show)
         Panel6.Controls.Add(Label4)
         Panel6.Controls.Add(Label3)
         Panel6.Controls.Add(Label2)
@@ -67,6 +68,18 @@ Partial Class LOGIN
         Panel6.Name = "Panel6"
         Panel6.Size = New Size(468, 450)
         Panel6.TabIndex = 1
+        ' 
+        ' Pass_show
+        ' 
+        Pass_show.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        Pass_show.BackColor = Color.Transparent
+        Pass_show.BackgroundImage = My.Resources.Resources.eye_scanner
+        Pass_show.BackgroundImageLayout = ImageLayout.Center
+        Pass_show.Location = New Point(374, 260)
+        Pass_show.Name = "Pass_show"
+        Pass_show.Size = New Size(34, 24)
+        Pass_show.TabIndex = 8
+        Pass_show.UseVisualStyleBackColor = False
         ' 
         ' Label4
         ' 
@@ -208,7 +221,6 @@ Partial Class LOGIN
         ResumeLayout(False)
     End Sub
     Friend WithEvents LOGIN_FORM As Panel
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Panel6 As Panel
     Friend WithEvents login_logo As PictureBox
     Friend WithEvents Username As TextBox
@@ -219,4 +231,5 @@ Partial Class LOGIN
     Friend WithEvents Label2 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents Pass_show As Button
 End Class

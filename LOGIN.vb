@@ -73,5 +73,16 @@ Public Class LOGIN
         End Try
     End Sub
 
+    Private Sub Pass_show_Click(sender As Object, e As EventArgs) Handles Pass_show.Click
+        If Password.PasswordChar = Char.MinValue Then
+            ' If password masking is disabled, enable it with '*'
+            Password.PasswordChar = "*"
+        Else
+            ' If password masking is enabled, disable it
+            Password.PasswordChar = Char.MinValue
+        End If
+    End Sub
+
+
 
 End Class

@@ -24,6 +24,7 @@ Partial Class DASHBOARD
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DASHBOARD))
         Sidebar = New Panel()
+        Transaction = New Button()
         logo_dashboard = New PictureBox()
         LogOut = New Button()
         Employee = New Button()
@@ -43,6 +44,7 @@ Partial Class DASHBOARD
         ' 
         Sidebar.BackColor = SystemColors.ControlLightLight
         Sidebar.BorderStyle = BorderStyle.FixedSingle
+        Sidebar.Controls.Add(Transaction)
         Sidebar.Controls.Add(logo_dashboard)
         Sidebar.Controls.Add(LogOut)
         Sidebar.Controls.Add(Employee)
@@ -54,6 +56,17 @@ Partial Class DASHBOARD
         Sidebar.Controls.Add(Panel1)
         resources.ApplyResources(Sidebar, "Sidebar")
         Sidebar.Name = "Sidebar"
+        ' 
+        ' Transaction
+        ' 
+        resources.ApplyResources(Transaction, "Transaction")
+        Transaction.BackColor = Color.Transparent
+        Transaction.FlatAppearance.BorderSize = 0
+        Transaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Transaction.ForeColor = SystemColors.ActiveCaptionText
+        Transaction.Image = My.Resources.Resources.transfer_bank__1_
+        Transaction.Name = "Transaction"
+        Transaction.UseVisualStyleBackColor = False
         ' 
         ' logo_dashboard
         ' 
@@ -173,5 +186,6 @@ Partial Class DASHBOARD
     Friend WithEvents LogOut As Button
     Friend WithEvents logo_dashboard As PictureBox
     Friend WithEvents Contents As Panel
+    Friend WithEvents Transaction As Button
 
 End Class
