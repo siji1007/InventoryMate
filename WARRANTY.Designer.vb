@@ -26,9 +26,10 @@ Partial Class WARRANTY
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         lbl_warranty = New Label()
-        DataGridView1 = New DataGridView()
+        War_datagridview = New DataGridView()
         dt_id = New DataGridViewTextBoxColumn()
         dt_duration = New DataGridViewTextBoxColumn()
+        dt_unit = New DataGridViewTextBoxColumn()
         dt_type = New DataGridViewTextBoxColumn()
         dt_status = New DataGridViewTextBoxColumn()
         dt_coverage = New DataGridViewTextBoxColumn()
@@ -47,7 +48,7 @@ Partial Class WARRANTY
         Btn_update = New Button()
         Btn_delete = New Button()
         Btn_clear = New Button()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(War_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lbl_warranty
@@ -62,16 +63,16 @@ Partial Class WARRANTY
         lbl_warranty.TabIndex = 0
         lbl_warranty.Text = "WARRANTY"
         ' 
-        ' DataGridView1
+        ' War_datagridview
         ' 
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.ForeColor = Color.White
         DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = Color.White
-        DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        DataGridView1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        DataGridView1.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        War_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        War_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        War_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -79,9 +80,9 @@ Partial Class WARRANTY
         DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {dt_id, dt_duration, dt_type, dt_status, dt_coverage})
+        War_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        War_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        War_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_id, dt_duration, dt_unit, dt_type, dt_status, dt_coverage})
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -89,13 +90,13 @@ Partial Class WARRANTY
         DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
-        DataGridView1.Location = New Point(12, 127)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersVisible = False
-        DataGridView1.Size = New Size(1109, 301)
-        DataGridView1.TabIndex = 1
+        War_datagridview.DefaultCellStyle = DataGridViewCellStyle3
+        War_datagridview.Location = New Point(12, 127)
+        War_datagridview.Name = "War_datagridview"
+        War_datagridview.ReadOnly = True
+        War_datagridview.RowHeadersVisible = False
+        War_datagridview.Size = New Size(1109, 301)
+        War_datagridview.TabIndex = 1
         ' 
         ' dt_id
         ' 
@@ -111,6 +112,12 @@ Partial Class WARRANTY
         dt_duration.HeaderText = "DURATION"
         dt_duration.Name = "dt_duration"
         dt_duration.ReadOnly = True
+        ' 
+        ' dt_unit
+        ' 
+        dt_unit.HeaderText = "UNIT"
+        dt_unit.Name = "dt_unit"
+        dt_unit.ReadOnly = True
         ' 
         ' dt_type
         ' 
@@ -218,6 +225,7 @@ Partial Class WARRANTY
         ' 
         type_war_combobox.AutoCompleteMode = AutoCompleteMode.Suggest
         type_war_combobox.AutoCompleteSource = AutoCompleteSource.ListItems
+        type_war_combobox.DropDownStyle = ComboBoxStyle.DropDownList
         type_war_combobox.FormattingEnabled = True
         type_war_combobox.Items.AddRange(New Object() {"Limited Warranty", "Service Warranty", "Extended Warranty ", "Extended Warranty ", "Parts Warranty"})
         type_war_combobox.Location = New Point(122, 508)
@@ -229,6 +237,7 @@ Partial Class WARRANTY
         ' 
         war_status_combobox.AutoCompleteMode = AutoCompleteMode.Suggest
         war_status_combobox.AutoCompleteSource = AutoCompleteSource.ListItems
+        war_status_combobox.DropDownStyle = ComboBoxStyle.DropDownList
         war_status_combobox.FormattingEnabled = True
         war_status_combobox.Items.AddRange(New Object() {"Active", "Expired"})
         war_status_combobox.Location = New Point(122, 557)
@@ -240,6 +249,7 @@ Partial Class WARRANTY
         ' 
         war_coverage_combobox.AutoCompleteMode = AutoCompleteMode.Suggest
         war_coverage_combobox.AutoCompleteSource = AutoCompleteSource.ListItems
+        war_coverage_combobox.DropDownStyle = ComboBoxStyle.DropDownList
         war_coverage_combobox.FormattingEnabled = True
         war_coverage_combobox.Items.AddRange(New Object() {"Parts", "Labor"})
         war_coverage_combobox.Location = New Point(798, 461)
@@ -249,6 +259,9 @@ Partial Class WARRANTY
         ' 
         ' war_month_combobox
         ' 
+        war_month_combobox.AutoCompleteMode = AutoCompleteMode.Suggest
+        war_month_combobox.AutoCompleteSource = AutoCompleteSource.ListItems
+        war_month_combobox.DropDownStyle = ComboBoxStyle.DropDownList
         war_month_combobox.FormattingEnabled = True
         war_month_combobox.Items.AddRange(New Object() {"Days", "Months", "Year"})
         war_month_combobox.Location = New Point(238, 461)
@@ -319,17 +332,17 @@ Partial Class WARRANTY
         Controls.Add(lbl_name_sup)
         Controls.Add(Label5)
         Controls.Add(TextBox1)
-        Controls.Add(DataGridView1)
+        Controls.Add(War_datagridview)
         Controls.Add(lbl_warranty)
         Name = "WARRANTY"
         StartPosition = FormStartPosition.CenterScreen
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(War_datagridview, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents lbl_warranty As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents War_datagridview As DataGridView
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents lbl_name_sup As Label
@@ -341,14 +354,15 @@ Partial Class WARRANTY
     Friend WithEvents type_war_combobox As ComboBox
     Friend WithEvents war_status_combobox As ComboBox
     Friend WithEvents war_coverage_combobox As ComboBox
-    Friend WithEvents dt_id As DataGridViewTextBoxColumn
-    Friend WithEvents dt_duration As DataGridViewTextBoxColumn
-    Friend WithEvents dt_type As DataGridViewTextBoxColumn
-    Friend WithEvents dt_status As DataGridViewTextBoxColumn
-    Friend WithEvents dt_coverage As DataGridViewTextBoxColumn
     Friend WithEvents war_month_combobox As ComboBox
     Friend WithEvents Btn_add As Button
     Friend WithEvents Btn_update As Button
     Friend WithEvents Btn_delete As Button
     Friend WithEvents Btn_clear As Button
+    Friend WithEvents dt_id As DataGridViewTextBoxColumn
+    Friend WithEvents dt_duration As DataGridViewTextBoxColumn
+    Friend WithEvents dt_unit As DataGridViewTextBoxColumn
+    Friend WithEvents dt_type As DataGridViewTextBoxColumn
+    Friend WithEvents dt_status As DataGridViewTextBoxColumn
+    Friend WithEvents dt_coverage As DataGridViewTextBoxColumn
 End Class
