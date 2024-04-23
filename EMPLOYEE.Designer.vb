@@ -23,9 +23,9 @@ Partial Class EMPLOYEE
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle13 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         lbl_employee = New Label()
         emp_datagridview = New DataGridView()
         Emp_ID = New DataGridViewTextBoxColumn()
@@ -73,36 +73,36 @@ Partial Class EMPLOYEE
         ' 
         emp_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         emp_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle13.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle13.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle13.ForeColor = SystemColors.Window
-        DataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle13.WrapMode = DataGridViewTriState.True
-        emp_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = SystemColors.Window
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        emp_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         emp_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         emp_datagridview.Columns.AddRange(New DataGridViewColumn() {Emp_ID, Emp_name, Emp_address, Emp_cnumber, Emp_bdate, Emp_status})
-        DataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle14.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle14.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle14.ForeColor = Color.White
-        DataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = DataGridViewTriState.False
-        emp_datagridview.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        emp_datagridview.DefaultCellStyle = DataGridViewCellStyle2
         emp_datagridview.GridColor = SystemColors.Window
         emp_datagridview.Location = New Point(12, 127)
         emp_datagridview.Name = "emp_datagridview"
         emp_datagridview.ReadOnly = True
-        DataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle15.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle15.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle15.ForeColor = Color.White
-        DataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle15.WrapMode = DataGridViewTriState.True
-        emp_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.White
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
+        emp_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         emp_datagridview.RowHeadersVisible = False
         emp_datagridview.Size = New Size(1109, 301)
         emp_datagridview.TabIndex = 1
@@ -159,17 +159,6 @@ Partial Class EMPLOYEE
         txt_emp_name.Size = New Size(230, 23)
         txt_emp_name.TabIndex = 2
         ' 
-
-        ' txt_emp_address
-        ' 
-        txt_emp_address.Location = New Point(143, 490)
-        txt_emp_address.Name = "txt_emp_address"
-        txt_emp_address.PlaceholderText = " ex. Talisay, Camarines Norte"
-        txt_emp_address.Size = New Size(230, 23)
-        txt_emp_address.TabIndex = 3
-        ' 
-
-
         ' txt_emp_cnumber
         ' 
         txt_emp_cnumber.Location = New Point(143, 535)
@@ -306,6 +295,14 @@ Partial Class EMPLOYEE
         Btn_clear.TabIndex = 15
         Btn_clear.Text = "CLEAR"
         Btn_clear.UseVisualStyleBackColor = True
+        ' 
+        ' txt_emp_address
+        ' 
+        txt_emp_address.Location = New Point(143, 490)
+        txt_emp_address.Name = "txt_emp_address"
+        txt_emp_address.PlaceholderText = " ex. Talisay, Camarines Norte"
+        txt_emp_address.Size = New Size(230, 23)
+        txt_emp_address.TabIndex = 3
         ' 
         ' Label4
         ' 

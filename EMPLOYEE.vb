@@ -278,4 +278,8 @@ Public Class EMPLOYEE
 
 
     End Sub
+
+    Private Sub lbl_employee_Click(sender As Object, e As EventArgs) Handles lbl_employee.Click
+
+    End Sub
 End Class
