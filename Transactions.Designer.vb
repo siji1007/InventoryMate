@@ -91,7 +91,7 @@ Partial Class Transactions
         ' 
         ' GroupBox3
         ' 
-        GroupBox3.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        GroupBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         GroupBox3.Controls.Add(txt_EmpID)
         GroupBox3.Controls.Add(Cb_employeeName)
         GroupBox3.Controls.Add(Label8)
@@ -149,7 +149,7 @@ Partial Class Transactions
         ' 
         ' GroupBox2
         ' 
-        GroupBox2.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        GroupBox2.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
         GroupBox2.Controls.Add(txt_custaddress)

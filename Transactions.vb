@@ -1,14 +1,14 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
         Lbl_transaction.Anchor = AnchorStyles.None
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
-        Lbl_transaction.Width = Me.ClientSize.Width ' Adjust this if needed
+        Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed
 
 
-        Dim centerX As Integer = (Me.ClientSize.Width - Lbl_transaction.Width) \ 2
+        Dim centerX = (ClientSize.Width - Lbl_transaction.Width) \ 2
         Lbl_transaction.Location = New Point(centerX, Lbl_transaction.Location.Y)
 
     End Sub
@@ -45,7 +45,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
         Cb_Products.Items.Clear()
 
         If openDB() Then
