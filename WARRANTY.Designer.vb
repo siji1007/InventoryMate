@@ -263,7 +263,7 @@ Partial Class WARRANTY
         war_month_combobox.AutoCompleteSource = AutoCompleteSource.ListItems
         war_month_combobox.DropDownStyle = ComboBoxStyle.DropDownList
         war_month_combobox.FormattingEnabled = True
-        war_month_combobox.Items.AddRange(New Object() {"Days", "Months", "Year"})
+        war_month_combobox.Items.AddRange(New Object() {"Days", "Months", "Years"})
         war_month_combobox.Location = New Point(238, 461)
         war_month_combobox.Name = "war_month_combobox"
         war_month_combobox.Size = New Size(79, 23)
