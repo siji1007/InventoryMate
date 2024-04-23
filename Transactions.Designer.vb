@@ -57,6 +57,7 @@ Partial Class Transactions
         dt_warranty = New DataGridViewTextBoxColumn()
         dt_warranty_coverage = New DataGridViewTextBoxColumn()
         Print_btn = New Button()
+        dt_total = New DataGridViewTextBoxColumn()
         Transaction_panel.SuspendLayout()
         GroupBox3.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -86,11 +87,13 @@ Partial Class Transactions
         Transaction_panel.Controls.Add(GroupBox1)
         Transaction_panel.Location = New Point(65, 89)
         Transaction_panel.Name = "Transaction_panel"
-        Transaction_panel.Size = New Size(1032, 820)
+        Transaction_panel.Size = New Size(1032, 612)
         Transaction_panel.TabIndex = 2
         ' 
         ' GroupBox3
         ' 
+        GroupBox3.AutoSize = True
+        GroupBox3.AutoSizeMode = AutoSizeMode.GrowAndShrink
         GroupBox3.Controls.Add(txt_EmpID)
         GroupBox3.Controls.Add(Cb_employeeName)
         GroupBox3.Controls.Add(Label8)
@@ -99,9 +102,9 @@ Partial Class Transactions
         GroupBox3.FlatStyle = FlatStyle.Flat
         GroupBox3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox3.ForeColor = Color.White
-        GroupBox3.Location = New Point(0, 674)
+        GroupBox3.Location = New Point(0, 518)
         GroupBox3.Name = "GroupBox3"
-        GroupBox3.Size = New Size(1030, 144)
+        GroupBox3.Size = New Size(1030, 92)
         GroupBox3.TabIndex = 2
         GroupBox3.TabStop = False
         GroupBox3.Text = "EMPLOYEE DETAILS"
@@ -109,7 +112,7 @@ Partial Class Transactions
         ' txt_EmpID
         ' 
         txt_EmpID.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_EmpID.Location = New Point(789, 39)
+        txt_EmpID.Location = New Point(681, 36)
         txt_EmpID.Name = "txt_EmpID"
         txt_EmpID.Size = New Size(224, 26)
         txt_EmpID.TabIndex = 23
@@ -129,7 +132,7 @@ Partial Class Transactions
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(743, 45)
+        Label8.Location = New Point(635, 42)
         Label8.Name = "Label8"
         Label8.Size = New Size(26, 20)
         Label8.TabIndex = 12
@@ -149,6 +152,8 @@ Partial Class Transactions
         ' 
         ' GroupBox2
         ' 
+        GroupBox2.AutoSize = True
+        GroupBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
         GroupBox2.Controls.Add(txt_custaddress)
@@ -161,9 +166,9 @@ Partial Class Transactions
         GroupBox2.FlatStyle = FlatStyle.Flat
         GroupBox2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox2.ForeColor = Color.White
-        GroupBox2.Location = New Point(0, 423)
+        GroupBox2.Location = New Point(0, 346)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(1030, 395)
+        GroupBox2.Size = New Size(1030, 264)
         GroupBox2.TabIndex = 1
         GroupBox2.TabStop = False
         GroupBox2.Text = "CUSTOMER DETAILS"
@@ -171,7 +176,7 @@ Partial Class Transactions
         ' txt_custnumber
         ' 
         txt_custnumber.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_custnumber.Location = New Point(790, 80)
+        txt_custnumber.Location = New Point(681, 77)
         txt_custnumber.Name = "txt_custnumber"
         txt_custnumber.Size = New Size(224, 26)
         txt_custnumber.TabIndex = 22
@@ -179,7 +184,7 @@ Partial Class Transactions
         ' txt_custemail
         ' 
         txt_custemail.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_custemail.Location = New Point(790, 35)
+        txt_custemail.Location = New Point(681, 32)
         txt_custemail.Name = "txt_custemail"
         txt_custemail.Size = New Size(224, 26)
         txt_custemail.TabIndex = 21
@@ -205,7 +210,7 @@ Partial Class Transactions
         Label6.BackColor = Color.Transparent
         Label6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.White
-        Label6.Location = New Point(627, 80)
+        Label6.Location = New Point(518, 77)
         Label6.Name = "Label6"
         Label6.Size = New Size(157, 20)
         Label6.TabIndex = 10
@@ -218,7 +223,7 @@ Partial Class Transactions
         Label5.BackColor = Color.Transparent
         Label5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label5.ForeColor = Color.White
-        Label5.Location = New Point(627, 38)
+        Label5.Location = New Point(518, 35)
         Label5.Name = "Label5"
         Label5.Size = New Size(142, 20)
         Label5.TabIndex = 9
@@ -250,6 +255,8 @@ Partial Class Transactions
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.AutoSize = True
+        GroupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink
         GroupBox1.Controls.Add(add_btn)
         GroupBox1.Controls.Add(Cb_warranty)
         GroupBox1.Controls.Add(txt_price)
@@ -268,7 +275,7 @@ Partial Class Transactions
         GroupBox1.ForeColor = Color.White
         GroupBox1.Location = New Point(0, 0)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(1030, 423)
+        GroupBox1.Size = New Size(1030, 346)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "PRODUCT DETAILS"
@@ -279,9 +286,9 @@ Partial Class Transactions
         add_btn.BackColor = Color.White
         add_btn.BackgroundImage = My.Resources.Resources.more
         add_btn.BackgroundImageLayout = ImageLayout.Center
-        add_btn.Location = New Point(980, 224)
+        add_btn.Location = New Point(975, 161)
         add_btn.Name = "add_btn"
-        add_btn.Size = New Size(31, 29)
+        add_btn.Size = New Size(31, 32)
         add_btn.TabIndex = 19
         add_btn.UseVisualStyleBackColor = False
         ' 
@@ -289,21 +296,21 @@ Partial Class Transactions
         ' 
         Cb_warranty.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         Cb_warranty.FormattingEnabled = True
-        Cb_warranty.Location = New Point(790, 292)
+        Cb_warranty.Location = New Point(745, 212)
         Cb_warranty.Name = "Cb_warranty"
         Cb_warranty.Size = New Size(223, 28)
         Cb_warranty.TabIndex = 18
         ' 
         ' txt_price
         ' 
-        txt_price.Location = New Point(172, 375)
+        txt_price.Location = New Point(173, 295)
         txt_price.Name = "txt_price"
         txt_price.Size = New Size(224, 26)
         txt_price.TabIndex = 17
         ' 
         ' txt_quantity
         ' 
-        txt_quantity.Location = New Point(171, 334)
+        txt_quantity.Location = New Point(172, 254)
         txt_quantity.Name = "txt_quantity"
         txt_quantity.Size = New Size(224, 26)
         txt_quantity.TabIndex = 16
@@ -311,7 +318,7 @@ Partial Class Transactions
         ' Cb_Products
         ' 
         Cb_Products.FormattingEnabled = True
-        Cb_Products.Location = New Point(172, 292)
+        Cb_Products.Location = New Point(173, 212)
         Cb_Products.Name = "Cb_Products"
         Cb_Products.Size = New Size(293, 28)
         Cb_Products.TabIndex = 15
@@ -323,7 +330,7 @@ Partial Class Transactions
         Label9.BackColor = Color.Transparent
         Label9.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label9.ForeColor = Color.White
-        Label9.Location = New Point(627, 292)
+        Label9.Location = New Point(610, 212)
         Label9.Name = "Label9"
         Label9.Size = New Size(101, 20)
         Label9.TabIndex = 14
@@ -359,7 +366,7 @@ Partial Class Transactions
         Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.White
-        Label2.Location = New Point(28, 378)
+        Label2.Location = New Point(29, 298)
         Label2.Name = "Label2"
         Label2.Size = New Size(58, 20)
         Label2.TabIndex = 11
@@ -372,7 +379,7 @@ Partial Class Transactions
         Label1.BackColor = Color.Transparent
         Label1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.White
-        Label1.Location = New Point(28, 334)
+        Label1.Location = New Point(29, 254)
         Label1.Name = "Label1"
         Label1.Size = New Size(89, 20)
         Label1.TabIndex = 10
@@ -385,7 +392,7 @@ Partial Class Transactions
         lbl_name_sup.BackColor = Color.Transparent
         lbl_name_sup.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lbl_name_sup.ForeColor = Color.White
-        lbl_name_sup.Location = New Point(28, 292)
+        lbl_name_sup.Location = New Point(29, 212)
         lbl_name_sup.Name = "lbl_name_sup"
         lbl_name_sup.Size = New Size(137, 20)
         lbl_name_sup.TabIndex = 9
@@ -395,11 +402,11 @@ Partial Class Transactions
         ' 
         transaction_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         transaction_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage})
+        transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage, dt_total})
         transaction_datagridview.Location = New Point(28, 35)
         transaction_datagridview.Name = "transaction_datagridview"
         transaction_datagridview.RowHeadersVisible = False
-        transaction_datagridview.Size = New Size(940, 218)
+        transaction_datagridview.Size = New Size(940, 158)
         transaction_datagridview.TabIndex = 0
         ' 
         ' dt_product_name
@@ -440,12 +447,17 @@ Partial Class Transactions
         Print_btn.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Print_btn.FlatStyle = FlatStyle.Flat
         Print_btn.ForeColor = Color.White
-        Print_btn.Location = New Point(593, 925)
+        Print_btn.Location = New Point(558, 706)
         Print_btn.Name = "Print_btn"
         Print_btn.Size = New Size(111, 53)
         Print_btn.TabIndex = 11
         Print_btn.Text = "PRINT"
         Print_btn.UseVisualStyleBackColor = False
+        ' 
+        ' dt_total
+        ' 
+        dt_total.HeaderText = "TOTAL"
+        dt_total.Name = "dt_total"
         ' 
         ' Transactions
         ' 
@@ -453,13 +465,14 @@ Partial Class Transactions
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = My.Resources.Resources.m0sag041
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 980)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
         Controls.Add(Print_btn)
         Controls.Add(Transaction_panel)
         Controls.Add(Lbl_transaction)
         Name = "Transactions"
         Transaction_panel.ResumeLayout(False)
+        Transaction_panel.PerformLayout()
         GroupBox3.ResumeLayout(False)
         GroupBox3.PerformLayout()
         GroupBox2.ResumeLayout(False)
@@ -506,4 +519,5 @@ Partial Class Transactions
     Friend WithEvents txt_custname As TextBox
     Friend WithEvents Cb_warranty As ComboBox
     Friend WithEvents add_btn As Button
+    Friend WithEvents dt_total As DataGridViewTextBoxColumn
 End Class

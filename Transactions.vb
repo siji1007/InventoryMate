@@ -45,7 +45,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -76,13 +76,13 @@ Public Class Transactions
         Cb_employeeName.Items.Clear()
 
         If openDB() Then
-            Dim query_employee As String = "SELECT Emp_name FROM employee"
+            Dim query_employee = "SELECT Emp_name FROM employee"
             Using cmd As New MySqlCommand(query_employee, Conn)
                 Try
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        While reader.Read()
+                    Using reader = cmd.ExecuteReader
+                        While reader.Read
                             ' Add each Emp_name to the ComboBox
-                            Cb_employeeName.Items.Add(reader("Emp_name").ToString())
+                            Cb_employeeName.Items.Add(reader("Emp_name").ToString)
                         End While
                     End Using
                 Catch ex As Exception
@@ -128,5 +128,44 @@ Public Class Transactions
             End If
         End If
     End Sub
+
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Cb_warranty.Items.Clear()
+
+        If openDB() Then
+            Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit) AS warranty_info FROM warranty"
+            Using cmd As New MySqlCommand(query_warranty, Conn)
+                Try
+                    Using reader = cmd.ExecuteReader
+                        If reader.HasRows Then
+                            While reader.Read
+                                Cb_warranty.Items.Add(reader("warranty_info").ToString())
+                            End While
+                        End If
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+
+                End Try
+
+            End Using
+
+
+        Else
+            MessageBox.Show("The Database failed to connect.")
+        End If
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
 
 End Class
