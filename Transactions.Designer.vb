@@ -91,17 +91,17 @@ Partial Class Transactions
         ' 
         ' GroupBox3
         ' 
-        GroupBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         GroupBox3.Controls.Add(txt_EmpID)
         GroupBox3.Controls.Add(Cb_employeeName)
         GroupBox3.Controls.Add(Label8)
         GroupBox3.Controls.Add(Label7)
+        GroupBox3.Dock = DockStyle.Bottom
         GroupBox3.FlatStyle = FlatStyle.Flat
         GroupBox3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox3.ForeColor = Color.White
-        GroupBox3.Location = New Point(50, 636)
+        GroupBox3.Location = New Point(0, 674)
         GroupBox3.Name = "GroupBox3"
-        GroupBox3.Size = New Size(951, 144)
+        GroupBox3.Size = New Size(1030, 144)
         GroupBox3.TabIndex = 2
         GroupBox3.TabStop = False
         GroupBox3.Text = "EMPLOYEE DETAILS"
@@ -109,7 +109,7 @@ Partial Class Transactions
         ' txt_EmpID
         ' 
         txt_EmpID.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_EmpID.Location = New Point(710, 39)
+        txt_EmpID.Location = New Point(789, 39)
         txt_EmpID.Name = "txt_EmpID"
         txt_EmpID.Size = New Size(224, 26)
         txt_EmpID.TabIndex = 23
@@ -129,7 +129,7 @@ Partial Class Transactions
         Label8.BackColor = Color.Transparent
         Label8.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label8.ForeColor = Color.White
-        Label8.Location = New Point(664, 45)
+        Label8.Location = New Point(743, 45)
         Label8.Name = "Label8"
         Label8.Size = New Size(26, 20)
         Label8.TabIndex = 12
@@ -149,7 +149,6 @@ Partial Class Transactions
         ' 
         ' GroupBox2
         ' 
-        GroupBox2.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
         GroupBox2.Controls.Add(txt_custaddress)
@@ -158,12 +157,13 @@ Partial Class Transactions
         GroupBox2.Controls.Add(Label5)
         GroupBox2.Controls.Add(Label4)
         GroupBox2.Controls.Add(Label3)
+        GroupBox2.Dock = DockStyle.Fill
         GroupBox2.FlatStyle = FlatStyle.Flat
         GroupBox2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox2.ForeColor = Color.White
-        GroupBox2.Location = New Point(50, 473)
+        GroupBox2.Location = New Point(0, 423)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(951, 144)
+        GroupBox2.Size = New Size(1030, 395)
         GroupBox2.TabIndex = 1
         GroupBox2.TabStop = False
         GroupBox2.Text = "CUSTOMER DETAILS"
@@ -171,7 +171,7 @@ Partial Class Transactions
         ' txt_custnumber
         ' 
         txt_custnumber.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_custnumber.Location = New Point(711, 80)
+        txt_custnumber.Location = New Point(790, 80)
         txt_custnumber.Name = "txt_custnumber"
         txt_custnumber.Size = New Size(224, 26)
         txt_custnumber.TabIndex = 22
@@ -179,7 +179,7 @@ Partial Class Transactions
         ' txt_custemail
         ' 
         txt_custemail.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_custemail.Location = New Point(711, 35)
+        txt_custemail.Location = New Point(790, 35)
         txt_custemail.Name = "txt_custemail"
         txt_custemail.Size = New Size(224, 26)
         txt_custemail.TabIndex = 21
@@ -205,7 +205,7 @@ Partial Class Transactions
         Label6.BackColor = Color.Transparent
         Label6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label6.ForeColor = Color.White
-        Label6.Location = New Point(548, 80)
+        Label6.Location = New Point(627, 80)
         Label6.Name = "Label6"
         Label6.Size = New Size(157, 20)
         Label6.TabIndex = 10
@@ -218,7 +218,7 @@ Partial Class Transactions
         Label5.BackColor = Color.Transparent
         Label5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label5.ForeColor = Color.White
-        Label5.Location = New Point(548, 38)
+        Label5.Location = New Point(627, 38)
         Label5.Name = "Label5"
         Label5.Size = New Size(142, 20)
         Label5.TabIndex = 9
@@ -250,7 +250,6 @@ Partial Class Transactions
         ' 
         ' GroupBox1
         ' 
-        GroupBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         GroupBox1.Controls.Add(add_btn)
         GroupBox1.Controls.Add(Cb_warranty)
         GroupBox1.Controls.Add(txt_price)
@@ -263,12 +262,13 @@ Partial Class Transactions
         GroupBox1.Controls.Add(Label1)
         GroupBox1.Controls.Add(lbl_name_sup)
         GroupBox1.Controls.Add(transaction_datagridview)
+        GroupBox1.Dock = DockStyle.Top
         GroupBox1.FlatStyle = FlatStyle.Flat
         GroupBox1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox1.ForeColor = Color.White
-        GroupBox1.Location = New Point(50, 45)
+        GroupBox1.Location = New Point(0, 0)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(951, 423)
+        GroupBox1.Size = New Size(1030, 423)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "PRODUCT DETAILS"
@@ -279,7 +279,7 @@ Partial Class Transactions
         add_btn.BackColor = Color.White
         add_btn.BackgroundImage = My.Resources.Resources.more
         add_btn.BackgroundImageLayout = ImageLayout.Center
-        add_btn.Location = New Point(901, 224)
+        add_btn.Location = New Point(980, 224)
         add_btn.Name = "add_btn"
         add_btn.Size = New Size(31, 29)
         add_btn.TabIndex = 19
@@ -289,7 +289,7 @@ Partial Class Transactions
         ' 
         Cb_warranty.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         Cb_warranty.FormattingEnabled = True
-        Cb_warranty.Location = New Point(711, 292)
+        Cb_warranty.Location = New Point(790, 292)
         Cb_warranty.Name = "Cb_warranty"
         Cb_warranty.Size = New Size(223, 28)
         Cb_warranty.TabIndex = 18
@@ -323,7 +323,7 @@ Partial Class Transactions
         Label9.BackColor = Color.Transparent
         Label9.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label9.ForeColor = Color.White
-        Label9.Location = New Point(548, 292)
+        Label9.Location = New Point(627, 292)
         Label9.Name = "Label9"
         Label9.Size = New Size(101, 20)
         Label9.TabIndex = 14
@@ -334,7 +334,7 @@ Partial Class Transactions
         CLEAR.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         CLEAR.AutoSize = True
         CLEAR.Font = New Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        CLEAR.Location = New Point(892, 67)
+        CLEAR.Location = New Point(971, 67)
         CLEAR.Name = "CLEAR"
         CLEAR.Size = New Size(42, 13)
         CLEAR.TabIndex = 13
@@ -346,7 +346,7 @@ Partial Class Transactions
         clear_btn.BackColor = Color.White
         clear_btn.BackgroundImage = My.Resources.Resources.eraser
         clear_btn.BackgroundImageLayout = ImageLayout.Center
-        clear_btn.Location = New Point(896, 35)
+        clear_btn.Location = New Point(975, 35)
         clear_btn.Name = "clear_btn"
         clear_btn.Size = New Size(31, 29)
         clear_btn.TabIndex = 12
@@ -399,7 +399,7 @@ Partial Class Transactions
         transaction_datagridview.Location = New Point(28, 35)
         transaction_datagridview.Name = "transaction_datagridview"
         transaction_datagridview.RowHeadersVisible = False
-        transaction_datagridview.Size = New Size(861, 218)
+        transaction_datagridview.Size = New Size(940, 218)
         transaction_datagridview.TabIndex = 0
         ' 
         ' dt_product_name
