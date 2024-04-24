@@ -1,8 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lbl_transaction.Anchor = AnchorStyles.None
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
         Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed
@@ -52,23 +51,23 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If openDB() Then
-            Dim query_product = "SELECT CONCAT(prod_name, ' - ', prod_model) AS product_info FROM products"
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
+        Cb_Products.Items.Clear
+
+        If openDB Then
+            Dim query_product = "SELECT CONCAT(prod_name, ' - ', prod_model) AS product_info FROM products WHERE prod_stocks > 0"
             Using Command As New MySqlCommand(query_product, Conn)
                 Try
                     Using reader = Command.ExecuteReader
-                        If reader.HasRows Then
-                            While reader.Read
-                                ' Add the concatenated product information to the ComboBox items
-                                Cb_Products.Items.Add(reader("product_info").ToString)
-                            End While
-                        End If
+                        While reader.Read
+                            ' Add the concatenated product information to the ComboBox items
+                            Cb_Products.Items.Add(reader("product_info").ToString)
+                        End While
                     End Using
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 Finally
-                    closeDB()
+                    closeDB
                 End Try
             End Using
         Else
@@ -78,10 +77,11 @@ Public Class Transactions
 
 
 
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Cb_warranty.Items.Clear()
 
-        If openDB() Then
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs)
+        Cb_employeeName.Items.Clear
+
+        If openDB Then
             Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit) AS warranty_info FROM warranty"
             Using cmd As New MySqlCommand(query_warranty, Conn)
                 Try
@@ -167,41 +167,56 @@ Public Class Transactions
             Exit Sub ' Exit the method if quantity is invalid
         End If
 
-        ' Validate and convert price to decimal
-        Dim ProdPriceDec As Decimal
-        If Not Decimal.TryParse(ProdPrice, ProdPriceDec) Then
-            MessageBox.Show("Invalid price. Please enter a valid numeric value for price.")
-            Exit Sub ' Exit the method if price is invalid
+        ' Check if the product stock is available
+        Dim queryStock As String = "SELECT prod_stocks FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productInfo"
+        If openDB() Then
+            Using commandStock As New MySqlCommand(queryStock, Conn)
+                commandStock.Parameters.AddWithValue("@productInfo", ProdName)
+                Dim availableStock As Integer = Convert.ToInt32(commandStock.ExecuteScalar())
+                If availableStock >= ProdQuantityInt Then
+                    ' Validate and convert price to decimal
+                    Dim ProdPriceDec As Decimal
+                    If Not Decimal.TryParse(ProdPrice, ProdPriceDec) Then
+                        MessageBox.Show("Invalid price. Please enter a valid numeric value for price.")
+                        Exit Sub ' Exit the method if price is invalid
+                    End If
+
+                    ' Calculate total for the current product
+                    Dim ProdTotal As Decimal = ProdQuantityInt * ProdPriceDec
+
+                    ' Add the product details to the DataGridView
+                    Dim row As String() = {ProdName, ProdQuantity, ProdPrice, ProdWarrantyDuration, ProdWarrantyCoverage, ProdTotal.ToString()}
+                    transaction_datagridview.Rows.Add(row)
+
+                    ' Calculate total cost for all rows in the DataGridView
+                    Dim totalCost As Decimal = 0
+                    For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
+                        Dim rowTotal As Decimal
+                        If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowTotal) Then
+                            totalCost += rowTotal
+                        End If
+                    Next
+
+                    ' Update Total_cost label with the calculated total cost
+                    Total_cost.Text = "PHP " & totalCost.ToString()
+
+                    ' Clear input fields and selections
+                    Cb_Products.SelectedIndex = -1
+                    txt_quantity.Clear()
+                    txt_price.Clear()
+                    Cb_warranty.SelectedIndex = -1
+
+                    ' Debug message to verify if data is added
+                    MessageBox.Show("Product added to DataGridView.")
+                Else
+                    MessageBox.Show("The stock available is only " & availableStock & " for this product.")
+                End If
+            End Using
+        Else
+            MessageBox.Show("Database failed to connect")
         End If
-
-        ' Calculate total for the current product
-        Dim ProdTotal As Decimal = ProdQuantityInt * ProdPriceDec
-
-        ' Add the product details to the DataGridView
-        Dim row As String() = {ProdName, ProdQuantity, ProdPrice, ProdWarrantyDuration, ProdWarrantyCoverage, ProdTotal.ToString()}
-        transaction_datagridview.Rows.Add(row)
-
-        ' Calculate total cost for all rows in the DataGridView
-        Dim totalCost As Decimal = 0
-        For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
-            Dim rowTotal As Decimal
-            If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowTotal) Then
-                totalCost += rowTotal
-            End If
-        Next
-
-        ' Update Total_cost label with the calculated total cost
-        Total_cost.Text = totalCost.ToString()
-
-        ' Clear input fields and selections
-        Cb_Products.SelectedIndex = -1
-        txt_quantity.Clear()
-        txt_price.Clear()
-        Cb_warranty.SelectedIndex = -1
-
-        ' Debug message to verify if data is added
-        MessageBox.Show("Product added to DataGridView.")
     End Sub
+
 
 
 
@@ -288,6 +303,45 @@ Public Class Transactions
             MessageBox.Show("Please select a row to clear.")
         End If
     End Sub
+
+
+
+
+
+    Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
+        Dim message As String = ""
+
+        ' Check if the DataGridView has rows
+        If transaction_datagridview.Rows.Count > 1 Then
+            For Each row As DataGridViewRow In transaction_datagridview.Rows
+                ' Check if the row is not a new row and is selected
+                If Not row.IsNewRow Then
+                    ' Get the product name and quantity from the row
+                    Dim productName As String = row.Cells("dt_product_name").Value.ToString()
+                    Dim quantity As Integer
+                    If Integer.TryParse(row.Cells("dt_quantity").Value.ToString(), quantity) Then
+                        ' Concatenate the product name and quantity to the message
+                        message &= productName & ": " & quantity & vbCrLf
+                    End If
+                End If
+            Next
+
+            ' Display the message box with the concatenated product names and quantities
+            If message <> "" Then
+                MessageBox.Show("Selected Products and Quantities:" & vbCrLf & message)
+            Else
+                MessageBox.Show("No products selected.")
+            End If
+        Else
+            ' Display a message if there are no rows in the DataGridView
+            MessageBox.Show("Can't perform print action. No product has been inserted.")
+        End If
+    End Sub
+
+
+
+
+
 
 
 End Class

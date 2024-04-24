@@ -56,13 +56,14 @@ Partial Class Transactions
         Label1 = New Label()
         lbl_name_sup = New Label()
         transaction_datagridview = New DataGridView()
+        Print_btn = New Button()
+        dt_id = New DataGridViewTextBoxColumn()
         dt_product_name = New DataGridViewTextBoxColumn()
         dt_quantity = New DataGridViewTextBoxColumn()
         dt_price = New DataGridViewTextBoxColumn()
         dt_warranty = New DataGridViewTextBoxColumn()
         dt_warranty_coverage = New DataGridViewTextBoxColumn()
         dt_total = New DataGridViewTextBoxColumn()
-        Print_btn = New Button()
         Transaction_panel.SuspendLayout()
         GroupBox3.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -125,6 +126,8 @@ Partial Class Transactions
         ' 
         ' Cb_employeeName
         ' 
+        Cb_employeeName.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_employeeName.AutoCompleteSource = AutoCompleteSource.ListItems
         Cb_employeeName.FormattingEnabled = True
         Cb_employeeName.Location = New Point(173, 39)
         Cb_employeeName.Name = "Cb_employeeName"
@@ -325,6 +328,8 @@ Partial Class Transactions
         ' Cb_warranty
         ' 
         Cb_warranty.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        Cb_warranty.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_warranty.AutoCompleteSource = AutoCompleteSource.ListItems
         Cb_warranty.FormattingEnabled = True
         Cb_warranty.Location = New Point(745, 212)
         Cb_warranty.Name = "Cb_warranty"
@@ -347,6 +352,8 @@ Partial Class Transactions
         ' 
         ' Cb_Products
         ' 
+        Cb_Products.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_Products.AutoCompleteSource = AutoCompleteSource.ListItems
         Cb_Products.FormattingEnabled = True
         Cb_Products.Location = New Point(173, 212)
         Cb_Products.Name = "Cb_Products"
@@ -441,7 +448,7 @@ Partial Class Transactions
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
         transaction_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         transaction_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage, dt_total})
+        transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_id, dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage, dt_total})
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -464,6 +471,26 @@ Partial Class Transactions
         transaction_datagridview.RowHeadersVisible = False
         transaction_datagridview.Size = New Size(940, 158)
         transaction_datagridview.TabIndex = 0
+        ' 
+        ' Print_btn
+        ' 
+        Print_btn.Anchor = AnchorStyles.Bottom
+        Print_btn.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Print_btn.FlatStyle = FlatStyle.Flat
+        Print_btn.ForeColor = Color.White
+        Print_btn.Location = New Point(558, 706)
+        Print_btn.Name = "Print_btn"
+        Print_btn.Size = New Size(111, 53)
+        Print_btn.TabIndex = 11
+        Print_btn.Text = "PRINT"
+        Print_btn.UseVisualStyleBackColor = False
+        ' 
+        ' dt_id
+        ' 
+        dt_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_id.HeaderText = "ID"
+        dt_id.Name = "dt_id"
+        dt_id.Width = 51
         ' 
         ' dt_product_name
         ' 
@@ -501,19 +528,6 @@ Partial Class Transactions
         ' 
         dt_total.HeaderText = "TOTAL"
         dt_total.Name = "dt_total"
-        ' 
-        ' Print_btn
-        ' 
-        Print_btn.Anchor = AnchorStyles.Bottom
-        Print_btn.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        Print_btn.FlatStyle = FlatStyle.Flat
-        Print_btn.ForeColor = Color.White
-        Print_btn.Location = New Point(558, 706)
-        Print_btn.Name = "Print_btn"
-        Print_btn.Size = New Size(111, 53)
-        Print_btn.TabIndex = 11
-        Print_btn.Text = "PRINT"
-        Print_btn.UseVisualStyleBackColor = False
         ' 
         ' Transactions
         ' 
@@ -558,11 +572,6 @@ Partial Class Transactions
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Print_btn As Button
-    Friend WithEvents dt_product_name As DataGridViewTextBoxColumn
-    Friend WithEvents dt_quantity As DataGridViewTextBoxColumn
-    Friend WithEvents dt_price As DataGridViewTextBoxColumn
-    Friend WithEvents dt_warranty As DataGridViewTextBoxColumn
-    Friend WithEvents dt_warranty_coverage As DataGridViewTextBoxColumn
     Friend WithEvents clear_btn As Button
     Friend WithEvents CLEAR As Label
     Friend WithEvents txt_price As TextBox
@@ -577,7 +586,13 @@ Partial Class Transactions
     Friend WithEvents txt_custname As TextBox
     Friend WithEvents Cb_warranty As ComboBox
     Friend WithEvents add_btn As Button
-    Friend WithEvents dt_total As DataGridViewTextBoxColumn
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Total_cost As Label
+    Friend WithEvents dt_id As DataGridViewTextBoxColumn
+    Friend WithEvents dt_product_name As DataGridViewTextBoxColumn
+    Friend WithEvents dt_quantity As DataGridViewTextBoxColumn
+    Friend WithEvents dt_price As DataGridViewTextBoxColumn
+    Friend WithEvents dt_warranty As DataGridViewTextBoxColumn
+    Friend WithEvents dt_warranty_coverage As DataGridViewTextBoxColumn
+    Friend WithEvents dt_total As DataGridViewTextBoxColumn
 End Class
