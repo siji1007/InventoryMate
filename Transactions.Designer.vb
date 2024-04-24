@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Transactions
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,8 +20,11 @@ Partial Class Transactions
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_transaction = New Label()
         Transaction_panel = New Panel()
         GroupBox3 = New GroupBox()
@@ -39,6 +42,8 @@ Partial Class Transactions
         Label4 = New Label()
         Label3 = New Label()
         GroupBox1 = New GroupBox()
+        GroupBox4 = New GroupBox()
+        Total_cost = New Label()
         add_btn = New Button()
         Cb_warranty = New ComboBox()
         txt_price = New TextBox()
@@ -62,6 +67,7 @@ Partial Class Transactions
         GroupBox3.SuspendLayout()
         GroupBox2.SuspendLayout()
         GroupBox1.SuspendLayout()
+        GroupBox4.SuspendLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -257,6 +263,7 @@ Partial Class Transactions
         ' 
         GroupBox1.AutoSize = True
         GroupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        GroupBox1.Controls.Add(GroupBox4)
         GroupBox1.Controls.Add(add_btn)
         GroupBox1.Controls.Add(Cb_warranty)
         GroupBox1.Controls.Add(txt_price)
@@ -279,6 +286,29 @@ Partial Class Transactions
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "PRODUCT DETAILS"
+        ' 
+        ' GroupBox4
+        ' 
+        GroupBox4.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        GroupBox4.Controls.Add(Total_cost)
+        GroupBox4.ForeColor = Color.White
+        GroupBox4.Location = New Point(743, 253)
+        GroupBox4.Name = "GroupBox4"
+        GroupBox4.Size = New Size(200, 52)
+        GroupBox4.TabIndex = 20
+        GroupBox4.TabStop = False
+        GroupBox4.Text = "TOTAL COST"
+        ' 
+        ' Total_cost
+        ' 
+        Total_cost.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        Total_cost.AutoSize = True
+        Total_cost.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Total_cost.Location = New Point(8, 22)
+        Total_cost.Name = "Total_cost"
+        Total_cost.Size = New Size(14, 20)
+        Total_cost.TabIndex = 0
+        Total_cost.Text = " "
         ' 
         ' add_btn
         ' 
@@ -401,10 +431,36 @@ Partial Class Transactions
         ' transaction_datagridview
         ' 
         transaction_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        transaction_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle1.ForeColor = Color.White
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        transaction_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         transaction_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage, dt_total})
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        transaction_datagridview.DefaultCellStyle = DataGridViewCellStyle2
+        transaction_datagridview.GridColor = Color.White
         transaction_datagridview.Location = New Point(28, 35)
         transaction_datagridview.Name = "transaction_datagridview"
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.White
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
+        transaction_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         transaction_datagridview.RowHeadersVisible = False
         transaction_datagridview.Size = New Size(940, 158)
         transaction_datagridview.TabIndex = 0
@@ -479,6 +535,8 @@ Partial Class Transactions
         GroupBox2.PerformLayout()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        GroupBox4.ResumeLayout(False)
+        GroupBox4.PerformLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -520,4 +578,6 @@ Partial Class Transactions
     Friend WithEvents Cb_warranty As ComboBox
     Friend WithEvents add_btn As Button
     Friend WithEvents dt_total As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents Total_cost As Label
 End Class
