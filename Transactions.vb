@@ -51,10 +51,10 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
-        Cb_Products.Items.Clear
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Cb_Products.Items.Clear()
 
-        If openDB Then
+        If openDB() Then
             Dim query_product = "SELECT CONCAT(prod_name, ' - ', prod_model) AS product_info FROM products WHERE prod_stocks > 0"
             Using Command As New MySqlCommand(query_product, Conn)
                 Try
@@ -67,7 +67,7 @@ Public Class Transactions
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 Finally
-                    closeDB
+                    closeDB()
                 End Try
             End Using
         Else
@@ -78,7 +78,7 @@ Public Class Transactions
 
 
 
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs)
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cb_employeeName.Items.Clear
 
         If openDB Then
@@ -129,7 +129,6 @@ Public Class Transactions
             MessageBox.Show("The database is not connected!")
         End If
     End Sub
-
     Private Sub add_btn_Click(sender As Object, e As EventArgs) Handles add_btn.Click
         Dim ProdName As String = Cb_Products.Text
         Dim ProdQuantity As String = txt_quantity.Text
@@ -168,54 +167,75 @@ Public Class Transactions
         End If
 
         ' Check if the product stock is available
-        Dim queryStock As String = "SELECT prod_stocks FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productInfo"
+        Dim queryStock As String = "SELECT prod_stocks, prod_id FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productInfo"
         If openDB() Then
             Using commandStock As New MySqlCommand(queryStock, Conn)
                 commandStock.Parameters.AddWithValue("@productInfo", ProdName)
-                Dim availableStock As Integer = Convert.ToInt32(commandStock.ExecuteScalar())
-                If availableStock >= ProdQuantityInt Then
-                    ' Validate and convert price to decimal
-                    Dim ProdPriceDec As Decimal
-                    If Not Decimal.TryParse(ProdPrice, ProdPriceDec) Then
-                        MessageBox.Show("Invalid price. Please enter a valid numeric value for price.")
-                        Exit Sub ' Exit the method if price is invalid
+                Dim readerStock = commandStock.ExecuteReader()
+                If readerStock.HasRows AndAlso readerStock.Read() Then
+                    Dim availableStock As Integer = Convert.ToInt32(readerStock("prod_stocks"))
+                    Dim productId As Integer = Convert.ToInt32(readerStock("prod_id"))
+                    If availableStock >= ProdQuantityInt Then
+                        ' Deduct the quantity from stock
+                        Dim newStock As Integer = availableStock - ProdQuantityInt
+                        readerStock.Close()
+
+                        ' Update the stock in the database
+                        Dim updateQuery As String = "UPDATE products SET prod_stocks = @newStock WHERE prod_id = @productId"
+                        Using updateCommand As New MySqlCommand(updateQuery, Conn)
+                            updateCommand.Parameters.AddWithValue("@newStock", newStock)
+                            updateCommand.Parameters.AddWithValue("@productId", productId)
+                            Dim rowsAffected = updateCommand.ExecuteNonQuery()
+                            If rowsAffected > 0 Then
+                                ' Calculate total for the current product
+                                Dim ProdPriceDec As Decimal
+                                If Not Decimal.TryParse(ProdPrice, ProdPriceDec) Then
+                                    MessageBox.Show("Invalid price. Please enter a valid numeric value for price.")
+                                    Exit Sub ' Exit the method if price is invalid
+                                End If
+
+                                Dim ProdTotal As Decimal = ProdQuantityInt * ProdPriceDec
+
+                                ' Add the product details to the DataGridView
+                                Dim row As String() = {productId.ToString(), ProdName, ProdQuantity, ProdPrice, ProdWarrantyDuration, ProdWarrantyCoverage, ProdTotal.ToString()}
+                                transaction_datagridview.Rows.Add(row)
+
+                                ' Calculate total cost for all rows in the DataGridView
+                                Dim totalCost As Decimal = 0
+                                For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
+                                    Dim rowTotal As Decimal
+                                    If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowTotal) Then
+                                        totalCost += rowTotal
+                                    End If
+                                Next
+
+                                ' Update Total_cost label with the calculated total cost
+                                Total_cost.Text = "PHP " & totalCost.ToString()
+
+                                ' Clear input fields and selections
+                                Cb_Products.SelectedIndex = -1
+                                txt_quantity.Clear()
+                                txt_price.Clear()
+                                Cb_warranty.SelectedIndex = -1
+
+                                ' Debug message to verify if data is added
+                                MessageBox.Show("Product added to DataGridView.")
+                            Else
+                                MessageBox.Show("Failed to update stock in the database.")
+                            End If
+                        End Using
+                    Else
+                        MessageBox.Show("The stock available is only " & availableStock & " for this product.")
                     End If
-
-                    ' Calculate total for the current product
-                    Dim ProdTotal As Decimal = ProdQuantityInt * ProdPriceDec
-
-                    ' Add the product details to the DataGridView
-                    Dim row As String() = {ProdName, ProdQuantity, ProdPrice, ProdWarrantyDuration, ProdWarrantyCoverage, ProdTotal.ToString()}
-                    transaction_datagridview.Rows.Add(row)
-
-                    ' Calculate total cost for all rows in the DataGridView
-                    Dim totalCost As Decimal = 0
-                    For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
-                        Dim rowTotal As Decimal
-                        If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowTotal) Then
-                            totalCost += rowTotal
-                        End If
-                    Next
-
-                    ' Update Total_cost label with the calculated total cost
-                    Total_cost.Text = "PHP " & totalCost.ToString()
-
-                    ' Clear input fields and selections
-                    Cb_Products.SelectedIndex = -1
-                    txt_quantity.Clear()
-                    txt_price.Clear()
-                    Cb_warranty.SelectedIndex = -1
-
-                    ' Debug message to verify if data is added
-                    MessageBox.Show("Product added to DataGridView.")
                 Else
-                    MessageBox.Show("The stock available is only " & availableStock & " for this product.")
+                    MessageBox.Show("Product information not found in the database.")
                 End If
             End Using
         Else
             MessageBox.Show("Database failed to connect")
         End If
     End Sub
+
 
 
 
