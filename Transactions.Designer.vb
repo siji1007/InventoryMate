@@ -56,8 +56,8 @@ Partial Class Transactions
         dt_price = New DataGridViewTextBoxColumn()
         dt_warranty = New DataGridViewTextBoxColumn()
         dt_warranty_coverage = New DataGridViewTextBoxColumn()
-        Print_btn = New Button()
         dt_total = New DataGridViewTextBoxColumn()
+        Print_btn = New Button()
         Transaction_panel.SuspendLayout()
         GroupBox3.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -441,6 +441,11 @@ Partial Class Transactions
         dt_warranty_coverage.HeaderText = "WARRANTY COVERAGE"
         dt_warranty_coverage.Name = "dt_warranty_coverage"
         ' 
+        ' dt_total
+        ' 
+        dt_total.HeaderText = "TOTAL"
+        dt_total.Name = "dt_total"
+        ' 
         ' Print_btn
         ' 
         Print_btn.Anchor = AnchorStyles.Bottom
@@ -453,11 +458,6 @@ Partial Class Transactions
         Print_btn.TabIndex = 11
         Print_btn.Text = "PRINT"
         Print_btn.UseVisualStyleBackColor = False
-        ' 
-        ' dt_total
-        ' 
-        dt_total.HeaderText = "TOTAL"
-        dt_total.Name = "dt_total"
         ' 
         ' Transactions
         ' 

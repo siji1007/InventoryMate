@@ -45,7 +45,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -72,7 +72,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs)
         Cb_employeeName.Items.Clear()
 
         If openDB() Then
@@ -157,15 +157,7 @@ Public Class Transactions
 
     End Sub
 
+    Private Sub add_btn_Click(sender As Object, e As EventArgs) Handles add_btn.Click
 
-
-
-
-
-
-
-
-
-
-
+    End Sub
 End Class
