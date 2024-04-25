@@ -51,7 +51,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -78,10 +78,10 @@ Public Class Transactions
 
 
 
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Cb_employeeName.Items.Clear
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs)
+        Cb_employeeName.Items.Clear()
 
-        If openDB Then
+        If openDB() Then
             Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit) AS warranty_info FROM warranty"
             Using cmd As New MySqlCommand(query_warranty, Conn)
                 Try
@@ -147,7 +147,7 @@ Public Class Transactions
                                 ProdWarrantyCoverage = reader("War_Coverage").ToString()
                             End If
                         End If
-                    End Using
+                    End Using ' Close the reader here
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 Finally
@@ -178,7 +178,7 @@ Public Class Transactions
                     If availableStock >= ProdQuantityInt Then
                         ' Deduct the quantity from stock
                         Dim newStock As Integer = availableStock - ProdQuantityInt
-                        readerStock.Close()
+                        readerStock.Close() ' Close the reader here
 
                         ' Update the stock in the database
                         Dim updateQuery As String = "UPDATE products SET prod_stocks = @newStock WHERE prod_id = @productId"
@@ -235,6 +235,8 @@ Public Class Transactions
             MessageBox.Show("Database failed to connect")
         End If
     End Sub
+
+
 
 
 
@@ -301,28 +303,62 @@ Public Class Transactions
     Private Sub clear_btn_Click(sender As Object, e As EventArgs) Handles clear_btn.Click
         ' Check if there is a selected row
         If transaction_datagridview.SelectedRows.Count > 0 Then
-            ' Get the total of the row to be removed
-            Dim rowTotal As Decimal = 0
-            If Decimal.TryParse(transaction_datagridview.SelectedRows(0).Cells("dt_total").Value?.ToString(), rowTotal) Then
-                ' Remove the selected row
-                transaction_datagridview.Rows.Remove(transaction_datagridview.SelectedRows(0))
+            ' Get the prod_id from the selected row
+            Dim productId As Integer = Convert.ToInt32(transaction_datagridview.SelectedRows(0).Cells("dt_id").Value)
 
-                ' Update Total_cost label by deducting the rowTotal
-                Dim totalCost As Decimal = 0
-                For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
-                    Dim rowSubTotal As Decimal
-                    If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowSubTotal) Then
-                        totalCost += rowSubTotal
-                    End If
-                Next
-                Total_cost.Text = totalCost.ToString()
+            ' Get the quantity to be restored from the selected row
+            Dim quantityToRestore As Integer = 0
+            If Integer.TryParse(transaction_datagridview.SelectedRows(0).Cells("dt_quantity").Value?.ToString(), quantityToRestore) Then
+                ' Check if the database is open
+                If openDB() Then
+                    ' Retrieve the current stock for the selected product
+                    Dim queryStock As String = "SELECT prod_stocks FROM products WHERE prod_id = @productId"
+                    Using commandStock As New MySqlCommand(queryStock, Conn)
+                        commandStock.Parameters.AddWithValue("@productId", productId)
+                        Dim currentStock As Integer = Convert.ToInt32(commandStock.ExecuteScalar())
+
+                        ' Calculate the new stock after restoration
+                        Dim newStock As Integer = currentStock + quantityToRestore
+
+                        ' Update the stock in the database
+                        Dim updateQuery As String = "UPDATE products SET prod_stocks = @newStock WHERE prod_id = @productId"
+                        Using updateCommand As New MySqlCommand(updateQuery, Conn)
+                            updateCommand.Parameters.AddWithValue("@newStock", newStock)
+                            updateCommand.Parameters.AddWithValue("@productId", productId)
+                            Dim rowsAffected = updateCommand.ExecuteNonQuery()
+                            If rowsAffected > 0 Then
+                                ' Remove the selected row from the DataGridView
+                                transaction_datagridview.Rows.Remove(transaction_datagridview.SelectedRows(0))
+
+                                ' Update Total_cost label by deducting the rowTotal
+                                Dim totalCost As Decimal = 0
+                                For Each dgvRow As DataGridViewRow In transaction_datagridview.Rows
+                                    Dim rowSubTotal As Decimal
+                                    If Decimal.TryParse(dgvRow.Cells("dt_total").Value?.ToString(), rowSubTotal) Then
+                                        totalCost += rowSubTotal
+                                    End If
+                                Next
+                                Total_cost.Text = totalCost.ToString()
+
+                                ' Debug message
+                                MessageBox.Show("Stock restored and row cleared.")
+                            Else
+                                MessageBox.Show("Failed to update stock in the database.")
+                            End If
+                        End Using
+                    End Using
+                Else
+                    MessageBox.Show("Database failed to connect")
+                End If
             Else
-                MessageBox.Show("Invalid row total. Could not deduct from Total_cost.")
+                MessageBox.Show("Invalid quantity to restore.")
             End If
         Else
             MessageBox.Show("Please select a row to clear.")
         End If
     End Sub
+
+
 
 
 
@@ -357,11 +393,6 @@ Public Class Transactions
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
-
-
-
-
-
 
 
 End Class
