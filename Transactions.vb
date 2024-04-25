@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
         Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed
@@ -16,42 +16,61 @@ Public Class Transactions
 
 
     Private Sub Cb_Products_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Products.SelectedIndexChanged
-        If Cb_Products.SelectedItem IsNot Nothing Then
+        ' Check if a product is selected in the ComboBox
+        If Cb_Products.SelectedIndex <> -1 Then
+            ' Get the selected product name from the ComboBox
+            Dim selectedProduct As String = Cb_Products.SelectedItem.ToString()
+
+            ' Check if the database connection is open
             If openDB() Then
-                Dim selectedProduct As String = Cb_Products.SelectedItem.ToString()
-                Dim productName As String = selectedProduct.Split("-"c)(0).Trim()
-                Dim productModel As String = selectedProduct.Split("-"c)(1).Trim()
+                ' Query to retrieve the stock and price of the selected product
+                Dim queryStockPrice As String = "SELECT prod_stocks, prod_price FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productName"
 
-                Dim query_price As String = "SELECT prod_price FROM products WHERE prod_name = @productName AND prod_model = @productModel"
-
-                Using command As New MySqlCommand(query_price, Conn)
-                    command.Parameters.AddWithValue("@productName", productName)
-                    command.Parameters.AddWithValue("@productModel", productModel)
+                Using commandStockPrice As New MySqlCommand(queryStockPrice, Conn)
+                    commandStockPrice.Parameters.AddWithValue("@productName", selectedProduct)
 
                     Try
-                        Dim price As Object = command.ExecuteScalar()
-                        If price IsNot Nothing AndAlso Not DBNull.Value.Equals(price) Then
+                        Dim readerStockPrice As MySqlDataReader = commandStockPrice.ExecuteReader()
+
+                        If readerStockPrice.Read() Then
+                            Dim availableStock As Integer = Convert.ToInt32(readerStockPrice("prod_stocks"))
+                            Dim price As Decimal = Convert.ToDecimal(readerStockPrice("prod_price"))
+
+                            ' Update the labels with the retrieved information
+                            lbl_stock.Text = "Available Stock: " & availableStock.ToString()
                             txt_price.Text = price.ToString()
                         Else
-                            txt_price.Text = "Price not found"
+                            lbl_stock.Text = "Stock information not found"
+                            txt_price.Text = "Price information not found"
                         End If
+
+                        readerStockPrice.Close()
                     Catch ex As Exception
-                        MessageBox.Show(ex.Message)
-                    Finally
-                        closeDB()
+                        MessageBox.Show("Error retrieving stock and price information: " & ex.Message)
                     End Try
                 End Using
+
+                ' Close the database connection
+                closeDB()
             Else
-                MessageBox.Show("The database is not connected.")
+                MessageBox.Show("Database connection failed")
             End If
-        Else
-            ' Handle case when no item is selected in ComboBox
-            txt_price.Text = "No product selected"
         End If
     End Sub
 
 
+
+
+
+
+
+
     Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadProducts()
+    End Sub
+
+
+    Private Sub LoadProducts()
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -63,9 +82,11 @@ Public Class Transactions
                             ' Add the concatenated product information to the ComboBox items
                             Cb_Products.Items.Add(reader("product_info").ToString)
                         End While
+                        reader.Close()
                     End Using
+
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    MessageBox.Show(ex.Message & " product load")
                 Finally
                     closeDB()
                 End Try
@@ -91,9 +112,12 @@ Public Class Transactions
                                 Cb_warranty.Items.Add(reader("warranty_info").ToString)
                             End While
                         End If
+                        reader.Close()
                     End Using
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    MessageBox.Show(ex.Message & "WARRANTY LOAD")
+                Finally
+                    closeDB()
 
                 End Try
 
@@ -106,7 +130,7 @@ Public Class Transactions
 
     End Sub
 
-    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs)
         Cb_employeeName.Items.Clear()
 
         If openDB() Then
@@ -118,9 +142,11 @@ Public Class Transactions
                             ' Add each Emp_name to the ComboBox
                             Cb_employeeName.Items.Add(reader("Emp_name").ToString)
                         End While
+                        reader.Close()
                     End Using
+
                 Catch ex As Exception
-                    MessageBox.Show(ex.Message)
+                    MessageBox.Show(ex.Message & " Employee load")
                 Finally
                     closeDB()
                 End Try
@@ -129,6 +155,10 @@ Public Class Transactions
             MessageBox.Show("The database is not connected!")
         End If
     End Sub
+
+
+
+
     Private Sub add_btn_Click(sender As Object, e As EventArgs) Handles add_btn.Click
         Dim ProdName As String = Cb_Products.Text
         Dim ProdQuantity As String = txt_quantity.Text
@@ -218,13 +248,17 @@ Public Class Transactions
                                 txt_price.Clear()
                                 Cb_warranty.SelectedIndex = -1
 
+
                                 ' Debug message to verify if data is added
                                 MessageBox.Show("Product added to DataGridView.")
+                                LoadProducts()
+                                lbl_stock.Text = "STOCKS"
                             Else
                                 MessageBox.Show("Failed to update stock in the database.")
                             End If
                         End Using
                     Else
+                        readerStock.Close()
                         MessageBox.Show("The stock available is only " & availableStock & " for this product.")
                     End If
                 Else
@@ -235,6 +269,7 @@ Public Class Transactions
             MessageBox.Show("Database failed to connect")
         End If
     End Sub
+
 
 
 
@@ -317,6 +352,8 @@ Public Class Transactions
                         commandStock.Parameters.AddWithValue("@productId", productId)
                         Dim currentStock As Integer = Convert.ToInt32(commandStock.ExecuteScalar())
 
+                        commandStock.Dispose()
+
                         ' Calculate the new stock after restoration
                         Dim newStock As Integer = currentStock + quantityToRestore
 
@@ -342,11 +379,13 @@ Public Class Transactions
 
                                 ' Debug message
                                 MessageBox.Show("Stock restored and row cleared.")
+                                LoadProducts()
                             Else
                                 MessageBox.Show("Failed to update stock in the database.")
                             End If
                         End Using
                     End Using
+                    closeDB()
                 Else
                     MessageBox.Show("Database failed to connect")
                 End If
@@ -393,6 +432,91 @@ Public Class Transactions
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+    Private Sub txt_Empname_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            If openDB() Then
+                Dim query As New MySqlCommand("SELECT Cust_name FROM Customer;", Conn)
+
+                Using reader As MySqlDataReader = query.ExecuteReader()
+                    While reader.Read()
+                        Dim custName As String = reader.GetString("Cust_name")
+                        txt_Empname.Items.Add(custName) ' Assuming ListBox1 is the name of your ListBox control
+                    End While
+                End Using
+            Else
+                MessageBox.Show("Failed to connect to the database")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            closeDB()
+        End Try
+    End Sub
+
+
+
+
+    Private Sub txt_Empname_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_Empname.SelectedIndexChanged
+        ' Clear the TextBoxes when no item is selected in the ComboBox
+        If txt_Empname.SelectedIndex = -1 Then
+            txt_custaddress.Text = ""
+            txt_custnumber.Text = ""
+            txt_custemail.Text = ""
+            ' You can clear other TextBoxes as needed
+            Return
+        End If
+
+        Try
+            If openDB() Then
+                Dim selectedCustName As String = txt_Empname.SelectedItem.ToString()
+                Dim query As New MySqlCommand("SELECT * FROM Customer WHERE Cust_name = @CustName;", Conn)
+                query.Parameters.AddWithValue("@CustName", selectedCustName)
+
+                Using reader As MySqlDataReader = query.ExecuteReader()
+                    If reader.Read() Then
+                        ' Check if the data is not DBNull before assigning to variables
+                        If Not reader.IsDBNull(reader.GetOrdinal("Cust_address")) Then
+                            txt_custaddress.Text = reader.GetString("Cust_address")
+                        End If
+
+                        If Not reader.IsDBNull(reader.GetOrdinal("Cust_cnumber")) Then
+                            txt_custnumber.Text = reader.GetString("Cust_cnumber")
+                        End If
+
+                        If Not reader.IsDBNull(reader.GetOrdinal("Cust_email")) Then
+                            txt_custemail.Text = reader.GetString("Cust_email")
+                        End If
+
+                        ' You can handle other attributes similarly
+                    Else
+                        MessageBox.Show("No data found for the selected customer.")
+                    End If
+                End Using
+            Else
+                MessageBox.Show("Failed to connect to the database")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            closeDB()
+        End Try
+    End Sub
+
+
+
+
 
 
 End Class

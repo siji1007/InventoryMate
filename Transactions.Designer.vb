@@ -28,6 +28,7 @@ Partial Class Transactions
         Lbl_transaction = New Label()
         Print_btn = New Button()
         GroupBox1 = New GroupBox()
+        lbl_stock = New Label()
         GroupBox4 = New GroupBox()
         Total_cost = New Label()
         add_btn = New Button()
@@ -57,10 +58,10 @@ Partial Class Transactions
         Label8 = New Label()
         Label7 = New Label()
         GroupBox2 = New GroupBox()
+        txt_Empname = New ComboBox()
         txt_custnumber = New TextBox()
         txt_custemail = New TextBox()
         txt_custaddress = New TextBox()
-        txt_custname = New TextBox()
         Label6 = New Label()
         Label5 = New Label()
         Label4 = New Label()
@@ -101,6 +102,7 @@ Partial Class Transactions
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(lbl_stock)
         GroupBox1.Controls.Add(GroupBox4)
         GroupBox1.Controls.Add(add_btn)
         GroupBox1.Controls.Add(Cb_warranty)
@@ -124,6 +126,15 @@ Partial Class Transactions
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "PRODUCT DETAILS"
+        ' 
+        ' lbl_stock
+        ' 
+        lbl_stock.AutoSize = True
+        lbl_stock.Location = New Point(438, 254)
+        lbl_stock.Name = "lbl_stock"
+        lbl_stock.Size = New Size(73, 20)
+        lbl_stock.TabIndex = 21
+        lbl_stock.Text = "STOCKS"
         ' 
         ' GroupBox4
         ' 
@@ -383,6 +394,7 @@ Partial Class Transactions
         ' 
         ' Label10
         ' 
+        Label10.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label10.AutoSize = True
         Label10.Location = New Point(546, 92)
         Label10.Name = "Label10"
@@ -444,10 +456,10 @@ Partial Class Transactions
         ' 
         GroupBox2.AutoSize = True
         GroupBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        GroupBox2.Controls.Add(txt_Empname)
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
         GroupBox2.Controls.Add(txt_custaddress)
-        GroupBox2.Controls.Add(txt_custname)
         GroupBox2.Controls.Add(Label6)
         GroupBox2.Controls.Add(Label5)
         GroupBox2.Controls.Add(Label4)
@@ -462,6 +474,14 @@ Partial Class Transactions
         GroupBox2.TabIndex = 1
         GroupBox2.TabStop = False
         GroupBox2.Text = "CUSTOMER DETAILS"
+        ' 
+        ' txt_Empname
+        ' 
+        txt_Empname.FormattingEnabled = True
+        txt_Empname.Location = New Point(171, 35)
+        txt_Empname.Name = "txt_Empname"
+        txt_Empname.Size = New Size(225, 28)
+        txt_Empname.TabIndex = 23
         ' 
         ' txt_custnumber
         ' 
@@ -485,13 +505,6 @@ Partial Class Transactions
         txt_custaddress.Name = "txt_custaddress"
         txt_custaddress.Size = New Size(224, 26)
         txt_custaddress.TabIndex = 20
-        ' 
-        ' txt_custname
-        ' 
-        txt_custname.Location = New Point(172, 38)
-        txt_custname.Name = "txt_custname"
-        txt_custname.Size = New Size(224, 26)
-        txt_custname.TabIndex = 19
         ' 
         ' Label6
         ' 
@@ -620,10 +633,11 @@ Partial Class Transactions
     Friend WithEvents txt_custnumber As TextBox
     Friend WithEvents txt_custemail As TextBox
     Friend WithEvents txt_custaddress As TextBox
-    Friend WithEvents txt_custname As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Transaction_panel As Panel
+    Friend WithEvents txt_Empname As ComboBox
+    Friend WithEvents lbl_stock As Label
 End Class

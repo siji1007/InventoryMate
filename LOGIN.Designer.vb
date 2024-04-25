@@ -31,9 +31,9 @@ Partial Class LOGIN
         Label2 = New Label()
         SignUp = New Button()
         SignIn = New Button()
-        Password = New TextBox()
+        txt_password = New TextBox()
         login_title = New Label()
-        Username = New TextBox()
+        txt_username = New TextBox()
         login_logo = New PictureBox()
         LOGIN_FORM.SuspendLayout()
         Panel6.SuspendLayout()
@@ -60,9 +60,9 @@ Partial Class LOGIN
         Panel6.Controls.Add(Label2)
         Panel6.Controls.Add(SignUp)
         Panel6.Controls.Add(SignIn)
-        Panel6.Controls.Add(Password)
+        Panel6.Controls.Add(txt_password)
         Panel6.Controls.Add(login_title)
-        Panel6.Controls.Add(Username)
+        Panel6.Controls.Add(txt_username)
         Panel6.Dock = DockStyle.Right
         Panel6.Location = New Point(332, 0)
         Panel6.Name = "Panel6"
@@ -148,19 +148,19 @@ Partial Class LOGIN
         SignIn.Text = "Sign In"
         SignIn.UseVisualStyleBackColor = True
         ' 
-        ' Password
+        ' txt_password
         ' 
-        Password.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Password.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        Password.BorderStyle = BorderStyle.FixedSingle
-        Password.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Password.ForeColor = SystemColors.Info
-        Password.Location = New Point(167, 255)
-        Password.Name = "Password"
-        Password.PasswordChar = "*"c
-        Password.PlaceholderText = "Password"
-        Password.Size = New Size(196, 29)
-        Password.TabIndex = 2
+        txt_password.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txt_password.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        txt_password.BorderStyle = BorderStyle.FixedSingle
+        txt_password.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txt_password.ForeColor = SystemColors.Info
+        txt_password.Location = New Point(167, 255)
+        txt_password.Name = "txt_password"
+        txt_password.PasswordChar = "*"c
+        txt_password.PlaceholderText = "Password"
+        txt_password.Size = New Size(196, 29)
+        txt_password.TabIndex = 2
         ' 
         ' login_title
         ' 
@@ -175,19 +175,19 @@ Partial Class LOGIN
         login_title.TabIndex = 1
         login_title.Text = "LOGIN"
         ' 
-        ' Username
+        ' txt_username
         ' 
-        Username.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Username.AutoCompleteMode = AutoCompleteMode.Suggest
-        Username.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        Username.BorderStyle = BorderStyle.FixedSingle
-        Username.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Username.ForeColor = SystemColors.Info
-        Username.Location = New Point(167, 209)
-        Username.Name = "Username"
-        Username.PlaceholderText = "Username"
-        Username.Size = New Size(196, 29)
-        Username.TabIndex = 0
+        txt_username.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txt_username.AutoCompleteMode = AutoCompleteMode.Suggest
+        txt_username.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        txt_username.BorderStyle = BorderStyle.FixedSingle
+        txt_username.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txt_username.ForeColor = SystemColors.Info
+        txt_username.Location = New Point(167, 209)
+        txt_username.Name = "txt_username"
+        txt_username.PlaceholderText = "Username"
+        txt_username.Size = New Size(196, 29)
+        txt_username.TabIndex = 0
         ' 
         ' login_logo
         ' 
@@ -223,9 +223,9 @@ Partial Class LOGIN
     Friend WithEvents LOGIN_FORM As Panel
     Friend WithEvents Panel6 As Panel
     Friend WithEvents login_logo As PictureBox
-    Friend WithEvents Username As TextBox
+    Friend WithEvents txt_username As TextBox
     Friend WithEvents login_title As Label
-    Friend WithEvents Password As TextBox
+    Friend WithEvents txt_password As TextBox
     Friend WithEvents SignIn As Button
     Friend WithEvents SignUp As Button
     Friend WithEvents Label2 As Label

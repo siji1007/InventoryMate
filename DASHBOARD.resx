@@ -3487,17 +3487,32 @@
   <data name="txt_name.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
+  <data name="txt_name.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="txt_name.Location" type="System.Drawing.Point, System.Drawing">
-    <value>520, 0</value>
+    <value>490, 0</value>
+  </data>
+  <data name="txt_name.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="txt_name.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="txt_name.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="txt_name.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 18</value>
+    <value>85, 18</value>
   </data>
   <data name="txt_name.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="txt_name.Text" xml:space="preserve">
-    <value>NAME</value>
+    <value>    NAME</value>
+  </data>
+  <data name="txt_name.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;txt_name.Name" xml:space="preserve">
     <value>txt_name</value>

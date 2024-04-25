@@ -64,7 +64,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Transaction, "Transaction")
         Transaction.BackColor = Color.Transparent
         Transaction.FlatAppearance.BorderSize = 0
-        Transaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Transaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Transaction.ForeColor = SystemColors.ActiveCaptionText
         Transaction.Image = My.Resources.Resources.transfer_bank__1_
         Transaction.Name = "Transaction"
@@ -89,7 +89,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Employee, "Employee")
         Employee.BackColor = Color.Transparent
         Employee.FlatAppearance.BorderSize = 0
-        Employee.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Employee.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Employee.ForeColor = SystemColors.ActiveCaptionText
         Employee.Name = "Employee"
         Employee.UseVisualStyleBackColor = False
@@ -99,7 +99,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Supplier, "Supplier")
         Supplier.BackColor = Color.Transparent
         Supplier.FlatAppearance.BorderSize = 0
-        Supplier.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Supplier.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Supplier.ForeColor = SystemColors.ActiveCaptionText
         Supplier.Name = "Supplier"
         Supplier.UseVisualStyleBackColor = False
@@ -109,7 +109,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Customer, "Customer")
         Customer.BackColor = Color.Transparent
         Customer.FlatAppearance.BorderSize = 0
-        Customer.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Customer.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Customer.ForeColor = SystemColors.ActiveCaptionText
         Customer.Name = "Customer"
         Customer.UseVisualStyleBackColor = False
@@ -119,7 +119,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Warranty, "Warranty")
         Warranty.BackColor = Color.Transparent
         Warranty.FlatAppearance.BorderSize = 0
-        Warranty.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Warranty.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Warranty.ForeColor = SystemColors.ActiveCaptionText
         Warranty.Name = "Warranty"
         Warranty.UseVisualStyleBackColor = False
@@ -129,7 +129,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Product, "Product")
         Product.BackColor = Color.Transparent
         Product.FlatAppearance.BorderSize = 0
-        Product.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Product.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Product.ForeColor = SystemColors.ActiveCaptionText
         Product.Name = "Product"
         Product.UseVisualStyleBackColor = False
@@ -139,7 +139,7 @@ Partial Class DASHBOARD
         resources.ApplyResources(Button1, "Button1")
         Button1.BackColor = Color.Transparent
         Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 39, 46)
         Button1.ForeColor = SystemColors.ActiveCaptionText
         Button1.Image = My.Resources.Resources.home__3_
         Button1.Name = "Button1"
@@ -147,13 +147,13 @@ Partial Class DASHBOARD
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Panel1.BackColor = Color.FromArgb(30, 39, 46)
         resources.ApplyResources(Panel1, "Panel1")
         Panel1.Name = "Panel1"
         ' 
         ' Panel3
         ' 
-        Panel3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Panel3.BackColor = Color.FromArgb(30, 39, 46)
         Panel3.Controls.Add(txt_name)
         resources.ApplyResources(Panel3, "Panel3")
         Panel3.Name = "Panel3"
@@ -161,7 +161,9 @@ Partial Class DASHBOARD
         ' txt_name
         ' 
         resources.ApplyResources(txt_name, "txt_name")
+        txt_name.FlatStyle = FlatStyle.Flat
         txt_name.ForeColor = Color.White
+        txt_name.Image = My.Resources.Resources.user__2_
         txt_name.Name = "txt_name"
         ' 
         ' Contents

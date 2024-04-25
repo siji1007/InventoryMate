@@ -281,7 +281,7 @@ Public Class DASHBOARD
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             ' Read the data from the reader and display it in txt_name
-                            txt_name.Text = reader("Emp_name").ToString()
+                            txt_name.Text = "    " & reader("Emp_name").ToString()
                         Else
                             MessageBox.Show("No active employee found.")
                         End If
@@ -296,7 +296,6 @@ Public Class DASHBOARD
             MessageBox.Show("Failed to open database connection.")
         End If
     End Sub
-
 
 
 End Class

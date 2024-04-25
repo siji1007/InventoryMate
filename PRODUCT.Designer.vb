@@ -276,22 +276,26 @@ Partial Class PRODUCT
         ' Btn_add_prod
         ' 
         Btn_add_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Btn_add_prod.AutoEllipsis = True
+        Btn_add_prod.AutoSizeMode = AutoSizeMode.GrowAndShrink
         Btn_add_prod.BackgroundImageLayout = ImageLayout.None
         Btn_add_prod.FlatStyle = FlatStyle.Flat
         Btn_add_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_add_prod.Location = New Point(27, 814)
+        Btn_add_prod.Location = New Point(27, 696)
         Btn_add_prod.Name = "Btn_add_prod"
         Btn_add_prod.Size = New Size(111, 53)
         Btn_add_prod.TabIndex = 12
+        Btn_add_prod.TabStop = False
         Btn_add_prod.Text = "CREATE"
         Btn_add_prod.UseVisualStyleBackColor = True
         ' 
         ' Btn_update_prod
         ' 
         Btn_update_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        Btn_update_prod.AutoSizeMode = AutoSizeMode.GrowAndShrink
         Btn_update_prod.FlatStyle = FlatStyle.Flat
         Btn_update_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_update_prod.Location = New Point(266, 814)
+        Btn_update_prod.Location = New Point(266, 696)
         Btn_update_prod.Name = "Btn_update_prod"
         Btn_update_prod.Size = New Size(111, 53)
         Btn_update_prod.TabIndex = 13
@@ -303,7 +307,7 @@ Partial Class PRODUCT
         Btn_delete_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_delete_prod.FlatStyle = FlatStyle.Flat
         Btn_delete_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_delete_prod.Location = New Point(789, 814)
+        Btn_delete_prod.Location = New Point(789, 696)
         Btn_delete_prod.Name = "Btn_delete_prod"
         Btn_delete_prod.Size = New Size(111, 53)
         Btn_delete_prod.TabIndex = 14
@@ -315,7 +319,7 @@ Partial Class PRODUCT
         Btn_clear_prod.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Btn_clear_prod.FlatStyle = FlatStyle.Flat
         Btn_clear_prod.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Btn_clear_prod.Location = New Point(1012, 814)
+        Btn_clear_prod.Location = New Point(1012, 696)
         Btn_clear_prod.Name = "Btn_clear_prod"
         Btn_clear_prod.Size = New Size(111, 53)
         Btn_clear_prod.TabIndex = 15
