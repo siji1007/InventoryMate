@@ -35,9 +35,11 @@ Partial Class DASHBOARD
         Button1 = New Button()
         Panel1 = New Panel()
         Panel3 = New Panel()
+        txt_name = New Label()
         Contents = New Panel()
         Sidebar.SuspendLayout()
         CType(logo_dashboard, ComponentModel.ISupportInitialize).BeginInit()
+        Panel3.SuspendLayout()
         SuspendLayout()
         ' 
         ' Sidebar
@@ -152,8 +154,15 @@ Partial Class DASHBOARD
         ' Panel3
         ' 
         Panel3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Panel3.Controls.Add(txt_name)
         resources.ApplyResources(Panel3, "Panel3")
         Panel3.Name = "Panel3"
+        ' 
+        ' txt_name
+        ' 
+        resources.ApplyResources(txt_name, "txt_name")
+        txt_name.ForeColor = Color.White
+        txt_name.Name = "txt_name"
         ' 
         ' Contents
         ' 
@@ -171,6 +180,8 @@ Partial Class DASHBOARD
         Name = "DASHBOARD"
         Sidebar.ResumeLayout(False)
         CType(logo_dashboard, ComponentModel.ISupportInitialize).EndInit()
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -187,5 +198,6 @@ Partial Class DASHBOARD
     Friend WithEvents logo_dashboard As PictureBox
     Friend WithEvents Contents As Panel
     Friend WithEvents Transaction As Button
+    Friend WithEvents txt_name As Label
 
 End Class

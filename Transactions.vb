@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
         Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed
@@ -51,7 +51,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -78,7 +78,7 @@ Public Class Transactions
 
 
 
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs)
         Cb_employeeName.Items.Clear()
 
         If openDB() Then

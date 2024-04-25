@@ -144,9 +144,9 @@ Partial Class Transactions
         Total_cost.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Total_cost.Location = New Point(8, 22)
         Total_cost.Name = "Total_cost"
-        Total_cost.Size = New Size(14, 20)
+        Total_cost.Size = New Size(24, 20)
         Total_cost.TabIndex = 0
-        Total_cost.Text = " "
+        Total_cost.Text = " 0"
         ' 
         ' add_btn
         ' 

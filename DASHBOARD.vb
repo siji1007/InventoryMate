@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+
 Public Class DASHBOARD
     ' Define boolean variables to track form status
     Private isProductFormOpen As Boolean = False
@@ -9,7 +10,7 @@ Public Class DASHBOARD
     Private isTransactionFromOpen As Boolean = False
 
 
-    Private Sub LOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub LOGIN_Load(sender As Object, e As EventArgs)
         ' Maximize the window
         WindowState = FormWindowState.Maximized
 
@@ -21,11 +22,11 @@ Public Class DASHBOARD
                 Dim query As New MySqlCommand("SELECT Privilege, Status FROM Users WHERE Status = 'ACTIVE';", Conn)
 
 
-                Dim userPrivilege As String = ""
-                Dim userStatus As String = ""
+                Dim userPrivilege = ""
+                Dim userStatus = ""
 
-                Using reader As MySqlDataReader = query.ExecuteReader()
-                    If reader.Read() Then
+                Using reader = query.ExecuteReader
+                    If reader.Read Then
                         userPrivilege = reader.GetString("Privilege")
                         userStatus = reader.GetString("Status")
                     End If
@@ -267,6 +268,34 @@ Public Class DASHBOARD
         Button1.BackColor = Color.Transparent ' You can set it to any default color or the color it had before the hover
         Button1.ForeColor = Color.Black
     End Sub
+
+
+    Private Sub txt_name_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Check if the database connection is successful
+        If openDB() Then
+            Dim query As String = "SELECT e.Emp_name FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"
+            Using cmd As New MySqlCommand(query, Conn)
+                Try
+                    ' Execute the query and open a data reader
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            ' Read the data from the reader and display it in txt_name
+                            txt_name.Text = reader("Emp_name").ToString()
+                        Else
+                            MessageBox.Show("No active employee found.")
+                        End If
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error executing query: " & ex.Message)
+                End Try
+            End Using
+            ' Close the database connection after the operation is complete
+            closeDB()
+        Else
+            MessageBox.Show("Failed to open database connection.")
+        End If
+    End Sub
+
 
 
 End Class
