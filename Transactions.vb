@@ -51,7 +51,7 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs)
+    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cb_Products.Items.Clear()
 
         If openDB() Then
@@ -78,7 +78,7 @@ Public Class Transactions
 
 
 
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs)
+    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cb_employeeName.Items.Clear()
 
         If openDB() Then

@@ -32,8 +32,6 @@ Public Class DASHBOARD
                     End If
                 End Using
 
-
-
                 ' Hide buttons based on user privilege and status
                 If userPrivilege = "ADMIN" AndAlso userStatus = "ACTIVE" Then
                     ' Show or hide buttons based on admin privilege
@@ -42,6 +40,8 @@ Public Class DASHBOARD
                     Customer.Visible = True
                     Supplier.Visible = True
                     Employee.Visible = True
+                    MessageBox.Show("Admin log")
+
                 ElseIf userPrivilege = "EMPLOYEE" AndAlso userStatus = "ACTIVE" Then
                     ' Show or hide buttons based on employee privilege
                     Product.Visible = True
@@ -49,6 +49,7 @@ Public Class DASHBOARD
                     Customer.Visible = False
                     Supplier.Visible = False
                     Employee.Visible = False
+                    MessageBox.Show("Employee log")
                 Else
                     ' Hide all buttons if user privilege or status doesn't match
                     Product.Visible = False
