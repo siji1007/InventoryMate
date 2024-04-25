@@ -334,6 +334,7 @@ Partial Class WARRANTY
         Controls.Add(TextBox1)
         Controls.Add(War_datagridview)
         Controls.Add(lbl_warranty)
+        DoubleBuffered = True
         Name = "WARRANTY"
         StartPosition = FormStartPosition.CenterScreen
         CType(War_datagridview, ComponentModel.ISupportInitialize).EndInit()

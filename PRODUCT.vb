@@ -2,8 +2,8 @@
 Imports MySql.Data.MySqlClient
 Public Class PRODUCT
 
-    Private Sub PRODUCT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.DoubleBuffered = True
+    Private Sub PRODUCT_Load(sender As Object, e As EventArgs)
+        DoubleBuffered = True
 
     End Sub
 

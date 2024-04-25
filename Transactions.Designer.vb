@@ -568,6 +568,7 @@ Partial Class Transactions
         Controls.Add(Print_btn)
         Controls.Add(Transaction_panel)
         Controls.Add(Lbl_transaction)
+        DoubleBuffered = True
         Name = "Transactions"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()

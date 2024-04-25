@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
         Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed

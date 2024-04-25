@@ -300,6 +300,7 @@ Partial Class CUSTOMER
         Controls.Add(txt_cname)
         Controls.Add(customer_datagridview)
         Controls.Add(Lbl_customer)
+        DoubleBuffered = True
         Name = "CUSTOMER"
         CType(customer_datagridview, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)

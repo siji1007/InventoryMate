@@ -350,7 +350,7 @@ Partial Class PRODUCT
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         BackgroundImage = My.Resources.Resources.m0sag04
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(1133, 890)
+        ClientSize = New Size(1133, 772)
         ControlBox = False
         Controls.Add(Label3)
         Controls.Add(prod_search)
@@ -370,6 +370,7 @@ Partial Class PRODUCT
         Controls.Add(prod_name_label)
         Controls.Add(prod_datagridview)
         Controls.Add(Product_title)
+        DoubleBuffered = True
         MaximizeBox = False
         MinimizeBox = False
         Name = "PRODUCT"

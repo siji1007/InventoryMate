@@ -364,6 +364,7 @@ Partial Class EMPLOYEE
         Controls.Add(txt_emp_name)
         Controls.Add(emp_datagridview)
         Controls.Add(lbl_employee)
+        DoubleBuffered = True
         Name = "EMPLOYEE"
         WindowState = FormWindowState.Maximized
         CType(emp_datagridview, ComponentModel.ISupportInitialize).EndInit()
