@@ -129,10 +129,6 @@ Public Class PRODUCT
             Dim prodStocks As Integer = Convert.ToInt32(selectedRow.Cells("prod_stocks_dt").Value)
             Dim prodPriceFormatted As String = selectedRow.Cells("prod_price_dt").Value.ToString()
 
-            ' Remove peso sign and commas from formatted price
-            Dim prodPrice As Integer = Convert.ToInt32(prodPriceFormatted.Replace("₱", "").Replace(",", ""))
-
-            ' Make all rows active (selected) horizontally
             For Each row As DataGridViewRow In prod_datagridview.Rows
                 If row.Index = e.RowIndex Then
                     row.Selected = True
@@ -141,14 +137,22 @@ Public Class PRODUCT
                 End If
             Next
 
-            ' Update TextBoxes with data
-            txt_product_name.Text = prodName
-            txt_product_model.Text = prodModel
-            txt_product_color.Text = prodColor
-            txt_stocks.Text = prodStocks.ToString()
-            txt_price.Text = prodPriceFormatted ' Display the formatted price in the TextBox
+            ' Extract the numeric part of the formatted price (remove peso sign and commas)
+            Dim prodPriceNumeric As Decimal
+            If Decimal.TryParse(prodPriceFormatted.Replace("₱", "").Replace(",", ""), prodPriceNumeric) Then
+                ' Update TextBoxes with data
+                txt_product_name.Text = prodName
+                txt_product_model.Text = prodModel
+                txt_product_color.Text = prodColor
+                txt_stocks.Text = prodStocks.ToString()
+                txt_price.Text = prodPriceNumeric.ToString() ' Display the numeric price in the TextBox
+            Else
+                ' Handle invalid formatted price
+                MessageBox.Show("Invalid price format.")
+            End If
         End If
     End Sub
+
 
 
     Private Sub Btn_update_prod_Click(sender As Object, e As EventArgs) Handles Btn_update_prod.Click
