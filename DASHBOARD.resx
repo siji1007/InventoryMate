@@ -128,6 +128,16 @@
   <data name="Transaction.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="Transaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
+        WQAAAlkBPoZswQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADRSURBVDhP3ZK7
+        agJBFEA3SlohEKsEtUhnFx+dXcBPsPIFEUyRH0hAFEFT6f/4dZ7jzqys4KONBw7M3t25d+7cTe6fFq6C
+        v7jAJt7EJ06xiK/4gg84wCFepI1ulhpuglUDYIJGuszzFZyj1WSGj8GRAfCd32TY10fwDb9DTDq4xPLh
+        6Yh3knGaYB1ikWe0oskiuQSREv7hDp8MgMeOLfwYgAI6kRz23kUT9HGC4sVtgxUDMMb3dHmeHprEMTpC
+        tbKbLXATdXQKHj3+SFcr/yuSZA+B3Rnryl21WAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="Transaction.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
@@ -3394,6 +3404,16 @@
   <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="Button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        VgAAAFYB3FMHnAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADkSURBVDhPrdK/
+        CkFhGMfxV0omk8niEsiCQSI3YDVbLAZ2ZTFZmGSQXIBLUAYzk0UpbsAkG77P+563HH/On/KrTz3PqedX
+        53SUR7I44oyiPAgTOZbDKvLOHLgkA3tsk4M8K+vNI9+ObXxLvI5tfpYEObb5KLEfrKK3YHF92D1qMoRM
+        AScZdhgiTEkJAxxkSWGEpSwBM8MUab0Ref/XggRWuDg2SMJGCupmNHkvaGKOiN6UGqNrRh3fgg56ZtRp
+        o29Gnf8XyM+xRVxv3gUxrOH6b+RdJ7ji4WjBpoE75PkNC0SVUuoJIRg2yYiOwJsAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="Button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
@@ -3486,6 +3506,24 @@
   </data>
   <data name="txt_name.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
+  </data>
+  <data name="txt_name.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        cwAAAHMBY8FD/gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKySURBVDhPbVJd
+        SJNhFP6uROqiLhLKAgtFLSOcbtME5xxNSxPWxaxNN5durDKzLZzOqVMn+5HCNMpqVmCpZYlGkTMTNcGf
+        CIK8MOsiMCk3kyJ/iNQ9fe/ndE498MDhPc9z/t5DbbSdgUGsYLagmStSvouXaj4RED+Ek9i0IzAoykPb
+        0vz3R/KaxKUN09bBf6gecfvANrQEsaHBdYCV0Ehz/VYkXvPPqe0ylzqm3JLKR0jNsyGjqgWZ5ieQWZ+i
+        oHUMfHkhRAU3UPJycjk09vgArfEmIZWJmFQ6zD+F0JgkpF2+BlayFOFxKXTCapS/noZAUcx0o38xuRzG
+        FzsY8faAvZHiErtztVVSOb/xPbTNH6G+1YNz9b0o65yCUFkGua1tbaTUonuz+w7FxlBkYVvNrDLZcSlX
+        xeC86famuHFgEQeFsj6KbHhjUPdsHPVV+bhjzIEpT4y7BgUK28Z9OOZhN6KleifFk14ZXx8gUNd0YLTd
+        iq+O62iv1WD0gRYXa1p9OBY6AVteMUfFSzSbEpR3/4Tuggy/euvwu9OMMmUaKt7M+HBMg25wsirnqBiR
+        cmR9wOhwQqI1g8MT4giLzYBL+9k6C4xdrjWe/q1nhBCOoIkcyWrgTK4BEzMLiOUdw9E4HgPif3HOQ5Ff
+        wnBsNNSORUQky3qpbQGBLHGxfYoJ0In0ljq4FoAPnyegVOUyIL5rHigor4Z1aBGGATcSdQ+X9oRx2cwt
+        BEclNJILI0n6x36gpeMVkyRTqoAs4yzjk7fCyqsw9v+F9LETYQJJDyP2mB85T/3zb8uibA1OpCug1lvA
+        F55kQPwU+i1dpYWk+TtO3xzupjX+K1Kv+ZHzTCm6/4ccCfkmMivZNlkYmZm07am8Sbxmu0PZXHJhZMPc
+        rIpZ8lXEj0iS9+0Kj4r20DxGUf8BQHgsgZ5uuLwAAAAASUVORK5CYII=
+</value>
   </data>
   <data name="txt_name.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>

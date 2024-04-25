@@ -66,7 +66,6 @@ Partial Class DASHBOARD
         Transaction.FlatAppearance.BorderSize = 0
         Transaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Transaction.ForeColor = SystemColors.ActiveCaptionText
-        Transaction.Image = My.Resources.Resources.transfer_bank__1_
         Transaction.Name = "Transaction"
         Transaction.UseVisualStyleBackColor = False
         ' 
@@ -141,7 +140,6 @@ Partial Class DASHBOARD
         Button1.FlatAppearance.BorderSize = 0
         Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Button1.ForeColor = SystemColors.ActiveCaptionText
-        Button1.Image = My.Resources.Resources.home__3_
         Button1.Name = "Button1"
         Button1.UseVisualStyleBackColor = False
         ' 

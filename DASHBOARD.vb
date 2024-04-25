@@ -274,14 +274,16 @@ Public Class DASHBOARD
     Private Sub txt_name_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Check if the database connection is successful
         If openDB() Then
-            Dim query As String = "SELECT e.Emp_name FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"
+            Dim query As String = "SELECT e.Emp_name, u.Privilege FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"
             Using cmd As New MySqlCommand(query, Conn)
                 Try
                     ' Execute the query and open a data reader
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             ' Read the data from the reader and display it in txt_name
-                            txt_name.Text = "    " & reader("Emp_name").ToString()
+                            Dim employeeName As String = reader("Emp_name").ToString()
+                            Dim userPrivilege As String = reader("Privilege").ToString()
+                            txt_name.Text = $"    |{userPrivilege}| {employeeName}"
                         Else
                             MessageBox.Show("No active employee found.")
                         End If
@@ -296,6 +298,7 @@ Public Class DASHBOARD
             MessageBox.Show("Failed to open database connection.")
         End If
     End Sub
+
 
 
 End Class
