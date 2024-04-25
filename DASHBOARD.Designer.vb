@@ -161,7 +161,6 @@ Partial Class DASHBOARD
         resources.ApplyResources(txt_name, "txt_name")
         txt_name.FlatStyle = FlatStyle.Flat
         txt_name.ForeColor = Color.White
-        txt_name.Image = My.Resources.Resources.user__2_
         txt_name.Name = "txt_name"
         ' 
         ' Contents
