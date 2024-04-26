@@ -30,12 +30,6 @@ Partial Class PRODUCT
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Product_title = New Label()
         prod_datagridview = New DataGridView()
-        prod_id = New DataGridViewTextBoxColumn()
-        prod_name_dt = New DataGridViewTextBoxColumn()
-        prod_model_dt = New DataGridViewTextBoxColumn()
-        prod_color_dt = New DataGridViewTextBoxColumn()
-        prod_stocks_dt = New DataGridViewTextBoxColumn()
-        prod_price_dt = New DataGridViewTextBoxColumn()
         prod_name_label = New Label()
         product_model_label = New Label()
         product_color_label = New Label()
@@ -52,6 +46,15 @@ Partial Class PRODUCT
         Btn_clear_prod = New Button()
         prod_search = New TextBox()
         Label3 = New Label()
+        Cb_warranty = New ComboBox()
+        Label4 = New Label()
+        prod_id = New DataGridViewTextBoxColumn()
+        war_id = New DataGridViewTextBoxColumn()
+        prod_name_dt = New DataGridViewTextBoxColumn()
+        prod_model_dt = New DataGridViewTextBoxColumn()
+        prod_color_dt = New DataGridViewTextBoxColumn()
+        prod_stocks_dt = New DataGridViewTextBoxColumn()
+        prod_price_dt = New DataGridViewTextBoxColumn()
         CType(prod_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -89,7 +92,7 @@ Partial Class PRODUCT
         prod_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         prod_datagridview.ColumnHeadersHeight = 50
         prod_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        prod_datagridview.Columns.AddRange(New DataGridViewColumn() {prod_id, prod_name_dt, prod_model_dt, prod_color_dt, prod_stocks_dt, prod_price_dt})
+        prod_datagridview.Columns.AddRange(New DataGridViewColumn() {prod_id, war_id, prod_name_dt, prod_model_dt, prod_color_dt, prod_stocks_dt, prod_price_dt})
         DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle4.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -122,56 +125,6 @@ Partial Class PRODUCT
         prod_datagridview.ScrollBars = ScrollBars.Vertical
         prod_datagridview.Size = New Size(1109, 301)
         prod_datagridview.TabIndex = 1
-        ' 
-        ' prod_id
-        ' 
-        prod_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        prod_id.DefaultCellStyle = DataGridViewCellStyle3
-        prod_id.HeaderText = "ID"
-        prod_id.Name = "prod_id"
-        prod_id.ReadOnly = True
-        prod_id.Width = 52
-        ' 
-        ' prod_name_dt
-        ' 
-        prod_name_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        prod_name_dt.HeaderText = "PRODUCT NAME"
-        prod_name_dt.Name = "prod_name_dt"
-        prod_name_dt.ReadOnly = True
-        ' 
-        ' prod_model_dt
-        ' 
-        prod_model_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        prod_model_dt.HeaderText = "MODEL"
-        prod_model_dt.Name = "prod_model_dt"
-        prod_model_dt.ReadOnly = True
-        ' 
-        ' prod_color_dt
-        ' 
-        prod_color_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        prod_color_dt.HeaderText = "COLOR"
-        prod_color_dt.Name = "prod_color_dt"
-        prod_color_dt.ReadOnly = True
-        ' 
-        ' prod_stocks_dt
-        ' 
-        prod_stocks_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        prod_stocks_dt.HeaderText = "STOCKS"
-        prod_stocks_dt.Name = "prod_stocks_dt"
-        prod_stocks_dt.ReadOnly = True
-        prod_stocks_dt.Width = 111
-        ' 
-        ' prod_price_dt
-        ' 
-        prod_price_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        prod_price_dt.HeaderText = "PRICE"
-        prod_price_dt.Name = "prod_price_dt"
-        prod_price_dt.ReadOnly = True
-        prod_price_dt.Width = 90
         ' 
         ' prod_name_label
         ' 
@@ -347,6 +300,85 @@ Partial Class PRODUCT
         Label3.TabIndex = 17
         Label3.Text = "       "
         ' 
+        ' Cb_warranty
+        ' 
+        Cb_warranty.FormattingEnabled = True
+        Cb_warranty.Location = New Point(712, 537)
+        Cb_warranty.Name = "Cb_warranty"
+        Cb_warranty.Size = New Size(230, 23)
+        Cb_warranty.TabIndex = 18
+        ' 
+        ' Label4
+        ' 
+        Label4.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        Label4.AutoSize = True
+        Label4.BackColor = Color.Transparent
+        Label4.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = SystemColors.ActiveCaptionText
+        Label4.Location = New Point(633, 540)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(73, 20)
+        Label4.TabIndex = 19
+        Label4.Text = "Warranty"
+        ' 
+        ' prod_id
+        ' 
+        prod_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(0), CByte(64), CByte(0))
+        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.White
+        prod_id.DefaultCellStyle = DataGridViewCellStyle3
+        prod_id.HeaderText = "ID"
+        prod_id.Name = "prod_id"
+        prod_id.ReadOnly = True
+        prod_id.Width = 52
+        ' 
+        ' war_id
+        ' 
+        war_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        war_id.HeaderText = "WARRANTY ID"
+        war_id.Name = "war_id"
+        war_id.ReadOnly = True
+        war_id.Width = 165
+        ' 
+        ' prod_name_dt
+        ' 
+        prod_name_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        prod_name_dt.HeaderText = "PRODUCT NAME"
+        prod_name_dt.Name = "prod_name_dt"
+        prod_name_dt.ReadOnly = True
+        ' 
+        ' prod_model_dt
+        ' 
+        prod_model_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        prod_model_dt.HeaderText = "MODEL"
+        prod_model_dt.Name = "prod_model_dt"
+        prod_model_dt.ReadOnly = True
+        ' 
+        ' prod_color_dt
+        ' 
+        prod_color_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        prod_color_dt.HeaderText = "COLOR"
+        prod_color_dt.Name = "prod_color_dt"
+        prod_color_dt.ReadOnly = True
+        ' 
+        ' prod_stocks_dt
+        ' 
+        prod_stocks_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        prod_stocks_dt.HeaderText = "STOCKS"
+        prod_stocks_dt.Name = "prod_stocks_dt"
+        prod_stocks_dt.ReadOnly = True
+        prod_stocks_dt.Width = 111
+        ' 
+        ' prod_price_dt
+        ' 
+        prod_price_dt.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        prod_price_dt.HeaderText = "PRICE"
+        prod_price_dt.Name = "prod_price_dt"
+        prod_price_dt.ReadOnly = True
+        prod_price_dt.Width = 90
+        ' 
         ' PRODUCT
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -356,6 +388,8 @@ Partial Class PRODUCT
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Label4)
+        Controls.Add(Cb_warranty)
         Controls.Add(Label3)
         Controls.Add(prod_search)
         Controls.Add(Btn_clear_prod)
@@ -404,7 +438,10 @@ Partial Class PRODUCT
     Friend WithEvents Btn_clear_prod As Button
     Friend WithEvents prod_search As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Cb_warranty As ComboBox
+    Friend WithEvents Label4 As Label
     Friend WithEvents prod_id As DataGridViewTextBoxColumn
+    Friend WithEvents war_id As DataGridViewTextBoxColumn
     Friend WithEvents prod_name_dt As DataGridViewTextBoxColumn
     Friend WithEvents prod_model_dt As DataGridViewTextBoxColumn
     Friend WithEvents prod_color_dt As DataGridViewTextBoxColumn

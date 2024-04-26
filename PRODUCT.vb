@@ -12,7 +12,7 @@ Public Class PRODUCT
 
     Private Sub Product_title_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
+        LoadWarranty()
 
         ' Set the form's start position to CenterScreen
         Me.StartPosition = FormStartPosition.CenterScreen
@@ -87,13 +87,13 @@ Public Class PRODUCT
     Private Sub LoadData()
         Try
             If openDB() Then ' Check if database connection is successful
-                Dim query As New MySqlCommand("SELECT * FROM products", Conn) ' Assuming Conn is your MySqlConnection object from openDB()
+                Dim query As New MySqlCommand("SELECT p.*, w.War_ID AS Warranty_ID FROM products p LEFT JOIN warranty w ON p.Warranty_ID = w.War_ID;", Conn) ' Assuming Conn is your MySqlConnection object from openDB()
                 Using dr As MySqlDataReader = query.ExecuteReader
                     While dr.Read
                         Dim price As Double = Convert.ToDouble(dr.Item("prod_price"))
                         Dim formattedPrice As String = FormatPrice(price) ' Format the price with peso sign and commas
 
-                        Dim rowIndex As Integer = prod_datagridview.Rows.Add(dr.Item("prod_id"), dr.Item("prod_name"), dr.Item("prod_model"), dr.Item("prod_color"), dr.Item("prod_stocks"), formattedPrice)
+                        Dim rowIndex As Integer = prod_datagridview.Rows.Add(dr.Item("prod_id"), dr.Item("Warranty_ID"), dr.Item("prod_name"), dr.Item("prod_model"), dr.Item("prod_color"), dr.Item("prod_stocks"), formattedPrice)
 
                         ' Check and set row color based on prod_stocks value
                         Dim stocks As Integer = Convert.ToInt32(dr.Item("prod_stocks"))
@@ -114,6 +114,7 @@ Public Class PRODUCT
         ' Format the price with peso sign and commas
         Return "₱" & price.ToString("N0")
     End Function
+
 
 
 
@@ -268,6 +269,37 @@ Public Class PRODUCT
             End If
         Next
     End Sub
+
+
+
+    Private Sub LoadWarranty()
+        If openDB() Then
+            Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit, '-', War_Type, '-', War_Coverage) AS warranty_info FROM warranty"
+            Using cmd As New MySqlCommand(query_warranty, Conn)
+                Try
+                    Using reader = cmd.ExecuteReader
+                        If reader.HasRows Then
+                            While reader.Read
+                                Cb_warranty.Items.Add(reader("warranty_info").ToString)
+                            End While
+                        End If
+                        reader.Close()
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message & "WARRANTY LOAD")
+                Finally
+                    closeDB()
+
+                End Try
+
+            End Using
+
+
+        Else
+            MessageBox.Show("The Database failed to connect.")
+        End If
+    End Sub
+
 
 
 

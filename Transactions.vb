@@ -5,8 +5,8 @@ Public Class Transactions
 
 
 
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dashboardForm = New DASHBOARD()
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
+        dashboardForm = New DASHBOARD
 
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
@@ -16,6 +16,9 @@ Public Class Transactions
         Dim centerX = (ClientSize.Width - Lbl_transaction.Width) \ 2
         Lbl_transaction.Location = New Point(centerX, Lbl_transaction.Location.Y)
 
+        LoadProducts()
+        LoadWarranty()
+        LoadEmployee()
 
 
     End Sub
@@ -65,17 +68,6 @@ Public Class Transactions
     End Sub
 
 
-
-
-
-
-
-
-    Private Sub Cb_Products_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadProducts()
-    End Sub
-
-
     Private Sub LoadProducts()
         Cb_Products.Items.Clear()
 
@@ -100,13 +92,12 @@ Public Class Transactions
         Else
             MessageBox.Show("The database is not connected.")
         End If
+
     End Sub
 
 
+    Private Sub LoadWarranty()
 
-
-    Private Sub Cb_warranty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Cb_employeeName.Items.Clear()
 
         If openDB() Then
             Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit) AS warranty_info FROM warranty"
@@ -134,11 +125,10 @@ Public Class Transactions
             MessageBox.Show("The Database failed to connect.")
         End If
 
+
     End Sub
 
-    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Cb_employeeName.Items.Clear()
-
+    Private Sub LoadEmployee()
         If openDB() Then
             Dim query_employee = "SELECT Emp_name FROM employee"
             Using cmd As New MySqlCommand(query_employee, Conn)
@@ -161,8 +151,6 @@ Public Class Transactions
             MessageBox.Show("The database is not connected!")
         End If
     End Sub
-
-
 
 
     Private Sub add_btn_Click(sender As Object, e As EventArgs) Handles add_btn.Click
@@ -455,36 +443,69 @@ Public Class Transactions
     End Sub
 
 
-
     Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
         Dim message As String = ""
 
+        ' Variables for calculating total cost
+        Dim totalPrice As Decimal = 0
+        Dim serviceFee As Decimal = 0 ' Assuming service fee is stored in txt_service_fee.Text
+
         ' Check if the DataGridView has rows
         If transaction_datagridview.Rows.Count > 1 Then
+            ' Include customer details in the message
+            message &= "Customer Details:" & vbCrLf
+            message &= "Name: " & txt_Custname.Text & vbCrLf
+            message &= "Address: " & txt_custaddress.Text & vbCrLf
+            message &= "Email: " & txt_custemail.Text & vbCrLf
+            message &= "Number: " & txt_custnumber.Text & vbCrLf & vbCrLf
+
+            ' Include selected employee in the message
+            message &= "Selected Employee: " & Cb_employeeName.Text & vbCrLf & vbCrLf
+
+            ' Include selected products and quantities from the DataGridView in the message
+            message &= "Selected Products and Quantities:" & vbCrLf
             For Each row As DataGridViewRow In transaction_datagridview.Rows
                 ' Check if the row is not a new row and is selected
                 If Not row.IsNewRow Then
-                    ' Get the product name and quantity from the row
+                    ' Get the product name, quantity, price, and duration of warranty from the row
                     Dim productName As String = row.Cells("dt_product_name").Value.ToString()
                     Dim quantity As Integer
                     If Integer.TryParse(row.Cells("dt_quantity").Value.ToString(), quantity) Then
-                        ' Concatenate the product name and quantity to the message
-                        message &= productName & ": " & quantity & vbCrLf
+                        Dim price As Decimal
+                        If Decimal.TryParse(row.Cells("dt_price").Value.ToString(), price) Then
+                            Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
+
+                            ' Calculate total price for each product
+                            Dim productTotalPrice As Decimal = price * quantity
+                            totalPrice += productTotalPrice
+
+                            ' Concatenate the product details to the message
+                            message &= productName & ": " & quantity & " x ₱" & price.ToString("0.00") & " (" & warrantyDuration & ") = $" & productTotalPrice.ToString("0.00") & vbCrLf
+                        End If
                     End If
                 End If
             Next
 
-            ' Display the message box with the concatenated product names and quantities
-            If message <> "" Then
-                MessageBox.Show("Selected Products and Quantities:" & vbCrLf & message)
+            ' Include service fee in the total cost calculation
+            If Decimal.TryParse(txt_service_fee.Text, serviceFee) Then
+                totalPrice += serviceFee
+                message &= vbCrLf & "Service Fee: ₱" & serviceFee.ToString("0.00") & vbCrLf
             Else
-                MessageBox.Show("No products selected.")
+                MessageBox.Show("Invalid service fee. Please enter a valid numeric value.")
             End If
+
+            ' Include total cost in the message
+            message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00")
+
+            ' Display the message box with all the data
+            MessageBox.Show(message)
         Else
             ' Display a message if there are no rows in the DataGridView
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
+
+
 
 
 
@@ -496,7 +517,7 @@ Public Class Transactions
                 Using reader As MySqlDataReader = query.ExecuteReader()
                     While reader.Read()
                         Dim custName As String = reader.GetString("Cust_name")
-                        txt_Empname.Items.Add(custName) ' Assuming ListBox1 is the name of your ListBox control
+                        txt_Custname.Items.Add(custName) ' Assuming ListBox1 is the name of your ListBox control
                     End While
                 End Using
             Else
@@ -512,9 +533,9 @@ Public Class Transactions
 
 
 
-    Private Sub txt_Empname_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_Empname.SelectedIndexChanged
+    Private Sub txt_Empname_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_Custname.SelectedIndexChanged
         ' Clear the TextBoxes when no item is selected in the ComboBox
-        If txt_Empname.SelectedIndex = -1 Then
+        If txt_Custname.SelectedIndex = -1 Then
             txt_custaddress.Text = ""
             txt_custnumber.Text = ""
             txt_custemail.Text = ""
@@ -524,7 +545,7 @@ Public Class Transactions
 
         Try
             If openDB() Then
-                Dim selectedCustName As String = txt_Empname.SelectedItem.ToString()
+                Dim selectedCustName As String = txt_Custname.SelectedItem.ToString()
                 Dim query As New MySqlCommand("SELECT * FROM Customer WHERE Cust_name = @CustName;", Conn)
                 query.Parameters.AddWithValue("@CustName", selectedCustName)
 

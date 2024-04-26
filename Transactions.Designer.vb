@@ -43,13 +43,6 @@ Partial Class Transactions
         Label1 = New Label()
         lbl_name_sup = New Label()
         transaction_datagridview = New DataGridView()
-        dt_id = New DataGridViewTextBoxColumn()
-        dt_product_name = New DataGridViewTextBoxColumn()
-        dt_quantity = New DataGridViewTextBoxColumn()
-        dt_price = New DataGridViewTextBoxColumn()
-        dt_warranty = New DataGridViewTextBoxColumn()
-        dt_warranty_coverage = New DataGridViewTextBoxColumn()
-        dt_total = New DataGridViewTextBoxColumn()
         GroupBox3 = New GroupBox()
         Label10 = New Label()
         txt_service_fee = New TextBox()
@@ -58,7 +51,7 @@ Partial Class Transactions
         Label8 = New Label()
         Label7 = New Label()
         GroupBox2 = New GroupBox()
-        txt_Empname = New ComboBox()
+        txt_Custname = New ComboBox()
         txt_custnumber = New TextBox()
         txt_custemail = New TextBox()
         txt_custaddress = New TextBox()
@@ -67,6 +60,13 @@ Partial Class Transactions
         Label4 = New Label()
         Label3 = New Label()
         Transaction_panel = New Panel()
+        dt_id = New DataGridViewTextBoxColumn()
+        dt_product_name = New DataGridViewTextBoxColumn()
+        dt_quantity = New DataGridViewTextBoxColumn()
+        dt_price = New DataGridViewTextBoxColumn()
+        dt_warranty = New DataGridViewTextBoxColumn()
+        dt_warranty_coverage = New DataGridViewTextBoxColumn()
+        dt_total = New DataGridViewTextBoxColumn()
         GroupBox1.SuspendLayout()
         GroupBox4.SuspendLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).BeginInit()
@@ -320,57 +320,6 @@ Partial Class Transactions
         transaction_datagridview.Size = New Size(940, 127)
         transaction_datagridview.TabIndex = 0
         ' 
-        ' dt_id
-        ' 
-        dt_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_id.HeaderText = "ID"
-        dt_id.Name = "dt_id"
-        dt_id.ReadOnly = True
-        dt_id.Width = 51
-        ' 
-        ' dt_product_name
-        ' 
-        dt_product_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_product_name.HeaderText = "PRODUCT NAME"
-        dt_product_name.Name = "dt_product_name"
-        dt_product_name.ReadOnly = True
-        ' 
-        ' dt_quantity
-        ' 
-        dt_quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_quantity.HeaderText = "QUANTITY"
-        dt_quantity.Name = "dt_quantity"
-        dt_quantity.ReadOnly = True
-        dt_quantity.Width = 114
-        ' 
-        ' dt_price
-        ' 
-        dt_price.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_price.HeaderText = "PRICE"
-        dt_price.Name = "dt_price"
-        dt_price.ReadOnly = True
-        dt_price.Width = 83
-        ' 
-        ' dt_warranty
-        ' 
-        dt_warranty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_warranty.HeaderText = "WARRANTY DURATION"
-        dt_warranty.Name = "dt_warranty"
-        dt_warranty.ReadOnly = True
-        ' 
-        ' dt_warranty_coverage
-        ' 
-        dt_warranty_coverage.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_warranty_coverage.HeaderText = "WARRANTY COVERAGE"
-        dt_warranty_coverage.Name = "dt_warranty_coverage"
-        dt_warranty_coverage.ReadOnly = True
-        ' 
-        ' dt_total
-        ' 
-        dt_total.HeaderText = "TOTAL"
-        dt_total.Name = "dt_total"
-        dt_total.ReadOnly = True
-        ' 
         ' GroupBox3
         ' 
         GroupBox3.AutoSize = True
@@ -456,7 +405,7 @@ Partial Class Transactions
         ' 
         GroupBox2.AutoSize = True
         GroupBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink
-        GroupBox2.Controls.Add(txt_Empname)
+        GroupBox2.Controls.Add(txt_Custname)
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
         GroupBox2.Controls.Add(txt_custaddress)
@@ -475,13 +424,13 @@ Partial Class Transactions
         GroupBox2.TabStop = False
         GroupBox2.Text = "CUSTOMER DETAILS"
         ' 
-        ' txt_Empname
+        ' txt_Custname
         ' 
-        txt_Empname.FormattingEnabled = True
-        txt_Empname.Location = New Point(171, 35)
-        txt_Empname.Name = "txt_Empname"
-        txt_Empname.Size = New Size(225, 28)
-        txt_Empname.TabIndex = 23
+        txt_Custname.FormattingEnabled = True
+        txt_Custname.Location = New Point(171, 35)
+        txt_Custname.Name = "txt_Custname"
+        txt_Custname.Size = New Size(225, 28)
+        txt_Custname.TabIndex = 23
         ' 
         ' txt_custnumber
         ' 
@@ -569,6 +518,57 @@ Partial Class Transactions
         Transaction_panel.Size = New Size(1032, 612)
         Transaction_panel.TabIndex = 2
         ' 
+        ' dt_id
+        ' 
+        dt_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_id.HeaderText = "ID"
+        dt_id.Name = "dt_id"
+        dt_id.ReadOnly = True
+        dt_id.Width = 51
+        ' 
+        ' dt_product_name
+        ' 
+        dt_product_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_product_name.HeaderText = "PRODUCT NAME"
+        dt_product_name.Name = "dt_product_name"
+        dt_product_name.ReadOnly = True
+        ' 
+        ' dt_quantity
+        ' 
+        dt_quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_quantity.HeaderText = "QUANTITY"
+        dt_quantity.Name = "dt_quantity"
+        dt_quantity.ReadOnly = True
+        dt_quantity.Width = 114
+        ' 
+        ' dt_price
+        ' 
+        dt_price.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_price.HeaderText = "PRICE"
+        dt_price.Name = "dt_price"
+        dt_price.ReadOnly = True
+        dt_price.Width = 83
+        ' 
+        ' dt_warranty
+        ' 
+        dt_warranty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_warranty.HeaderText = "WARRANTY DURATION"
+        dt_warranty.Name = "dt_warranty"
+        dt_warranty.ReadOnly = True
+        ' 
+        ' dt_warranty_coverage
+        ' 
+        dt_warranty_coverage.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_warranty_coverage.HeaderText = "WARRANTY COVERAGE"
+        dt_warranty_coverage.Name = "dt_warranty_coverage"
+        dt_warranty_coverage.ReadOnly = True
+        ' 
+        ' dt_total
+        ' 
+        dt_total.HeaderText = "TOTAL"
+        dt_total.Name = "dt_total"
+        dt_total.ReadOnly = True
+        ' 
         ' Transactions
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -615,13 +615,6 @@ Partial Class Transactions
     Friend WithEvents Label1 As Label
     Friend WithEvents lbl_name_sup As Label
     Friend WithEvents transaction_datagridview As DataGridView
-    Friend WithEvents dt_id As DataGridViewTextBoxColumn
-    Friend WithEvents dt_product_name As DataGridViewTextBoxColumn
-    Friend WithEvents dt_quantity As DataGridViewTextBoxColumn
-    Friend WithEvents dt_price As DataGridViewTextBoxColumn
-    Friend WithEvents dt_warranty As DataGridViewTextBoxColumn
-    Friend WithEvents dt_warranty_coverage As DataGridViewTextBoxColumn
-    Friend WithEvents dt_total As DataGridViewTextBoxColumn
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Label10 As Label
     Friend WithEvents txt_service_fee As TextBox
@@ -638,6 +631,13 @@ Partial Class Transactions
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Transaction_panel As Panel
-    Friend WithEvents txt_Empname As ComboBox
+    Friend WithEvents txt_Custname As ComboBox
     Friend WithEvents lbl_stock As Label
+    Friend WithEvents dt_id As DataGridViewTextBoxColumn
+    Friend WithEvents dt_product_name As DataGridViewTextBoxColumn
+    Friend WithEvents dt_quantity As DataGridViewTextBoxColumn
+    Friend WithEvents dt_price As DataGridViewTextBoxColumn
+    Friend WithEvents dt_warranty As DataGridViewTextBoxColumn
+    Friend WithEvents dt_warranty_coverage As DataGridViewTextBoxColumn
+    Friend WithEvents dt_total As DataGridViewTextBoxColumn
 End Class
