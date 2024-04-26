@@ -43,6 +43,13 @@ Partial Class Transactions
         Label1 = New Label()
         lbl_name_sup = New Label()
         transaction_datagridview = New DataGridView()
+        dt_id = New DataGridViewTextBoxColumn()
+        dt_product_name = New DataGridViewTextBoxColumn()
+        dt_quantity = New DataGridViewTextBoxColumn()
+        dt_price = New DataGridViewTextBoxColumn()
+        dt_warranty = New DataGridViewTextBoxColumn()
+        dt_warranty_coverage = New DataGridViewTextBoxColumn()
+        dt_total = New DataGridViewTextBoxColumn()
         GroupBox3 = New GroupBox()
         Label10 = New Label()
         txt_service_fee = New TextBox()
@@ -60,13 +67,6 @@ Partial Class Transactions
         Label4 = New Label()
         Label3 = New Label()
         Transaction_panel = New Panel()
-        dt_id = New DataGridViewTextBoxColumn()
-        dt_product_name = New DataGridViewTextBoxColumn()
-        dt_quantity = New DataGridViewTextBoxColumn()
-        dt_price = New DataGridViewTextBoxColumn()
-        dt_warranty = New DataGridViewTextBoxColumn()
-        dt_warranty_coverage = New DataGridViewTextBoxColumn()
-        dt_total = New DataGridViewTextBoxColumn()
         GroupBox1.SuspendLayout()
         GroupBox4.SuspendLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).BeginInit()
@@ -320,6 +320,57 @@ Partial Class Transactions
         transaction_datagridview.Size = New Size(940, 127)
         transaction_datagridview.TabIndex = 0
         ' 
+        ' dt_id
+        ' 
+        dt_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_id.HeaderText = "ID"
+        dt_id.Name = "dt_id"
+        dt_id.ReadOnly = True
+        dt_id.Width = 51
+        ' 
+        ' dt_product_name
+        ' 
+        dt_product_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_product_name.HeaderText = "PRODUCT NAME"
+        dt_product_name.Name = "dt_product_name"
+        dt_product_name.ReadOnly = True
+        ' 
+        ' dt_quantity
+        ' 
+        dt_quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_quantity.HeaderText = "QUANTITY"
+        dt_quantity.Name = "dt_quantity"
+        dt_quantity.ReadOnly = True
+        dt_quantity.Width = 114
+        ' 
+        ' dt_price
+        ' 
+        dt_price.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dt_price.HeaderText = "PRICE"
+        dt_price.Name = "dt_price"
+        dt_price.ReadOnly = True
+        dt_price.Width = 83
+        ' 
+        ' dt_warranty
+        ' 
+        dt_warranty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_warranty.HeaderText = "WARRANTY DURATION"
+        dt_warranty.Name = "dt_warranty"
+        dt_warranty.ReadOnly = True
+        ' 
+        ' dt_warranty_coverage
+        ' 
+        dt_warranty_coverage.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dt_warranty_coverage.HeaderText = "WARRANTY COVERAGE"
+        dt_warranty_coverage.Name = "dt_warranty_coverage"
+        dt_warranty_coverage.ReadOnly = True
+        ' 
+        ' dt_total
+        ' 
+        dt_total.HeaderText = "TOTAL"
+        dt_total.Name = "dt_total"
+        dt_total.ReadOnly = True
+        ' 
         ' GroupBox3
         ' 
         GroupBox3.AutoSize = True
@@ -517,57 +568,6 @@ Partial Class Transactions
         Transaction_panel.Name = "Transaction_panel"
         Transaction_panel.Size = New Size(1032, 612)
         Transaction_panel.TabIndex = 2
-        ' 
-        ' dt_id
-        ' 
-        dt_id.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_id.HeaderText = "ID"
-        dt_id.Name = "dt_id"
-        dt_id.ReadOnly = True
-        dt_id.Width = 51
-        ' 
-        ' dt_product_name
-        ' 
-        dt_product_name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_product_name.HeaderText = "PRODUCT NAME"
-        dt_product_name.Name = "dt_product_name"
-        dt_product_name.ReadOnly = True
-        ' 
-        ' dt_quantity
-        ' 
-        dt_quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_quantity.HeaderText = "QUANTITY"
-        dt_quantity.Name = "dt_quantity"
-        dt_quantity.ReadOnly = True
-        dt_quantity.Width = 114
-        ' 
-        ' dt_price
-        ' 
-        dt_price.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dt_price.HeaderText = "PRICE"
-        dt_price.Name = "dt_price"
-        dt_price.ReadOnly = True
-        dt_price.Width = 83
-        ' 
-        ' dt_warranty
-        ' 
-        dt_warranty.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_warranty.HeaderText = "WARRANTY DURATION"
-        dt_warranty.Name = "dt_warranty"
-        dt_warranty.ReadOnly = True
-        ' 
-        ' dt_warranty_coverage
-        ' 
-        dt_warranty_coverage.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dt_warranty_coverage.HeaderText = "WARRANTY COVERAGE"
-        dt_warranty_coverage.Name = "dt_warranty_coverage"
-        dt_warranty_coverage.ReadOnly = True
-        ' 
-        ' dt_total
-        ' 
-        dt_total.HeaderText = "TOTAL"
-        dt_total.Name = "dt_total"
-        dt_total.ReadOnly = True
         ' 
         ' Transactions
         ' 

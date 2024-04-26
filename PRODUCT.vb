@@ -35,8 +35,10 @@ Public Class PRODUCT
 
     Private Sub Btn_add_prod_Click(sender As Object, e As EventArgs) Handles Btn_add_prod.Click
         Dim P_name As String = txt_product_name.Text.Trim()
+        Dim W_ID As Integer = show_id.Text
         Dim P_model As String = txt_product_model.Text.Trim()
         Dim P_color As String = txt_product_color.Text.Trim()
+
         Dim P_stocks As Integer
         Dim P_price As Integer
 
@@ -51,13 +53,15 @@ Public Class PRODUCT
         Else
             If openDB() Then
                 ' Proceed with database insertion
-                Dim query As String = "INSERT INTO products (prod_name, prod_model, prod_color, prod_stocks, prod_price) VALUES (@P_name, @P_model, @P_color, @P_stocks, @P_price)"
+                Dim query As String = "INSERT INTO products (prod_name, Warranty_ID, prod_model, prod_color, prod_stocks, prod_price) VALUES (@P_name, @Warranty_ID, @P_model, @P_color, @P_stocks, @P_price)"
                 Dim cmd As New MySqlCommand(query, Conn)
                 cmd.Parameters.AddWithValue("@P_name", P_name.ToUpper())
+                cmd.Parameters.AddWithValue("@Warranty_ID", W_ID) ' Use W_ID as the Warranty_ID value
                 cmd.Parameters.AddWithValue("@P_model", P_model.ToUpper())
                 cmd.Parameters.AddWithValue("@P_color", P_color.ToUpper())
                 cmd.Parameters.AddWithValue("@P_stocks", P_stocks)
                 cmd.Parameters.AddWithValue("@P_price", P_price)
+
 
                 Try
                     cmd.ExecuteNonQuery()
@@ -71,6 +75,8 @@ Public Class PRODUCT
                     txt_product_color.Clear()
                     txt_stocks.Clear()
                     txt_price.Clear()
+                    show_id.Text = "ID"
+                    Cb_warranty.SelectedIndex = -1
 
                 Catch ex As Exception
                     MessageBox.Show("Error adding product: " & ex.Message)
@@ -124,6 +130,7 @@ Public Class PRODUCT
 
             ' Access the data in the selected row as needed
             Dim prodId As String = selectedRow.Cells("prod_id").Value.ToString()
+            Dim WarId As String = selectedRow.Cells("war_id").Value.ToString()
             Dim prodName As String = selectedRow.Cells("prod_name_dt").Value.ToString()
             Dim prodModel As String = selectedRow.Cells("prod_model_dt").Value.ToString()
             Dim prodColor As String = selectedRow.Cells("prod_color_dt").Value.ToString()
@@ -143,6 +150,7 @@ Public Class PRODUCT
             If Decimal.TryParse(prodPriceFormatted.Replace("₱", "").Replace(",", ""), prodPriceNumeric) Then
                 ' Update TextBoxes with data
                 txt_product_name.Text = prodName
+                show_id.Text = WarId
                 txt_product_model.Text = prodModel
                 txt_product_color.Text = prodColor
                 txt_stocks.Text = prodStocks.ToString()
@@ -160,6 +168,7 @@ Public Class PRODUCT
         Dim P_id As Integer ' Assuming you have a product ID to identify the record to update
         If Integer.TryParse(prod_datagridview.CurrentRow.Cells("prod_id").Value.ToString(), P_id) Then
             Dim P_name As String = txt_product_name.Text
+            Dim WarId As String = show_id.Text
             Dim P_model As String = txt_product_model.Text
             Dim P_color As String = txt_product_color.Text
             Dim P_stocks As Integer
@@ -169,9 +178,10 @@ Public Class PRODUCT
                 MessageBox.Show("Please fill all information properly.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 If openDB() Then
-                    Dim query As String = "UPDATE products SET prod_name = @P_name, prod_model = @P_model, prod_color = @P_color, prod_stocks = @P_stocks, prod_price = @P_price WHERE prod_id = @P_id"
+                    Dim query As String = "UPDATE products SET prod_name = @P_name,Warranty_ID = @WarID, prod_model = @P_model, prod_color = @P_color, prod_stocks = @P_stocks, prod_price = @P_price WHERE prod_id = @P_id"
                     Dim cmd As New MySqlCommand(query, Conn)
                     cmd.Parameters.AddWithValue("@P_id", P_id)
+                    cmd.Parameters.AddWithValue("@WarID", WarId)
                     cmd.Parameters.AddWithValue("@P_name", P_name.ToUpper())
                     cmd.Parameters.AddWithValue("@P_model", P_model.ToUpper())
                     cmd.Parameters.AddWithValue("@P_color", P_color.ToUpper())
@@ -186,10 +196,12 @@ Public Class PRODUCT
 
                         ' Clear textboxes after updating
                         txt_product_name.Clear()
+                        show_id.Text = "ID"
                         txt_product_model.Clear()
                         txt_product_color.Clear()
                         txt_stocks.Clear()
                         txt_price.Clear()
+
 
                     Catch ex As Exception
                         MessageBox.Show("Error updating product: " & ex.Message)
@@ -223,6 +235,7 @@ Public Class PRODUCT
 
                     ' Clear textboxes after deletion
                     txt_product_name.Clear()
+                    show_id.Text = "ID"
                     txt_product_model.Clear()
                     txt_product_color.Clear()
                     txt_stocks.Clear()
@@ -249,6 +262,7 @@ Public Class PRODUCT
 
         ' Clear all textboxes
         txt_product_name.Clear()
+        show_id.Text = "ID"
         txt_product_model.Clear()
         txt_product_color.Clear()
         txt_stocks.Clear()
@@ -274,7 +288,7 @@ Public Class PRODUCT
 
     Private Sub LoadWarranty()
         If openDB() Then
-            Dim query_warranty = "SELECT CONCAT(War_Duration, '-', War_DurationUnit, '-', War_Type, '-', War_Coverage) AS warranty_info FROM warranty"
+            Dim query_warranty = "SELECT CONCAT(War_ID,'-',War_Duration, '-', War_DurationUnit, '-', War_Type, '-', War_Coverage) AS warranty_info FROM warranty"
             Using cmd As New MySqlCommand(query_warranty, Conn)
                 Try
                     Using reader = cmd.ExecuteReader
@@ -301,8 +315,44 @@ Public Class PRODUCT
     End Sub
 
     Private Sub Cb_warranty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_warranty.SelectedIndexChanged
+        If Cb_warranty.SelectedIndex <> -1 Then
+            Try
+                If openDB() Then
+                    Dim selectedWarranty As String = Cb_warranty.SelectedItem.ToString()
+                    Dim warId As String = selectedWarranty.Split("-"c)(0).Trim() ' Extracting the ID from the selected item
 
+                    Dim queryWarranty As String = "SELECT War_Duration, War_DurationUnit, War_Type, War_Coverage FROM warranty WHERE War_ID = @WarID"
+
+                    Using cmd As New MySqlCommand(queryWarranty, Conn)
+                        cmd.Parameters.AddWithValue("@WarID", warId)
+                        Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+                        If reader.Read() Then
+                            Dim duration As Integer = reader.GetInt32("War_Duration")
+                            Dim durationUnit As String = reader.GetString("War_DurationUnit")
+                            Dim warType As String = reader.GetString("War_Type")
+                            Dim coverage As String = reader.GetString("War_Coverage")
+
+
+                            ' Store the War_ID in show_id.Text
+                            show_id.Text = warId
+                        Else
+                            MessageBox.Show("Warranty details not found.")
+                        End If
+
+                        reader.Close()
+                    End Using
+
+                    closeDB()
+                Else
+                    MessageBox.Show("THE DATABASE IS NOT CONNECTED")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error fetching warranty details: " & ex.Message)
+            End Try
+        End If
     End Sub
+
 
 
 

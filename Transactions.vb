@@ -1,11 +1,12 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Threading.Tasks.Dataflow
+Imports MySql.Data.MySqlClient
 
 Public Class Transactions
     Private dashboardForm As New DASHBOARD()
 
 
 
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dashboardForm = New DASHBOARD
 
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
@@ -23,7 +24,6 @@ Public Class Transactions
 
     End Sub
 
-
     Private Sub Cb_Products_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Products.SelectedIndexChanged
         ' Check if a product is selected in the ComboBox
         If Cb_Products.SelectedIndex <> -1 Then
@@ -32,28 +32,48 @@ Public Class Transactions
 
             ' Check if the database connection is open
             If openDB() Then
-                ' Query to retrieve the stock and price of the selected product
-                Dim queryStockPrice As String = "SELECT prod_stocks, prod_price FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productName"
+                ' Query to retrieve the stock, price, and warranty ID of the selected product
+                Dim queryStockPriceWarranty As String = "SELECT prod_stocks, prod_price, Warranty_ID FROM products WHERE CONCAT(prod_name, ' - ', prod_model) = @productName"
 
-                Using commandStockPrice As New MySqlCommand(queryStockPrice, Conn)
-                    commandStockPrice.Parameters.AddWithValue("@productName", selectedProduct)
+                Using commandStockPriceWarranty As New MySqlCommand(queryStockPriceWarranty, Conn)
+                    commandStockPriceWarranty.Parameters.AddWithValue("@productName", selectedProduct)
 
                     Try
-                        Dim readerStockPrice As MySqlDataReader = commandStockPrice.ExecuteReader()
+                        Dim readerStockPriceWarranty As MySqlDataReader = commandStockPriceWarranty.ExecuteReader()
 
-                        If readerStockPrice.Read() Then
-                            Dim availableStock As Integer = Convert.ToInt32(readerStockPrice("prod_stocks"))
-                            Dim price As Decimal = Convert.ToDecimal(readerStockPrice("prod_price"))
+                        If readerStockPriceWarranty.Read() Then
+                            Dim availableStock As Integer = Convert.ToInt32(readerStockPriceWarranty("prod_stocks"))
+                            Dim price As Decimal = Convert.ToDecimal(readerStockPriceWarranty("prod_price"))
+                            Dim warrantyID As Integer = Convert.ToInt32(readerStockPriceWarranty("Warranty_ID"))
 
                             ' Update the labels with the retrieved information
                             lbl_stock.Text = "Available Stock: " & availableStock.ToString()
                             txt_price.Text = price.ToString()
+                            readerStockPriceWarranty.Close()
+                            ' Now, query the warranty information based on the retrieved warranty ID
+                            Dim queryWarrantyInfo As String = "SELECT CONCAT(War_Duration, '-', War_DurationUnit) AS warranty_info FROM warranty WHERE War_ID = @warrantyID"
+
+                            Using commandWarrantyInfo As New MySqlCommand(queryWarrantyInfo, Conn)
+                                commandWarrantyInfo.Parameters.AddWithValue("@warrantyID", warrantyID)
+
+                                Dim readerWarrantyInfo As MySqlDataReader = commandWarrantyInfo.ExecuteReader()
+
+                                If readerWarrantyInfo.Read() Then
+                                    Dim warrantyInfo As String = readerWarrantyInfo("warranty_info").ToString()
+                                    ' Set the ComboBox value to the retrieved warranty info
+                                    Cb_warranty.Text = warrantyInfo
+                                Else
+                                    MessageBox.Show("Warranty information not found")
+                                End If
+
+                                readerWarrantyInfo.Close()
+                            End Using
                         Else
                             lbl_stock.Text = "Stock information not found"
                             txt_price.Text = "Price information not found"
                         End If
 
-                        readerStockPrice.Close()
+                        readerStockPriceWarranty.Close()
                     Catch ex As Exception
                         MessageBox.Show("Error retrieving stock and price information: " & ex.Message)
                     End Try
@@ -66,6 +86,7 @@ Public Class Transactions
             End If
         End If
     End Sub
+
 
 
     Private Sub LoadProducts()
@@ -443,6 +464,18 @@ Public Class Transactions
     End Sub
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
         Dim message As String = ""
 
@@ -450,8 +483,11 @@ Public Class Transactions
         Dim totalPrice As Decimal = 0
         Dim serviceFee As Decimal = 0 ' Assuming service fee is stored in txt_service_fee.Text
 
+
         ' Check if the DataGridView has rows
         If transaction_datagridview.Rows.Count > 1 Then
+
+            Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd")
             ' Include customer details in the message
             message &= "Customer Details:" & vbCrLf
             message &= "Name: " & txt_Custname.Text & vbCrLf
@@ -497,6 +533,8 @@ Public Class Transactions
             ' Include total cost in the message
             message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00")
 
+            message &= vbCrLf & "DATE OF TRANSACTION " & currentDate.ToString()
+
             ' Display the message box with all the data
             MessageBox.Show(message)
         Else
@@ -504,9 +542,6 @@ Public Class Transactions
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
-
-
-
 
 
     Private Sub txt_Empname_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -578,6 +613,7 @@ Public Class Transactions
             closeDB()
         End Try
     End Sub
+
 
 End Class
 
