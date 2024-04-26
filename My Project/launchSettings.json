@@ -2,7 +2,7 @@
   "profiles": {
     "Profile 1": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\XtiaN\\source\\repos\\InventoryMate\\InventoryMate.vbproj",
+      "workingDirectory": "C:\\Users\\XtiaN\\source\\repos\\InventoryMate",
       "remoteDebugEnabled": false
     },
     "Profile 2": {

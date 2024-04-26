@@ -1,6 +1,9 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class DASHBOARD
+
+    Public Shared HasDataInTransactionGrid As Boolean
+
     ' Define boolean variables to track form status
     Private isProductFormOpen As Boolean = False
     Private isWarrantyFormOpen As Boolean = False
@@ -73,7 +76,6 @@ Public Class DASHBOARD
 
 
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
-
         Me.DoubleBuffered = True ' For forms
 
         If isProductFormOpen Then
@@ -94,8 +96,16 @@ Public Class DASHBOARD
             isSupplierFormOpen = False
             isEmployeeFormOpen = False
             isTransactionFromOpen = False
+
+            If DASHBOARD.HasDataInTransactionGrid Then
+                MessageBox.Show("The transaction datagrid has data.")
+            Else
+                MessageBox.Show("The transaction datagrid is empty.")
+            End If
+
         End If
     End Sub
+
 
     Private Sub Warranty_Click(sender As Object, e As EventArgs) Handles Warranty.Click
         If isWarrantyFormOpen Then
@@ -274,14 +284,16 @@ Public Class DASHBOARD
     Private Sub txt_name_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Check if the database connection is successful
         If openDB() Then
-            Dim query As String = "SELECT e.Emp_name FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"
+            Dim query As String = "SELECT e.Emp_name, u.Privilege FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"
             Using cmd As New MySqlCommand(query, Conn)
                 Try
                     ' Execute the query and open a data reader
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             ' Read the data from the reader and display it in txt_name
-                            txt_name.Text = "    " & reader("Emp_name").ToString()
+                            Dim employeeName As String = reader("Emp_name").ToString()
+                            Dim userPrivilege As String = reader("Privilege").ToString()
+                            txt_name.Text = $"    |{userPrivilege}| {employeeName}"
                         Else
                             MessageBox.Show("No active employee found.")
                         End If

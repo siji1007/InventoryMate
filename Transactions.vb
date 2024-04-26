@@ -332,6 +332,7 @@ Public Class Transactions
             Next
 
 
+
         End If
     End Sub
 
@@ -514,9 +515,16 @@ Public Class Transactions
         End Try
     End Sub
 
-
-
+    Public Sub CheckDataInTransactionGrid()
+        ' Check if transaction datagrid has data and update the shared variable
+        If transaction_datagridview.Rows.Count > 0 Then
+            DASHBOARD.HasDataInTransactionGrid = True
+        Else
+            DASHBOARD.HasDataInTransactionGrid = False
+        End If
+    End Sub
 
 
 
 End Class
+
