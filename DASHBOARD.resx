@@ -128,6 +128,7 @@
   <data name="Transaction.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+<<<<<<< HEAD
   <data name="Transaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
@@ -138,6 +139,8 @@
         tbKbLXATdXQKHj3+SFcr/yuSZA+B3Rnryl21WAAAAABJRU5ErkJggg==
 </value>
   </data>
+=======
+>>>>>>> parent of 8c551c2 (update logo)
   <data name="Transaction.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
@@ -3404,6 +3407,7 @@
   <data name="Button1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+<<<<<<< HEAD
   <data name="Button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
@@ -3414,6 +3418,8 @@
         o29Gnf8XyM+xRVxv3gUxrOH6b+RdJ7ji4WjBpoE75PkNC0SVUuoJIRg2yYiOwJsAAAAASUVORK5CYII=
 </value>
   </data>
+=======
+>>>>>>> parent of 8c551c2 (update logo)
   <data name="Button1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
@@ -3507,6 +3513,7 @@
   <data name="txt_name.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 11.25pt, style=Bold</value>
   </data>
+<<<<<<< HEAD
   <data name="txt_name.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -3523,6 +3530,8 @@
         tH8EHofMWuv9XwAAAABJRU5ErkJggg==
 </value>
   </data>
+=======
+>>>>>>> parent of 8c551c2 (update logo)
   <data name="txt_name.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
