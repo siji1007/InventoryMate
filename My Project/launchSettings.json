@@ -2,11 +2,12 @@
   "profiles": {
     "Profile 1": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\xTIaN\\source\\repos\\InventoryMate",
+      "workingDirectory": "C:\\Users\\XtiaN\\source\\repos\\InventoryMate\\InventoryMate.vbproj",
       "remoteDebugEnabled": false
     },
     "Profile 2": {
-      "commandName": "Executable"
+      "commandName": "Executable",
+      "workingDirectory": "C:\\Users\\XtiaN\\source\\repos\\InventoryMate\\InventoryMate.vbproj"
     }
   }
 }
