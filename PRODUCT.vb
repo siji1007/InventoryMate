@@ -300,6 +300,10 @@ Public Class PRODUCT
         End If
     End Sub
 
+    Private Sub Cb_warranty_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_warranty.SelectedIndexChanged
+
+    End Sub
+
 
 
 
