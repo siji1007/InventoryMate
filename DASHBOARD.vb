@@ -2,8 +2,6 @@
 
 Public Class DASHBOARD
 
-    Public Shared HasDataInTransactionGrid As Boolean
-
     ' Define boolean variables to track form status
     Private isProductFormOpen As Boolean = False
     Private isWarrantyFormOpen As Boolean = False
@@ -12,8 +10,36 @@ Public Class DASHBOARD
     Private isEmployeeFormOpen As Boolean = False
     Private isTransactionFromOpen As Boolean = False
 
+    Private Function ReadFileValueAndNotify() As Integer
+        Dim filePath As String = "C:\Users\XtiaN\source\repos\InventoryMate\transac\transaction_status.txt" ' Replace with the actual file path
+        Dim fileValue As Integer = 0
+
+        Try
+            ' Read the value from the text file
+            If System.IO.File.Exists(filePath) Then
+                Using reader As New System.IO.StreamReader(filePath)
+                    Dim fileContent As String = reader.ReadLine()
+                    If Integer.TryParse(fileContent, fileValue) Then
+                        ' Successfully parsed the value from the file and it's greater than 0
+
+                    End If
+                End Using
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error reading file: " & ex.Message)
+        End Try
+
+        ' Return the file value
+        Return fileValue
+    End Function
+
+
+
+
 
     Private Sub LOGIN_Load(sender As Object, e As EventArgs)
+
+
         ' Maximize the window
         WindowState = FormWindowState.Maximized
 
@@ -62,6 +88,7 @@ Public Class DASHBOARD
                     Employee.Visible = False
                 End If
 
+
             Else
                 MessageBox.Show("Failed to connect to the database")
             End If
@@ -72,44 +99,45 @@ Public Class DASHBOARD
         End Try
     End Sub
 
-
-
-
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
         Me.DoubleBuffered = True ' For forms
 
         If isProductFormOpen Then
             MessageBox.Show("The PRODUCT form is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim prod As New PRODUCT()
-            prod.TopLevel = False
-            Contents.Controls.Add(prod)
-            prod.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-            prod.BringToFront()
-            prod.WindowState = FormWindowState.Maximized
-            prod.Show()
+            ' Read the file value
+            Dim fileValue As Integer = ReadFileValueAndNotify()
 
-            ' Update form status
-            isProductFormOpen = True
-            isWarrantyFormOpen = False
-            isCustomerFormOpen = False
-            isSupplierFormOpen = False
-            isEmployeeFormOpen = False
-            isTransactionFromOpen = False
-
-            If DASHBOARD.HasDataInTransactionGrid Then
-                MessageBox.Show("The transaction datagrid has data.")
+            ' Check if the file value is greater than zero
+            If fileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                MessageBox.Show("The transaction datagrid is empty.")
-            End If
+                ' Proceed with opening the PRODUCT form
+                Dim prod As New PRODUCT()
+                prod.TopLevel = False
+                Contents.Controls.Add(prod)
+                prod.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                prod.BringToFront()
+                prod.WindowState = FormWindowState.Maximized
+                prod.Show()
 
+                ' Update form status
+                isProductFormOpen = True
+                isWarrantyFormOpen = False
+                isCustomerFormOpen = False
+                isSupplierFormOpen = False
+                isEmployeeFormOpen = False
+                isTransactionFromOpen = False
+            End If
         End If
     End Sub
 
 
+
+
     Private Sub Warranty_Click(sender As Object, e As EventArgs) Handles Warranty.Click
         If isWarrantyFormOpen Then
-            MessageBox.Show("The WARRANTY form is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("The WARRANTY form Is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim war As New WARRANTY()
             war.TopLevel = False
@@ -131,7 +159,7 @@ Public Class DASHBOARD
 
     Private Sub Customer_Click(sender As Object, e As EventArgs) Handles Customer.Click
         If isCustomerFormOpen Then
-            MessageBox.Show("The Customer form is already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("The Customer form Is already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim cus As New CUSTOMER()
             cus.TopLevel = False
@@ -152,7 +180,7 @@ Public Class DASHBOARD
 
     Private Sub Supplier_Click(sender As Object, e As EventArgs) Handles Supplier.Click
         If isSupplierFormOpen Then
-            MessageBox.Show("The Supplier form is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("The Supplier form Is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim sup As New SUPPLIER()
             sup.TopLevel = False
@@ -175,7 +203,7 @@ Public Class DASHBOARD
 
     Private Sub Employee_Click(sender As Object, e As EventArgs) Handles Employee.Click
         If isEmployeeFormOpen Then
-            MessageBox.Show("The Employee form is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("The Employee form Is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim emp As New EMPLOYEE()
             emp.TopLevel = False
@@ -198,7 +226,7 @@ Public Class DASHBOARD
 
     Private Sub Transaction_Click(sender As Object, e As EventArgs) Handles Transaction.Click
         If isTransactionFromOpen Then
-            MessageBox.Show("The Transaction form is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("The Transaction form Is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             Dim tran As New Transactions()
             tran.TopLevel = False
@@ -222,19 +250,6 @@ Public Class DASHBOARD
     End Sub
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     Private Sub LogOut_Click(sender As Object, e As EventArgs) Handles LogOut.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         Dim mainForm As MAIN_FORM = TryCast(Me.Owner, MAIN_FORM)
@@ -244,7 +259,7 @@ Public Class DASHBOARD
                     ' Update user status to OFFLINE
                     Dim updateQuery As New MySqlCommand("UPDATE Users SET Status='OFFLINE' WHERE Status= 'ACTIVE';", Conn)
 
-                    updateQuery.ExecuteNonQuery()
+            updateQuery.ExecuteNonQuery()
                 Else
                     MessageBox.Show("Failed to connect to the database")
                 End If
@@ -308,6 +323,5 @@ Public Class DASHBOARD
             MessageBox.Show("Failed to open database connection.")
         End If
     End Sub
-
 
 End Class

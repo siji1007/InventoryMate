@@ -1,7 +1,13 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Transactions
-    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs)
+    Private dashboardForm As New DASHBOARD()
+
+
+
+    Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dashboardForm = New DASHBOARD()
+
         Lbl_transaction.TextAlign = ContentAlignment.MiddleCenter
         Lbl_transaction.AutoSize = False
         Lbl_transaction.Width = ClientSize.Width ' Adjust this if needed
@@ -130,7 +136,7 @@ Public Class Transactions
 
     End Sub
 
-    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs)
+    Private Sub Cb_employeeName_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Cb_employeeName.Items.Clear()
 
         If openDB() Then
@@ -160,6 +166,7 @@ Public Class Transactions
 
 
     Private Sub add_btn_Click(sender As Object, e As EventArgs) Handles add_btn.Click
+
         Dim ProdName As String = Cb_Products.Text
         Dim ProdQuantity As String = txt_quantity.Text
         Dim ProdPrice As String = txt_price.Text
@@ -192,6 +199,7 @@ Public Class Transactions
         ' Validate and convert quantity to integer
         Dim ProdQuantityInt As Integer
         If Not Integer.TryParse(ProdQuantity, ProdQuantityInt) Then
+            dashboardForm.Product.Enabled = False
             MessageBox.Show("Invalid quantity. Please enter a valid numeric value for quantity.")
             Exit Sub ' Exit the method if quantity is invalid
         End If
@@ -247,6 +255,30 @@ Public Class Transactions
                                 txt_quantity.Clear()
                                 txt_price.Clear()
                                 Cb_warranty.SelectedIndex = -1
+
+
+                                Dim filePath As String = "C:\Users\XtiaN\source\repos\InventoryMate\transac\transaction_status.txt"
+
+
+                                Try
+                                    ' Read the current value from the text file
+                                    Dim currentValue As Integer = 0
+                                    If System.IO.File.Exists(filePath) Then
+                                        Dim currentValueText As String = My.Computer.FileSystem.ReadAllText(filePath)
+                                        Integer.TryParse(currentValueText, currentValue)
+                                    End If
+
+                                    ' Increment the current value by 1
+                                    currentValue += 1
+
+                                    ' Write the updated value back to the text file
+                                    My.Computer.FileSystem.WriteAllText(filePath, currentValue.ToString(), False)
+
+                                    MessageBox.Show("Value updated in the text file: " & currentValue.ToString())
+                                Catch ex As Exception
+                                    MessageBox.Show("Error updating the text file: " & ex.Message)
+                                End Try
+
 
 
                                 ' Debug message to verify if data is added
@@ -381,6 +413,30 @@ Public Class Transactions
                                 ' Debug message
                                 MessageBox.Show("Stock restored and row cleared.")
                                 LoadProducts()
+
+
+
+                                'READ THE FILE AND DICREAMENT THE CURRENT VALUE TO 1, MEANS THAT DEDUCTED DATA IS PERFORM IN THE DATAGRID
+                                Dim filePath As String = "C:\Users\XtiaN\source\repos\InventoryMate\transac\transaction_status.txt"
+
+                                Try
+                                    ' Read the current value from the text file
+                                    Dim currentValue As Integer = 0
+                                    If System.IO.File.Exists(filePath) Then
+                                        Dim currentValueText As String = My.Computer.FileSystem.ReadAllText(filePath)
+                                        Integer.TryParse(currentValueText, currentValue)
+                                    End If
+
+                                    ' Deduct 1 from the current value
+                                    currentValue -= 1
+
+                                    ' Write the updated value back to the text file
+                                    My.Computer.FileSystem.WriteAllText(filePath, currentValue.ToString(), False)
+
+                                    MessageBox.Show("Value updated in the text file: " & currentValue.ToString())
+                                Catch ex As Exception
+                                    MessageBox.Show("Error updating the text file: " & ex.Message)
+                                End Try
                             Else
                                 MessageBox.Show("Failed to update stock in the database.")
                             End If
@@ -397,10 +453,6 @@ Public Class Transactions
             MessageBox.Show("Please select a row to clear.")
         End If
     End Sub
-
-
-
-
 
 
 
@@ -433,15 +485,6 @@ Public Class Transactions
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
-
-
-
-
-
-
-
-
-
 
 
 
@@ -514,17 +557,6 @@ Public Class Transactions
             closeDB()
         End Try
     End Sub
-
-    Public Sub CheckDataInTransactionGrid()
-        ' Check if transaction datagrid has data and update the shared variable
-        If transaction_datagridview.Rows.Count > 0 Then
-            DASHBOARD.HasDataInTransactionGrid = True
-        Else
-            DASHBOARD.HasDataInTransactionGrid = False
-        End If
-    End Sub
-
-
 
 End Class
 
