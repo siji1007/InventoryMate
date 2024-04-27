@@ -2,6 +2,8 @@
 Imports System.Threading.Tasks.Dataflow
 Imports MySql.Data.MySqlClient
 
+Imports Excel = Microsoft.Office.Interop.Excel
+
 Public Class Transactions
     Private dashboardForm As New DASHBOARD()
 
@@ -848,6 +850,68 @@ Public Class Transactions
     Private Sub BTN_Cbrefresh_Click(sender As Object, e As EventArgs) Handles BTN_Cbrefresh.Click
         txt_Custname.Items.Clear()
         LoadCustomer()
+    End Sub
+
+
+
+
+
+
+    Private Sub PrintExcel()
+        Dim applixcl As Excel.Application
+        Dim workbook As Excel.Workbook
+        Dim sheet As Excel.Worksheet
+
+        ' Create a new instance of Excel application
+        applixcl = New Excel.Application()
+        applixcl.Visible = True ' Set Excel to be visible
+
+        ' Open the Excel workbook
+        workbook = applixcl.Workbooks.Open("C:\Users\XtiaN\source\repos\InventoryMate\AllReceipts\TransReceipt.xlsx")
+
+        ' Get the first worksheet (assuming it's the one you want to work with)
+        sheet = workbook.Sheets(1)
+
+        Dim Name As String = "Christian John Ibanez"
+        Dim Address As String = "Gabon, Talisay, Camarines Norte"
+        Dim EmpName As String = "SIJI"
+        Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
+
+        ' Set the width of column A to accommodate the date content
+        sheet.Columns("A:A").ColumnWidth = 20
+
+
+        ' Insert the value of Name variable into the CustName cell in the 8th row
+        sheet.Cells(8, 3).Value = Name ' Assuming CustName is in the first column (A) of the 8th row
+        sheet.Cells(9, 3).Value = Address
+        sheet.Cells(19, 2).Value = EmpName
+        sheet.Cells(7, 7).Value = currentDate
+
+        ' Save and close the workbook
+        'workbook.Save()
+
+
+        ' Release Excel objects to free up resources
+        ReleaseObject(sheet)
+        ReleaseObject(workbook)
+        ReleaseObject(applixcl)
+    End Sub
+
+    ' Helper method to release Excel objects
+    Private Sub ReleaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+        Finally
+            GC.Collect()
+        End Try
+    End Sub
+
+
+    Private Sub excel_Click(sender As Object, e As EventArgs) Handles excel.Click
+        PrintExcel()
     End Sub
 End Class
 
