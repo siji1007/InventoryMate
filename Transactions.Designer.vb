@@ -22,9 +22,9 @@ Partial Class Transactions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_transaction = New Label()
         Print_btn = New Button()
         GroupBox1 = New GroupBox()
@@ -58,6 +58,8 @@ Partial Class Transactions
         Label8 = New Label()
         Label7 = New Label()
         GroupBox2 = New GroupBox()
+        BTN_Cbrefresh = New Button()
+        Label11 = New Label()
         txt_Custname = New ComboBox()
         txt_custnumber = New TextBox()
         txt_custemail = New TextBox()
@@ -176,6 +178,7 @@ Partial Class Transactions
         ' 
         Cb_warranty.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
         Cb_warranty.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_warranty.AutoCompleteSource = AutoCompleteSource.ListItems
         Cb_warranty.FormattingEnabled = True
         Cb_warranty.Location = New Point(724, 168)
         Cb_warranty.Name = "Cb_warranty"
@@ -286,36 +289,36 @@ Partial Class Transactions
         ' 
         transaction_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         transaction_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle1.ForeColor = Color.White
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        transaction_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle4.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle4.ForeColor = Color.White
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
+        transaction_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         transaction_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         transaction_datagridview.Columns.AddRange(New DataGridViewColumn() {dt_id, dt_product_name, dt_quantity, dt_price, dt_warranty, dt_warranty_coverage, dt_total})
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        transaction_datagridview.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.White
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.False
+        transaction_datagridview.DefaultCellStyle = DataGridViewCellStyle5
         transaction_datagridview.GridColor = Color.White
         transaction_datagridview.Location = New Point(28, 35)
         transaction_datagridview.Name = "transaction_datagridview"
         transaction_datagridview.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.True
-        transaction_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle6.ForeColor = Color.White
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.True
+        transaction_datagridview.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
         transaction_datagridview.RowHeadersVisible = False
         transaction_datagridview.Size = New Size(940, 127)
         transaction_datagridview.TabIndex = 0
@@ -421,6 +424,7 @@ Partial Class Transactions
         ' Cb_employeeName
         ' 
         Cb_employeeName.AutoCompleteMode = AutoCompleteMode.Suggest
+        Cb_employeeName.AutoCompleteSource = AutoCompleteSource.ListItems
         Cb_employeeName.FormattingEnabled = True
         Cb_employeeName.Location = New Point(173, 39)
         Cb_employeeName.Name = "Cb_employeeName"
@@ -456,6 +460,8 @@ Partial Class Transactions
         ' 
         GroupBox2.AutoSize = True
         GroupBox2.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        GroupBox2.Controls.Add(BTN_Cbrefresh)
+        GroupBox2.Controls.Add(Label11)
         GroupBox2.Controls.Add(txt_Custname)
         GroupBox2.Controls.Add(txt_custnumber)
         GroupBox2.Controls.Add(txt_custemail)
@@ -475,8 +481,35 @@ Partial Class Transactions
         GroupBox2.TabStop = False
         GroupBox2.Text = "CUSTOMER DETAILS"
         ' 
+        ' BTN_Cbrefresh
+        ' 
+        BTN_Cbrefresh.BackgroundImageLayout = ImageLayout.None
+        BTN_Cbrefresh.FlatAppearance.BorderSize = 0
+        BTN_Cbrefresh.FlatStyle = FlatStyle.Flat
+        BTN_Cbrefresh.Image = My.Resources.Resources.refresh
+        BTN_Cbrefresh.Location = New Point(398, 35)
+        BTN_Cbrefresh.Name = "BTN_Cbrefresh"
+        BTN_Cbrefresh.Size = New Size(37, 28)
+        BTN_Cbrefresh.TabIndex = 25
+        BTN_Cbrefresh.UseVisualStyleBackColor = True
+        ' 
+        ' Label11
+        ' 
+        Label11.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
+        Label11.AutoSize = True
+        Label11.BackColor = Color.White
+        Label11.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label11.ForeColor = Color.Black
+        Label11.Location = New Point(681, 78)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(41, 24)
+        Label11.TabIndex = 24
+        Label11.Text = "+63"
+        ' 
         ' txt_Custname
         ' 
+        txt_Custname.AutoCompleteMode = AutoCompleteMode.Suggest
+        txt_Custname.AutoCompleteSource = AutoCompleteSource.ListItems
         txt_Custname.FormattingEnabled = True
         txt_Custname.Location = New Point(171, 35)
         txt_Custname.Name = "txt_Custname"
@@ -486,9 +519,9 @@ Partial Class Transactions
         ' txt_custnumber
         ' 
         txt_custnumber.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Right
-        txt_custnumber.Location = New Point(681, 77)
+        txt_custnumber.Location = New Point(721, 77)
         txt_custnumber.Name = "txt_custnumber"
-        txt_custnumber.Size = New Size(224, 26)
+        txt_custnumber.Size = New Size(184, 26)
         txt_custnumber.TabIndex = 22
         ' 
         ' txt_custemail
@@ -640,4 +673,6 @@ Partial Class Transactions
     Friend WithEvents dt_warranty As DataGridViewTextBoxColumn
     Friend WithEvents dt_warranty_coverage As DataGridViewTextBoxColumn
     Friend WithEvents dt_total As DataGridViewTextBoxColumn
+    Friend WithEvents Label11 As Label
+    Friend WithEvents BTN_Cbrefresh As Button
 End Class

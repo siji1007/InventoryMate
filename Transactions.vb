@@ -1,4 +1,5 @@
-﻿Imports System.Threading.Tasks.Dataflow
+﻿Imports System.CodeDom
+Imports System.Threading.Tasks.Dataflow
 Imports MySql.Data.MySqlClient
 
 Public Class Transactions
@@ -20,6 +21,7 @@ Public Class Transactions
         LoadProducts()
         LoadWarranty()
         LoadEmployee()
+        LoadCustomer()
 
 
     End Sub
@@ -475,76 +477,240 @@ Public Class Transactions
 
 
 
-
     Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
         Dim message As String = ""
 
-        ' Variables for calculating total cost
+        ' Variables for calculating total cost and service fee
         Dim totalPrice As Decimal = 0
-        Dim serviceFee As Decimal = 0 ' Assuming service fee is stored in txt_service_fee.Text
-
+        Dim serviceFee As Decimal = 0
 
         ' Check if the DataGridView has rows
         If transaction_datagridview.Rows.Count > 1 Then
+            ' Open the database connection
+            If openDB() Then
+                Dim selectedProductId As Integer = Convert.ToInt32(transaction_datagridview.Rows(0).Cells("dt_id").Value)
 
-            Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd")
-            ' Include customer details in the message
-            message &= "Customer Details:" & vbCrLf
-            message &= "Name: " & txt_Custname.Text & vbCrLf
-            message &= "Address: " & txt_custaddress.Text & vbCrLf
-            message &= "Email: " & txt_custemail.Text & vbCrLf
-            message &= "Number: " & txt_custnumber.Text & vbCrLf & vbCrLf
+                ' Include customer details in the message
+                message &= "Customer Details:" & vbCrLf
+                message &= "Name: " & txt_Custname.Text & vbCrLf
+                message &= "Address: " & txt_custaddress.Text & vbCrLf
+                message &= "Email: " & txt_custemail.Text & vbCrLf
+                message &= "Number: " & txt_custnumber.Text & vbCrLf & vbCrLf
 
-            ' Include selected employee in the message
-            message &= "Selected Employee: " & Cb_employeeName.Text & vbCrLf & vbCrLf
+                ' Include selected employee in the message
+                message &= "Selected Employee: " & Cb_employeeName.Text & vbCrLf & vbCrLf
 
-            ' Include selected products and quantities from the DataGridView in the message
-            message &= "Selected Products and Quantities:" & vbCrLf
-            For Each row As DataGridViewRow In transaction_datagridview.Rows
-                ' Check if the row is not a new row and is selected
-                If Not row.IsNewRow Then
-                    ' Get the product name, quantity, price, and duration of warranty from the row
-                    Dim productName As String = row.Cells("dt_product_name").Value.ToString()
-                    Dim quantity As Integer
-                    If Integer.TryParse(row.Cells("dt_quantity").Value.ToString(), quantity) Then
-                        Dim price As Decimal
-                        If Decimal.TryParse(row.Cells("dt_price").Value.ToString(), price) Then
-                            Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
+                ' Include selected products and quantities from the DataGridView in the message
+                message &= "Selected Products and Quantities:" & vbCrLf
+                For Each row As DataGridViewRow In transaction_datagridview.Rows
+                    ' Check if the row is not a new row and is selected
+                    If Not row.IsNewRow Then
+                        ' Get the product name, quantity, price, and duration of warranty from the row
+                        Dim productId As String = row.Cells("dt_id").Value.ToString()
+                        Dim productName As String = row.Cells("dt_product_name").Value.ToString()
+                        Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
+                        Dim price As Decimal = Convert.ToDecimal(row.Cells("dt_price").Value)
+                        Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
 
-                            ' Calculate total price for each product
-                            Dim productTotalPrice As Decimal = price * quantity
-                            totalPrice += productTotalPrice
+                        ' Calculate total price for each product
+                        Dim productTotalPrice As Decimal = price * quantity
+                        totalPrice += productTotalPrice
 
-                            ' Concatenate the product details to the message
-                            message &= productName & ": " & quantity & " x ₱" & price.ToString("0.00") & " (" & warrantyDuration & ") = $" & productTotalPrice.ToString("0.00") & vbCrLf
-                        End If
+                        ' Concatenate the product details to the message
+                        message &= productId & "  " & productName & ": " & quantity & " x ₱" & price.ToString("0.00") & " (" & warrantyDuration & ") = ₱" & productTotalPrice.ToString("0.00") & vbCrLf
                     End If
+                Next
+
+                ' Include service fee in the total cost calculation
+                If Decimal.TryParse(txt_service_fee.Text, serviceFee) Then
+                    totalPrice += serviceFee
+                    message &= vbCrLf & "Service Fee: ₱" & serviceFee.ToString("0.00") & vbCrLf
+                Else
+                    MessageBox.Show("Invalid service fee. Please enter a valid numeric value.")
+                    Exit Sub ' Exit the method if service fee is invalid
                 End If
-            Next
 
-            ' Include service fee in the total cost calculation
-            If Decimal.TryParse(txt_service_fee.Text, serviceFee) Then
-                totalPrice += serviceFee
-                message &= vbCrLf & "Service Fee: ₱" & serviceFee.ToString("0.00") & vbCrLf
+                ' Include total cost in the message
+                message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00") & vbCrLf
+
+                Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
+
+                message &= vbCrLf & "DATE OF TRANSACTION " & currentDate.ToString()
+
+                ' Display the message box with all the data
+                MessageBox.Show(message)
+
+                ' Now, insert the transaction data into your database
+                InsertTransactionToDatabase(totalPrice, serviceFee, currentDate)
             Else
-                MessageBox.Show("Invalid service fee. Please enter a valid numeric value.")
+                ' Display a message if failed to open the database connection
+                MessageBox.Show("Failed to open the database connection.")
             End If
-
-            ' Include total cost in the message
-            message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00")
-
-            message &= vbCrLf & "DATE OF TRANSACTION " & currentDate.ToString()
-
-            ' Display the message box with all the data
-            MessageBox.Show(message)
         Else
             ' Display a message if there are no rows in the DataGridView
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
+    Private Sub InsertTransactionToDatabase(totalPrice As Decimal, serviceFee As Decimal, currentDate As String)
+        If openDB() Then
+            Dim customerId As Integer = GetCustomerIdByName(txt_Custname.Text)
+
+            ' Validate Customer ID
+            If customerId <= 0 Then
+                MessageBox.Show("Invalid customer selected.")
+                Exit Sub
+            End If
+
+            ' Loop through each row in the DataGridView
+            For Each row As DataGridViewRow In transaction_datagridview.Rows
+                ' Check if the row is not a new row
+                If Not row.IsNewRow Then
+                    ' Retrieve the values from the current row
+                    Dim selectedProductId As Integer = Convert.ToInt32(row.Cells("dt_id").Value)
+                    Dim warrantyId As Integer = GetWarrantyIdFromProduct(selectedProductId)
+                    Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
+
+                    ' Validate Warranty ID
+                    If warrantyId <= 0 Then
+                        MessageBox.Show("Invalid warranty for product ID: " & selectedProductId & ". Skipping insertion for this product.")
+                        Continue For ' Skip this product and move to the next one
+                    End If
+
+                    ' Insert into Transactions table for this row
+                    Try
+                        If openDB() Then
+                            Dim query As String = "INSERT INTO Transactions (Prod_ID, Customer_ID, Emp_ID, Warr_ID, Quantity, S_fee, Total_cost, Transact_date) " &
+  "VALUES (@Prod_ID, @Customer_ID, @Emp_ID, @Warr_ID, @Quantity, @S_fee, @Total_cost, @Transac_date)"
+
+                            Using cmd As New MySqlCommand(query, Conn)
+                                cmd.Parameters.AddWithValue("@Prod_ID", selectedProductId)
+                                cmd.Parameters.AddWithValue("@Customer_ID", customerId)
+                                cmd.Parameters.AddWithValue("@Emp_ID", txt_EmpID.Text)
+                                cmd.Parameters.AddWithValue("@Warr_ID", warrantyId)
+                                cmd.Parameters.AddWithValue("@Quantity", quantity)
+                                cmd.Parameters.AddWithValue("@S_fee", serviceFee)
+                                cmd.Parameters.AddWithValue("@Total_cost", totalPrice)
+                                cmd.Parameters.AddWithValue("@Transac_date", currentDate)
+
+                                Try
+                                    cmd.ExecuteNonQuery()
+                                Catch ex As Exception
+                                    MessageBox.Show("Error inserting product ID " & selectedProductId & ": " & ex.Message)
+
+                                End Try
+
+                            End Using
+                        Else
+                            MessageBox.Show("Failed to Connect database")
+                        End If
+
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    Finally
+                        closeDB()
+                    End Try
 
 
-    Private Sub txt_Empname_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+                End If
+            Next
+
+            MessageBox.Show("Transaction data inserted successfully.")
+            closeDB()
+        Else
+            MessageBox.Show("Failed to connect to the database.")
+        End If
+    End Sub
+
+
+
+
+
+    Private Function GetWarrantyIdFromProduct(prodId As Integer) As Integer
+        Dim warrantyId As Integer = -1 ' Default value if warranty ID is not found
+
+        If openDB() Then
+            Dim query As String = "SELECT Warranty_ID FROM products WHERE prod_id = @ProdId"
+
+            Using cmd As New MySqlCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@ProdId", prodId)
+
+                Try
+                    Dim result As Object = cmd.ExecuteScalar()
+                    If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
+                        warrantyId = Convert.ToInt32(result)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving warranty ID: " & ex.Message)
+                End Try
+            End Using
+
+            closeDB()
+        Else
+            MessageBox.Show("Failed to connect to the database.")
+        End If
+
+        Return warrantyId
+    End Function
+
+
+    Private Function GetCustomerIdByName(customerName As String) As Integer
+        Dim customerId As Integer = -1 ' Default value if customer ID is not found
+
+        If openDB() Then
+            Dim query As String = "SELECT Cust_ID FROM customer WHERE Cust_name = @CustomerName"
+
+            Using cmd As New MySqlCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@CustomerName", customerName)
+
+                Try
+                    Dim result As Object = cmd.ExecuteScalar()
+                    If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
+                        customerId = Convert.ToInt32(result)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show("Error retrieving customer ID: " & ex.Message)
+                End Try
+            End Using
+
+            closeDB()
+        Else
+            MessageBox.Show("Failed to connect to the database.")
+        End If
+
+        Return customerId
+    End Function
+
+    Private Function GetTotalQuantity() As Integer
+        Dim totalQuantity As Integer = 0
+
+        ' Calculate total quantity from the DataGridView
+        For Each row As DataGridViewRow In transaction_datagridview.Rows
+            ' Check if the row is not a new row and is selected
+            If Not row.IsNewRow Then
+                ' Get the quantity from the row and add it to totalQuantity
+                Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
+                totalQuantity += quantity
+            End If
+        Next
+
+        Return totalQuantity
+    End Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Private Sub LoadCustomer()
         Try
             If openDB() Then
                 Dim query As New MySqlCommand("SELECT Cust_name FROM Customer;", Conn)
@@ -615,5 +781,73 @@ Public Class Transactions
     End Sub
 
 
+
+
+
+
+
+    Private Sub InsertCustomerToDatabase()
+        Dim Cust_name As String = txt_Custname.Text.Trim()
+        Dim Cust_address As String = txt_custaddress.Text.Trim()
+        Dim Cust_email As String = txt_custemail.Text.Trim()
+        Dim Cust_cnumber As String = txt_custnumber.Text.Trim()
+
+        ' Check if the contact number starts with "+63" and remove it
+        If Cust_cnumber.StartsWith("+63") AndAlso Cust_cnumber.Length > 3 Then
+            Cust_cnumber = Cust_cnumber.Substring(3) ' Remove "+63"
+        End If
+
+        If String.IsNullOrWhiteSpace(Cust_name) OrElse String.IsNullOrWhiteSpace(Cust_address) OrElse String.IsNullOrWhiteSpace(Cust_email) OrElse String.IsNullOrWhiteSpace(Cust_cnumber) OrElse Cust_cnumber.Length <> 10 Then
+            MessageBox.Show("Please fill the information properly.")
+        Else
+            If openDB() Then
+                Dim query As String = "INSERT INTO customer VALUES(NULL, @C_name, @C_address, @C_email, @C_cnumber)"
+                Dim cmd As New MySqlCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@C_name", Cust_name.ToUpper())
+                cmd.Parameters.AddWithValue("@C_address", Cust_address.ToUpper())
+                cmd.Parameters.AddWithValue("@C_email", Cust_email.ToUpper())
+                cmd.Parameters.AddWithValue("@C_cnumber", Cust_cnumber)
+
+                Try
+                    cmd.ExecuteNonQuery()
+                    MessageBox.Show("Customer added successfully!")
+
+
+                    CustomerComboboxLoad()
+                    txt_custaddress.Clear()
+                    txt_custemail.Clear()
+                    txt_custnumber.Clear()
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                Finally
+                    closeDB()
+                End Try
+            Else
+                MessageBox.Show("Failed to connect to the database!")
+            End If
+        End If
+    End Sub
+
+    Private Sub CustomerComboboxLoad()
+        If txt_Custname.SelectedIndex = -1 Then
+            ' Clear the ComboBox selection and text
+            txt_Custname.Text = ""
+            txt_Custname.SelectedItem = Nothing
+
+            ' Clear other customer details input fields if needed
+            txt_custaddress.Clear()
+            txt_custemail.Clear()
+            txt_custnumber.Clear()
+
+            ' Set focus to the first input field for new customer details
+            txt_Custname.Focus()
+        End If
+    End Sub
+
+    Private Sub BTN_Cbrefresh_Click(sender As Object, e As EventArgs) Handles BTN_Cbrefresh.Click
+        txt_Custname.Items.Clear()
+        LoadCustomer()
+    End Sub
 End Class
 
