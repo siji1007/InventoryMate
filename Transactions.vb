@@ -1,4 +1,5 @@
 ﻿Imports System.CodeDom
+Imports System.Security.Cryptography.X509Certificates
 Imports System.Threading.Tasks.Dataflow
 Imports MySql.Data.MySqlClient
 
@@ -6,8 +7,7 @@ Imports Excel = Microsoft.Office.Interop.Excel
 
 Public Class Transactions
     Private dashboardForm As New DASHBOARD()
-
-
+    Public Property xlWorksheet As Object
 
     Private Sub Lbl_transaction_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dashboardForm = New DASHBOARD
@@ -468,17 +468,6 @@ Public Class Transactions
     End Sub
 
 
-
-
-
-
-
-
-
-
-
-
-
     Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
         Dim message As String = ""
 
@@ -553,14 +542,68 @@ Public Class Transactions
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
+
+
+
+
+    Private Function GetHighestCustomerID() As Integer
+        Dim customerId As Integer = 0
+
+        If openDB() Then
+            Dim query As String = "SELECT MAX(Cust_ID) FROM customer"
+            Dim cmd As New MySqlCommand(query, Conn)
+
+            Try
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing AndAlso Not IsDBNull(result) Then
+                    customerId = Convert.ToInt32(result)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error retrieving highest Customer ID: " & ex.Message)
+            Finally
+                closeDB()
+            End Try
+        Else
+            MessageBox.Show("Failed to connect to the database!")
+        End If
+
+        Return customerId
+    End Function
+
+
+
     Private Sub InsertTransactionToDatabase(totalPrice As Decimal, serviceFee As Decimal, currentDate As String)
         If openDB() Then
             Dim customerId As Integer = GetCustomerIdByName(txt_Custname.Text)
 
+
+
             ' Validate Customer ID
             If customerId <= 0 Then
-                MessageBox.Show("Invalid customer selected.")
-                Exit Sub
+                If openDB() Then
+                    Dim query As String = "INSERT INTO customer (Cust_name, Cust_address, Cust_email, Cust_cnumber) VALUES (@C_name, @C_address, @C_email, @C_cnumber)"
+                    Dim cmd As New MySqlCommand(query, Conn)
+                    cmd.Parameters.AddWithValue("@C_name", txt_Custname.Text.Trim())
+                    cmd.Parameters.AddWithValue("@C_address", txt_custaddress.Text.Trim())
+                    cmd.Parameters.AddWithValue("@C_email", txt_custemail.Text.Trim())
+                    cmd.Parameters.AddWithValue("@C_cnumber", txt_custnumber.Text.Trim())
+
+                    Try
+                        cmd.ExecuteNonQuery()
+                        MessageBox.Show("Customer added successfully!")
+                        customerId = GetHighestCustomerID() ' Get the updated Customer_ID
+                    Catch ex As Exception
+                        MessageBox.Show("Error adding customer to the database: " & ex.Message)
+                    Finally
+                        closeDB()
+                    End Try
+                Else
+                    MessageBox.Show("Failed to connect to the database!")
+                End If
+
+
+
+
             End If
 
             ' Loop through each row in the DataGridView
@@ -618,6 +661,8 @@ Public Class Transactions
             Next
 
             MessageBox.Show("Transaction data inserted successfully.")
+            PrintExcel()
+            RestartTheTransactionFile()
             closeDB()
         Else
             MessageBox.Show("Failed to connect to the database.")
@@ -831,6 +876,10 @@ Public Class Transactions
         End If
     End Sub
 
+
+
+
+
     Private Sub CustomerComboboxLoad()
         If txt_Custname.SelectedIndex = -1 Then
             ' Clear the ComboBox selection and text
@@ -855,49 +904,141 @@ Public Class Transactions
 
 
 
+    Private Function GetLastCustomerID() As Integer
+        Dim lastCustomerID As Integer = 0 ' Default value if no ID is found
+
+        ' Check if the database connection can be opened
+        If openDB() Then
+            Dim query As String = "SELECT Customer_ID FROM Transactions ORDER BY Transac_ID DESC LIMIT 1;
+"
+            Dim cmd As New MySqlCommand(query, Conn)
+
+            Try
+                ' Execute the SQL query and retrieve the last customer ID
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing AndAlso Not IsDBNull(result) Then
+                    lastCustomerID = Convert.ToInt32(result)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error retrieving last Customer ID: " & ex.Message)
+            Finally
+                ' Close the database connection
+                closeDB()
+            End Try
+        Else
+            MessageBox.Show("Failed to open the database connection.")
+        End If
+
+        Return lastCustomerID
+    End Function
 
 
     Private Sub PrintExcel()
-        Dim applixcl As Excel.Application
-        Dim workbook As Excel.Workbook
-        Dim sheet As Excel.Worksheet
+        Dim customerId As String = GetLastCustomerID() ' Assuming you have a function to retrieve the last customer ID
 
-        ' Create a new instance of Excel application
-        applixcl = New Excel.Application()
-        applixcl.Visible = True ' Set Excel to be visible
+        If Not String.IsNullOrWhiteSpace(customerId) Then
+            Dim applixcl As Excel.Application
+            Dim workbook As Excel.Workbook
+            Dim sheet As Excel.Worksheet
 
-        ' Open the Excel workbook
-        workbook = applixcl.Workbooks.Open("C:\Users\XtiaN\source\repos\InventoryMate\AllReceipts\TransReceipt.xlsx")
+            ' Create a new instance of Excel application
+            applixcl = New Excel.Application()
+            applixcl.Visible = True ' Set Excel to be visible
 
-        ' Get the first worksheet (assuming it's the one you want to work with)
-        sheet = workbook.Sheets(1)
+            ' Open the Excel workbook
+            workbook = applixcl.Workbooks.Open("C:\Users\XtiaN\source\repos\InventoryMate\AllReceipts\TransReceipt.xlsx")
 
-        Dim Name As String = "Christian John Ibanez"
-        Dim Address As String = "Gabon, Talisay, Camarines Norte"
-        Dim EmpName As String = "SIJI"
-        Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
+            ' Get the first worksheet (assuming it's the one you want to work with)
+            sheet = workbook.Sheets(1)
 
-        ' Set the width of column A to accommodate the date content
-        sheet.Columns("A:A").ColumnWidth = 20
+            Dim currentRow As Integer = 16 ' Starting row to populate product details
 
+            Dim totalCostValue As Integer = ExtractNumericValue(Total_cost.Text)
+            Dim serviceFeeValue As Integer = ExtractNumericValue(txt_service_fee.Text)
 
-        ' Insert the value of Name variable into the CustName cell in the 8th row
-        sheet.Cells(8, 3).Value = Name ' Assuming CustName is in the first column (A) of the 8th row
-        sheet.Cells(9, 3).Value = Address
-        sheet.Cells(19, 2).Value = EmpName
-        sheet.Cells(7, 7).Value = currentDate
+            ' Calculate the sum and set it in the Excel cell
+            sheet.Cells(13, 6).Value = totalCostValue + serviceFeeValue
 
-        ' Save and close the workbook
-        'workbook.Save()
+            sheet.Cells(8, 3).Value = txt_Custname.Text ' Assuming CustName is in the first column (A) of the 8th row
+            sheet.Cells(9, 3).Value = txt_custaddress.Text
+            sheet.Cells(7, 7).Value = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
+            sheet.Cells(21, 2).Value = serviceFeeValue
+            sheet.Cells(13, 6).Value = totalCostValue + serviceFeeValue
+            sheet.Cells(21, 7).Value = "9079519214"
 
+            ' Loop through DataGridView rows to populate Excel sheet dynamically
+            For Each row As DataGridViewRow In transaction_datagridview.Rows
+                If Not row.IsNewRow Then ' Check if the row is not a new row
+                    ' Get product details from DataGridView
+                    Dim productName As String = row.Cells("dt_product_name").Value.ToString()
+                    Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
+                    Dim price As Decimal = Convert.ToDecimal(row.Cells("dt_price").Value)
+                    Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
 
-        ' Release Excel objects to free up resources
-        ReleaseObject(sheet)
-        ReleaseObject(workbook)
-        ReleaseObject(applixcl)
+                    ' Populate Excel sheet with product details
+                    sheet.Cells(currentRow, 1).Value = productName
+                    sheet.Cells(currentRow, 3).Value = quantity
+                    sheet.Cells(currentRow, 5).Value = price
+                    sheet.Cells(currentRow, 7).Value = warrantyDuration
+
+                    ' Increment currentRow for next product
+                    currentRow += 1
+                End If
+            Next
+
+            ' Generate the filename with the current date
+            Dim currentDate As String = DateTime.Now.ToString("yyyyMMdd")
+            Dim fileName As String = $"TransReceipt_{customerId}_{currentDate}.xlsx"
+
+            ' Save the Excel workbook with the filename including the current date
+            Dim savePath As String = $"C:\Users\XtiaN\source\repos\InventoryMate\AllReceipts\{fileName}"
+            workbook.SaveAs(savePath)
+
+            ' Release Excel objects to free up resources
+            ReleaseObject(sheet)
+            ReleaseObject(workbook)
+            ReleaseObject(applixcl)
+        Else
+            MessageBox.Show("Failed to retrieve Customer ID from the database.")
+        End If
     End Sub
 
-    ' Helper method to release Excel objects
+
+    Private Function ExtractNumericValue(inputString As String) As Integer
+        ' Remove any non-numeric characters from the input string
+        Dim numericString As String = New String(inputString.Where(Function(c) Char.IsDigit(c)).ToArray())
+
+        ' Convert the extracted numeric string to an integer
+        Dim numericValue As Integer
+        If Integer.TryParse(numericString, numericValue) Then
+            Return numericValue
+        Else
+            ' Handle invalid input or conversion failure
+            MessageBox.Show("Invalid numeric value: " & inputString)
+            Return 0 ' Default value or error handling logic
+        End If
+    End Function
+
+
+    Private Sub RestartTheTransactionFile()
+
+
+        'RESTART THE TRANSACTION.TXT FILE
+        Dim filePath As String = "C:\Users\XtiaN\source\repos\InventoryMate\transac\transaction_status.txt"
+        Try
+            ' Write the value 0 to the text file
+            My.Computer.FileSystem.WriteAllText(filePath, "0", False)
+
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating the text file: " & ex.Message)
+        End Try
+
+    End Sub
+
+
+
+
     Private Sub ReleaseObject(ByVal obj As Object)
         Try
             System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
@@ -910,8 +1051,6 @@ Public Class Transactions
     End Sub
 
 
-    Private Sub excel_Click(sender As Object, e As EventArgs) Handles excel.Click
-        PrintExcel()
-    End Sub
+
 End Class
 
