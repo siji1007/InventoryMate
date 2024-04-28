@@ -936,6 +936,7 @@ Public Class Transactions
     Private Sub PrintExcel()
         Dim customerId As String = GetLastCustomerID() ' Assuming you have a function to retrieve the last customer ID
 
+
         If Not String.IsNullOrWhiteSpace(customerId) Then
             Dim applixcl As Excel.Application
             Dim workbook As Excel.Workbook

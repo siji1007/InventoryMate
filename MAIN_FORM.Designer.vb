@@ -22,6 +22,7 @@ Partial Class MAIN_FORM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MAIN_FORM))
         main_container = New Panel()
         SuspendLayout()
         ' 
@@ -40,7 +41,8 @@ Partial Class MAIN_FORM
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(main_container)
-        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         MdiChildrenMinimizedAnchorBottom = False
         MinimizeBox = False

@@ -3,6 +3,7 @@
 Public Class DASHBOARD
 
     ' Define boolean variables to track form status
+    Private isHomeFormOpen As Boolean = False
     Private isProductFormOpen As Boolean = False
     Private isWarrantyFormOpen As Boolean = False
     Private isCustomerFormOpen As Boolean = False
@@ -64,21 +65,36 @@ Public Class DASHBOARD
                 ' Hide buttons based on user privilege and status
                 If userPrivilege = "ADMIN" AndAlso userStatus = "ACTIVE" Then
                     ' Show or hide buttons based on admin privilege
+                    Btn_home.Visible = True
                     Product.Visible = True
                     Warranty.Visible = True
                     Customer.Visible = True
                     Supplier.Visible = True
                     Employee.Visible = True
+                    Transaction.Visible = True
                     MessageBox.Show("Admin log")
 
                 ElseIf userPrivilege = "EMPLOYEE" AndAlso userStatus = "ACTIVE" Then
                     ' Show or hide buttons based on employee privilege
+                    Btn_home.Visible = True
+                    Product.Visible = True
+
+                    Warranty.Visible = False
+                    Customer.Visible = False
+                    Supplier.Visible = False
+                    Employee.Visible = False
+                    Transaction.Visible = True
+                    MessageBox.Show("Employee log")
+
+                ElseIf userPrivilege = "OWNER" AndAlso userStatus = "ACTIVE" Then
+                    Btn_home.Visible = True
                     Product.Visible = True
                     Warranty.Visible = False
                     Customer.Visible = False
                     Supplier.Visible = False
                     Employee.Visible = False
-                    MessageBox.Show("Employee log")
+                    Transaction.Visible = True
+                    MessageBox.Show("Owner log")
                 Else
                     ' Hide all buttons if user privilege or status doesn't match
                     Product.Visible = False
@@ -87,6 +103,14 @@ Public Class DASHBOARD
                     Supplier.Visible = False
                     Employee.Visible = False
                 End If
+
+                Dim home As New HOME
+                home.TopLevel = False
+                Contents.Controls.Add(home)
+                home.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                home.BringToFront()
+                home.WindowState = FormWindowState.Maximized
+                home.Show()
 
 
             Else
@@ -98,6 +122,42 @@ Public Class DASHBOARD
             closeDB()
         End Try
     End Sub
+
+    Private Sub Btn_home_Click(sender As Object, e As EventArgs) Handles Btn_home.Click
+        Me.DoubleBuffered = True
+
+        If isHomeFormOpen = True Then
+            MessageBox.Show("The HOME form is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            Dim fileValue As Integer = ReadFileValueAndNotify()
+
+            ' Check if the file value is greater than zero
+            If fileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                ' Proceed with opening the PRODUCT form
+                Dim home As New HOME()
+                home.TopLevel = False
+                Contents.Controls.Add(home)
+                home.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                home.BringToFront()
+                home.WindowState = FormWindowState.Maximized
+                home.Show()
+
+                ' Update form status
+                isHomeFormOpen = True
+                isProductFormOpen = False
+                isWarrantyFormOpen = False
+                isCustomerFormOpen = False
+                isSupplierFormOpen = False
+                isEmployeeFormOpen = False
+                isTransactionFromOpen = False
+            End If
+        End If
+    End Sub
+
+
+
 
     Private Sub Product_Click(sender As Object, e As EventArgs) Handles Product.Click
         Me.DoubleBuffered = True ' For forms
@@ -122,6 +182,7 @@ Public Class DASHBOARD
                 prod.Show()
 
                 ' Update form status
+                isHomeFormOpen = False
                 isProductFormOpen = True
                 isWarrantyFormOpen = False
                 isCustomerFormOpen = False
@@ -139,21 +200,30 @@ Public Class DASHBOARD
         If isWarrantyFormOpen Then
             MessageBox.Show("The WARRANTY form Is already open.", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim war As New WARRANTY()
-            war.TopLevel = False
-            Contents.Controls.Add(war)
-            war.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-            war.BringToFront()
-            war.WindowState = FormWindowState.Maximized
-            war.Show()
 
-            ' Update form status
-            isWarrantyFormOpen = True
-            isCustomerFormOpen = False
-            isProductFormOpen = False
-            isEmployeeFormOpen = False
-            isSupplierFormOpen = False
-            isTransactionFromOpen = False
+
+            Dim fileValue As Integer = ReadFileValueAndNotify()
+            If fileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Dim war As New WARRANTY()
+                war.TopLevel = False
+                Contents.Controls.Add(war)
+                war.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                war.BringToFront()
+                war.WindowState = FormWindowState.Maximized
+                war.Show()
+
+                ' Update form status
+                isHomeFormOpen = False
+                isWarrantyFormOpen = True
+                isCustomerFormOpen = False
+                isProductFormOpen = False
+                isEmployeeFormOpen = False
+                isSupplierFormOpen = False
+                isTransactionFromOpen = False
+            End If
+
         End If
     End Sub
 
@@ -161,20 +231,31 @@ Public Class DASHBOARD
         If isCustomerFormOpen Then
             MessageBox.Show("The Customer form Is already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim cus As New CUSTOMER()
-            cus.TopLevel = False
-            Contents.Controls.Add(cus)
-            cus.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-            cus.BringToFront()
-            cus.WindowState() = FormWindowState.Maximized
-            cus.Show()
 
-            isWarrantyFormOpen = False
-            isProductFormOpen = False
-            isCustomerFormOpen = True
-            isEmployeeFormOpen = False
-            isSupplierFormOpen = False
-            isTransactionFromOpen = False
+            Dim FileValue As Integer = ReadFileValueAndNotify()
+
+            If FileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Dim cus As New CUSTOMER()
+                cus.TopLevel = False
+                Contents.Controls.Add(cus)
+                cus.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                cus.BringToFront()
+                cus.WindowState() = FormWindowState.Maximized
+                cus.Show()
+
+                isHomeFormOpen = False
+                isWarrantyFormOpen = False
+                isProductFormOpen = False
+                isCustomerFormOpen = True
+                isEmployeeFormOpen = False
+                isSupplierFormOpen = False
+                isTransactionFromOpen = False
+            End If
+
+
+
         End If
     End Sub
 
@@ -182,20 +263,29 @@ Public Class DASHBOARD
         If isSupplierFormOpen Then
             MessageBox.Show("The Supplier form Is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim sup As New SUPPLIER()
-            sup.TopLevel = False
-            Contents.Controls.Add(sup)
-            sup.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-            sup.BringToFront()
-            sup.WindowState() = FormWindowState.Maximized
-            sup.Show()
 
-            isSupplierFormOpen = True
-            isWarrantyFormOpen = False
-            isProductFormOpen = False
-            isCustomerFormOpen = False
-            isEmployeeFormOpen = False
-            isTransactionFromOpen = False
+            Dim fileValue = ReadFileValueAndNotify()
+
+            If fileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Dim sup As New SUPPLIER()
+                sup.TopLevel = False
+                Contents.Controls.Add(sup)
+                sup.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                sup.BringToFront()
+                sup.WindowState() = FormWindowState.Maximized
+                sup.Show()
+
+
+                isHomeFormOpen = False
+                isSupplierFormOpen = True
+                isWarrantyFormOpen = False
+                isProductFormOpen = False
+                isCustomerFormOpen = False
+                isEmployeeFormOpen = False
+                isTransactionFromOpen = False
+            End If
         End If
 
     End Sub
@@ -205,20 +295,30 @@ Public Class DASHBOARD
         If isEmployeeFormOpen Then
             MessageBox.Show("The Employee form Is Already open", "Form Already Open", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim emp As New EMPLOYEE()
-            emp.TopLevel = False
-            Contents.Controls.Add(emp)
-            emp.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-            emp.BringToFront()
-            emp.WindowState() = FormWindowState.Maximized
-            emp.Show()
 
-            isSupplierFormOpen = False
-            isWarrantyFormOpen = False
-            isProductFormOpen = False
-            isCustomerFormOpen = False
-            isEmployeeFormOpen = True
-            isTransactionFromOpen = False
+            Dim FileValue As Integer = ReadFileValueAndNotify()
+
+            If FileValue > 0 Then
+                MessageBox.Show("You have pending transactions. You can't perform a different task.", "Pending Transactions", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                Dim emp As New EMPLOYEE()
+                emp.TopLevel = False
+                Contents.Controls.Add(emp)
+                emp.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
+                emp.BringToFront()
+                emp.WindowState() = FormWindowState.Maximized
+                emp.Show()
+
+
+                isHomeFormOpen = False
+                isSupplierFormOpen = False
+                isWarrantyFormOpen = False
+                isProductFormOpen = False
+                isCustomerFormOpen = False
+                isEmployeeFormOpen = True
+                isTransactionFromOpen = False
+            End If
+
 
         End If
     End Sub
@@ -236,6 +336,8 @@ Public Class DASHBOARD
             tran.WindowState() = FormWindowState.Maximized
             tran.Show()
 
+
+            isHomeFormOpen = False
             isSupplierFormOpen = False
             isWarrantyFormOpen = False
             isProductFormOpen = False
@@ -259,7 +361,7 @@ Public Class DASHBOARD
                     ' Update user status to OFFLINE
                     Dim updateQuery As New MySqlCommand("UPDATE Users SET Status='OFFLINE' WHERE Status= 'ACTIVE';", Conn)
 
-            updateQuery.ExecuteNonQuery()
+                    updateQuery.ExecuteNonQuery()
                 Else
                     MessageBox.Show("Failed to connect to the database")
                 End If
@@ -276,23 +378,17 @@ Public Class DASHBOARD
         End If
     End Sub
 
-
-
-
-
-
-
-    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Button1.MouseEnter
+    Private Sub Button1_MouseEnter(sender As Object, e As EventArgs) Handles Btn_home.MouseEnter
         ' Change button color to green on mouse enter
-        Button1.BackColor = Color.FromArgb(&H1, &H19, &H10)
-        Button1.ForeColor = Color.White
+        Btn_home.BackColor = Color.FromArgb(&H1, &H19, &H10)
+        Btn_home.ForeColor = Color.White
 
     End Sub
 
-    Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles Button1.MouseLeave
+    Private Sub Button1_MouseLeave(sender As Object, e As EventArgs) Handles Btn_home.MouseLeave
         ' Change button color back to its original color on mouse leave
-        Button1.BackColor = Color.Transparent ' You can set it to any default color or the color it had before the hover
-        Button1.ForeColor = Color.Black
+        Btn_home.BackColor = Color.Transparent ' You can set it to any default color or the color it had before the hover
+        Btn_home.ForeColor = Color.Black
     End Sub
 
 

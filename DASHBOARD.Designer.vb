@@ -32,7 +32,7 @@ Partial Class DASHBOARD
         Customer = New Button()
         Warranty = New Button()
         Product = New Button()
-        Button1 = New Button()
+        Btn_home = New Button()
         Panel1 = New Panel()
         Panel3 = New Panel()
         txt_name = New Label()
@@ -54,7 +54,7 @@ Partial Class DASHBOARD
         Sidebar.Controls.Add(Customer)
         Sidebar.Controls.Add(Warranty)
         Sidebar.Controls.Add(Product)
-        Sidebar.Controls.Add(Button1)
+        Sidebar.Controls.Add(Btn_home)
         Sidebar.Controls.Add(Panel1)
         resources.ApplyResources(Sidebar, "Sidebar")
         Sidebar.Name = "Sidebar"
@@ -134,16 +134,16 @@ Partial Class DASHBOARD
         Product.Name = "Product"
         Product.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' Btn_home
         ' 
-        resources.ApplyResources(Button1, "Button1")
-        Button1.BackColor = Color.Transparent
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        Button1.ForeColor = SystemColors.ActiveCaptionText
-        Button1.Image = My.Resources.Resources.home__3_
-        Button1.Name = "Button1"
-        Button1.UseVisualStyleBackColor = False
+        resources.ApplyResources(Btn_home, "Btn_home")
+        Btn_home.BackColor = Color.Transparent
+        Btn_home.FlatAppearance.BorderSize = 0
+        Btn_home.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        Btn_home.ForeColor = SystemColors.ActiveCaptionText
+        Btn_home.Image = My.Resources.Resources.home__3_
+        Btn_home.Name = "Btn_home"
+        Btn_home.UseVisualStyleBackColor = False
         ' 
         ' Panel1
         ' 
@@ -189,7 +189,7 @@ Partial Class DASHBOARD
     Friend WithEvents Sidebar As Panel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Btn_home As Button
     Friend WithEvents Product As Button
     Friend WithEvents Employee As Button
     Friend WithEvents Supplier As Button

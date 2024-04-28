@@ -5,17 +5,46 @@ Public Class EMPLOYEE
     Private selectedStatus As String = ""
 
     Private Sub lbl_employee_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Adjust label properties
         lbl_employee.Anchor = AnchorStyles.None
         lbl_employee.TextAlign = ContentAlignment.MiddleCenter
         lbl_employee.AutoSize = False
-        lbl_employee.Width = Me.ClientSize.Width ' Adjust this if needed
+        lbl_employee.Width = Me.ClientSize.Width
 
-
+        ' Center the label horizontally
         Dim centerX As Integer = (Me.ClientSize.Width - lbl_employee.Width) \ 2
         lbl_employee.Location = New Point(centerX, lbl_employee.Location.Y)
+
+        ' Load employee data
         DataLoadEmployee()
 
+        Try
+            If openDB() Then
+                ' Check user privilege and status
+                Dim query As New MySqlCommand("SELECT Privilege, Status FROM Users WHERE Status = 'ACTIVE';", Conn)
+
+                Dim userPrivilege As String = ""
+                Dim userStatus As String = ""
+
+                Using reader = query.ExecuteReader
+                    If reader.Read Then
+                        userPrivilege = reader.GetString("Privilege")
+
+                    End If
+
+                    ' Disable update button if user privilege is EMPLOYEE
+                    If userPrivilege = "EMPLOYEE" Then
+                        Btn_update.Enabled = False
+                    End If
+                End Using
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            closeDB()
+        End Try
     End Sub
+
 
 
     Private Sub DataLoadEmployee()
