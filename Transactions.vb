@@ -1,4 +1,5 @@
 ﻿Imports System.CodeDom
+Imports System.Runtime.InteropServices
 Imports System.Security.Cryptography.X509Certificates
 Imports System.Threading.Tasks.Dataflow
 Imports MySql.Data.MySqlClient
@@ -825,10 +826,6 @@ Public Class Transactions
 
 
 
-
-
-
-
     Private Sub InsertCustomerToDatabase()
         Dim Cust_name As String = txt_Custname.Text.Trim()
         Dim Cust_address As String = txt_custaddress.Text.Trim()
@@ -1048,6 +1045,14 @@ Public Class Transactions
     End Sub
 
 
+
+
+    Private Sub History_Click(sender As Object, e As EventArgs) Handles History.Click
+        Dim historyForm As New HISTORY_FORM()
+
+        historyForm.ShowDialog()
+
+    End Sub
 
 End Class
 

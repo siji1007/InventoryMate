@@ -56,6 +56,7 @@ Partial Class PRODUCT
         Cb_warranty = New ComboBox()
         Label4 = New Label()
         show_id = New Label()
+        Purchase = New Button()
         CType(prod_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -392,6 +393,15 @@ Partial Class PRODUCT
         show_id.TabIndex = 20
         show_id.Text = "ID"
         ' 
+        ' Purchase
+        ' 
+        Purchase.Location = New Point(12, 86)
+        Purchase.Name = "Purchase"
+        Purchase.Size = New Size(166, 35)
+        Purchase.TabIndex = 21
+        Purchase.Text = "PURCHASE PRODUCT"
+        Purchase.UseVisualStyleBackColor = True
+        ' 
         ' PRODUCT
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -401,6 +411,7 @@ Partial Class PRODUCT
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(Purchase)
         Controls.Add(show_id)
         Controls.Add(Label4)
         Controls.Add(Cb_warranty)
@@ -462,4 +473,5 @@ Partial Class PRODUCT
     Friend WithEvents prod_stocks_dt As DataGridViewTextBoxColumn
     Friend WithEvents prod_price_dt As DataGridViewTextBoxColumn
     Friend WithEvents show_id As Label
+    Friend WithEvents Purchase As Button
 End Class

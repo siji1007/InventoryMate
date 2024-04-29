@@ -35,17 +35,14 @@ Public Class DASHBOARD
     End Function
 
 
-
-
-
-    Private Sub LOGIN_Load(sender As Object, e As EventArgs)
-
+    Private Sub LOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txt_name_Load()
 
         ' Maximize the window
         WindowState = FormWindowState.Maximized
 
         Try
-            If openDB Then
+            If openDB() Then
                 ' Assuming Product, Warranty, Customer, Supplier, and Employee are the names of your buttons
 
                 ' Check user privilege and status
@@ -78,12 +75,16 @@ Public Class DASHBOARD
                     ' Show or hide buttons based on employee privilege
                     Btn_home.Visible = True
                     Product.Visible = True
-
                     Warranty.Visible = False
                     Customer.Visible = False
                     Supplier.Visible = False
                     Employee.Visible = False
                     Transaction.Visible = True
+
+                    'adjust the location f the transaction as 0, 358
+                    Transaction.Location = New Point(0, 358)
+
+
                     MessageBox.Show("Employee log")
 
                 ElseIf userPrivilege = "OWNER" AndAlso userStatus = "ACTIVE" Then
@@ -108,9 +109,9 @@ Public Class DASHBOARD
                 home.TopLevel = False
                 Contents.Controls.Add(home)
                 home.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-                home.BringToFront
+                home.BringToFront()
                 home.WindowState = FormWindowState.Maximized
-                home.Show
+                home.Show()
 
 
             Else
@@ -119,7 +120,7 @@ Public Class DASHBOARD
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message)
         Finally
-            closeDB
+            closeDB()
         End Try
     End Sub
 
@@ -392,7 +393,7 @@ Public Class DASHBOARD
     End Sub
 
 
-    Private Sub txt_name_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub txt_name_Load()
         ' Check if the database connection is successful
         If openDB() Then
             Dim query As String = "SELECT e.Emp_name, u.Privilege FROM users u INNER JOIN employee e ON u.Employee_ID = e.Emp_ID WHERE u.Status = 'ACTIVE'"

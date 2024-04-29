@@ -69,6 +69,7 @@ Partial Class Transactions
         Label4 = New Label()
         Label3 = New Label()
         Transaction_panel = New Panel()
+        History = New Button()
         GroupBox1.SuspendLayout()
         GroupBox4.SuspendLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +96,7 @@ Partial Class Transactions
         Print_btn.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Print_btn.FlatStyle = FlatStyle.Flat
         Print_btn.ForeColor = Color.White
-        Print_btn.Location = New Point(558, 706)
+        Print_btn.Location = New Point(558, 703)
         Print_btn.Name = "Print_btn"
         Print_btn.Size = New Size(111, 53)
         Print_btn.TabIndex = 11
@@ -603,6 +604,20 @@ Partial Class Transactions
         Transaction_panel.Size = New Size(1032, 612)
         Transaction_panel.TabIndex = 2
         ' 
+        ' History
+        ' 
+        History.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        History.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        History.FlatStyle = FlatStyle.Popup
+        History.Font = New Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        History.ForeColor = Color.White
+        History.Location = New Point(984, 48)
+        History.Name = "History"
+        History.Size = New Size(113, 35)
+        History.TabIndex = 12
+        History.Text = "HISTORY"
+        History.UseVisualStyleBackColor = False
+        ' 
         ' Transactions
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -612,6 +627,7 @@ Partial Class Transactions
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
+        Controls.Add(History)
         Controls.Add(Print_btn)
         Controls.Add(Transaction_panel)
         Controls.Add(Lbl_transaction)
@@ -676,4 +692,5 @@ Partial Class Transactions
     Friend WithEvents dt_total As DataGridViewTextBoxColumn
     Friend WithEvents Label11 As Label
     Friend WithEvents BTN_Cbrefresh As Button
+    Friend WithEvents History As Button
 End Class

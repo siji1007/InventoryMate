@@ -376,8 +376,9 @@ Public Class PRODUCT
         End If
     End Sub
 
+    Private Sub Purchase_Click(sender As Object, e As EventArgs) Handles Purchase.Click
+        Dim purchaseForm As New ProductPurchase()
 
-
-
-
+        purchaseForm.ShowDialog()
+    End Sub
 End Class

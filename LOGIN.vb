@@ -131,6 +131,8 @@ Public Class LOGIN
         End If
     End Sub
 
+
+
     Private Sub SignUp_Click(sender As Object, e As EventArgs) Handles SignUp.Click
         ' Instantiate the SignUp form
         Dim signUpForm As New SIGNUP()
