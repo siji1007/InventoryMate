@@ -50,14 +50,18 @@ Public Class HOME
                     DATE(t.Transact_date) = @CurrentDate
             ", Conn)
 
-
-
-
                 query.Parameters.AddWithValue("@CurrentDate", currentDate) ' Add the current date as a parameter
 
                 Using dr As MySqlDataReader = query.ExecuteReader()
                     While dr.Read()
-                        Dim rowIndex As Integer = daily_datagridview.Rows.Add(dr("ProductName"), dr("Quantity"), dr("CustomerName"), dr("ExpirationDate"))
+                        Dim expirationDate As Date = Convert.ToDateTime(dr("ExpirationDate"))
+
+                        Dim rowIndex As Integer = daily_datagridview.Rows.Add(dr("ProductName"), dr("Quantity"), dr("CustomerName"), expirationDate)
+
+                        If expirationDate.Date = currentDate Then
+                            daily_datagridview.Rows(rowIndex).DefaultCellStyle.BackColor = Color.Red ' Set row background color to red
+                        End If
+
                     End While
                 End Using
                 UpdateTopSaleLabel()

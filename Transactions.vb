@@ -470,75 +470,61 @@ Public Class Transactions
 
     Private Sub Print_btn_Click(sender As Object, e As EventArgs) Handles Print_btn.Click
         Dim message As String = ""
-
-        ' Variables for calculating total cost and service fee
         Dim totalPrice As Decimal = 0
         Dim serviceFee As Decimal = 0
 
-        ' Check if the DataGridView has rows
-        If transaction_datagridview.Rows.Count > 1 Then
-            ' Open the database connection
-            If openDB() Then
-                Dim selectedProductId As Integer = Convert.ToInt32(transaction_datagridview.Rows(0).Cells("dt_id").Value)
+        If transaction_datagridview.Rows.Count > 0 Then
+            If String.IsNullOrEmpty(txt_Custname.Text) OrElse
+           String.IsNullOrEmpty(txt_custaddress.Text) OrElse
+           String.IsNullOrEmpty(txt_custnumber.Text) OrElse
+           String.IsNullOrEmpty(txt_custemail.Text) OrElse
+           Not txt_custemail.Text.Contains("@gmail.com") Then
+                MessageBox.Show("Please ensure customer details are complete and valid (e.g., email should be a valid Gmail address).")
+            Else
 
-                ' Include customer details in the message
                 message &= "Customer Details:" & vbCrLf
                 message &= "Name: " & txt_Custname.Text & vbCrLf
                 message &= "Address: " & txt_custaddress.Text & vbCrLf
                 message &= "Email: " & txt_custemail.Text & vbCrLf
                 message &= "Number: " & txt_custnumber.Text & vbCrLf & vbCrLf
 
-                ' Include selected employee in the message
-                message &= "Selected Employee: " & Cb_employeeName.Text & vbCrLf & vbCrLf
-
-                ' Include selected products and quantities from the DataGridView in the message
-                message &= "Selected Products and Quantities:" & vbCrLf
-                For Each row As DataGridViewRow In transaction_datagridview.Rows
-                    ' Check if the row is not a new row and is selected
-                    If Not row.IsNewRow Then
-                        ' Get the product name, quantity, price, and duration of warranty from the row
-                        Dim productId As String = row.Cells("dt_id").Value.ToString()
-                        Dim productName As String = row.Cells("dt_product_name").Value.ToString()
-                        Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
-                        Dim price As Decimal = Convert.ToDecimal(row.Cells("dt_price").Value)
-                        Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
-
-                        ' Calculate total price for each product
-                        Dim productTotalPrice As Decimal = price * quantity
-                        totalPrice += productTotalPrice
-
-                        ' Concatenate the product details to the message
-                        message &= productId & "  " & productName & ": " & quantity & " x ₱" & price.ToString("0.00") & " (" & warrantyDuration & ") = ₱" & productTotalPrice.ToString("0.00") & vbCrLf
-                    End If
-                Next
-
-                ' Include service fee in the total cost calculation
-                If Decimal.TryParse(txt_service_fee.Text, serviceFee) Then
-                    totalPrice += serviceFee
-                    message &= vbCrLf & "Service Fee: ₱" & serviceFee.ToString("0.00") & vbCrLf
+                If String.IsNullOrEmpty(Cb_employeeName.Text) OrElse
+               Not Decimal.TryParse(txt_service_fee.Text, serviceFee) Then
+                    MessageBox.Show("Please ensure employee details are complete and service fee is a valid numeric value.")
                 Else
-                    MessageBox.Show("Invalid service fee. Please enter a valid numeric value.")
-                    Exit Sub ' Exit the method if service fee is invalid
+
+                    If openDB() Then
+                        For Each row As DataGridViewRow In transaction_datagridview.Rows
+                            If Not row.IsNewRow Then
+                                Dim productId As String = row.Cells("dt_id").Value.ToString()
+                                Dim productName As String = row.Cells("dt_product_name").Value.ToString()
+                                Dim quantity As Integer = Convert.ToInt32(row.Cells("dt_quantity").Value)
+                                Dim price As Decimal = Convert.ToDecimal(row.Cells("dt_price").Value)
+                                Dim warrantyDuration As String = row.Cells("dt_warranty").Value.ToString()
+
+                                Dim productTotalPrice As Decimal = price * quantity
+                                totalPrice += productTotalPrice
+
+                                message &= productId & "  " & productName & ": " & quantity & " x ₱" & price.ToString("0.00") & " (" & warrantyDuration & ") = ₱" & productTotalPrice.ToString("0.00") & vbCrLf
+                            End If
+                        Next
+
+                        totalPrice += serviceFee
+                        message &= vbCrLf & "Service Fee: ₱" & serviceFee.ToString("0.00") & vbCrLf
+                        message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00") & vbCrLf
+
+                        Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        message &= vbCrLf & "DATE OF TRANSACTION " & currentDate.ToString()
+
+                        MessageBox.Show(message)
+
+                        InsertTransactionToDatabase(totalPrice, serviceFee, currentDate)
+                    Else
+                        MessageBox.Show("Failed to open the database connection.")
+                    End If
                 End If
-
-                ' Include total cost in the message
-                message &= vbCrLf & "Total Cost: ₱" & totalPrice.ToString("0.00") & vbCrLf
-
-                Dim currentDate As String = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
-
-                message &= vbCrLf & "DATE OF TRANSACTION " & currentDate.ToString()
-
-                ' Display the message box with all the data
-                MessageBox.Show(message)
-
-                ' Now, insert the transaction data into your database
-                InsertTransactionToDatabase(totalPrice, serviceFee, currentDate)
-            Else
-                ' Display a message if failed to open the database connection
-                MessageBox.Show("Failed to open the database connection.")
             End If
         Else
-            ' Display a message if there are no rows in the DataGridView
             MessageBox.Show("Can't perform print action. No product has been inserted.")
         End If
     End Sub
@@ -574,12 +560,16 @@ Public Class Transactions
 
     Private Sub InsertTransactionToDatabase(totalPrice As Decimal, serviceFee As Decimal, currentDate As String)
         If openDB() Then
-            Dim customerId As Integer = GetCustomerIdByName(txt_Custname.Text)
+            Dim customerId As Integer = 0 ' Declare customerId at the beginning
 
+            If txt_Custname.SelectedItem IsNot Nothing Then
+                ' Customer is selected from the ComboBox, no need to insert new customer
+                customerId = GetCustomerIdByName(txt_Custname.Text)
 
-
-            ' Validate Customer ID
-            If customerId <= 0 Then
+                ' Continue with transaction insertion...
+                ' Your existing code here...
+            ElseIf Not String.IsNullOrEmpty(txt_Custname.Text) Then
+                ' Customer is not selected but ComboBox has a value, insert new customer
                 If openDB() Then
                     Dim query As String = "INSERT INTO customer (Cust_name, Cust_address, Cust_email, Cust_cnumber) VALUES (@C_name, @C_address, @C_email, @C_cnumber)"
                     Dim cmd As New MySqlCommand(query, Conn)
@@ -597,14 +587,16 @@ Public Class Transactions
                     Finally
                         closeDB()
                     End Try
+
+                    ' Continue with transaction insertion...
+                    ' Your existing code here...
                 Else
                     MessageBox.Show("Failed to connect to the database!")
                 End If
-
-
-
-
+            Else
+                MessageBox.Show("Please select a customer or enter customer details.")
             End If
+
 
             ' Loop through each row in the DataGridView
             For Each row As DataGridViewRow In transaction_datagridview.Rows
@@ -664,6 +656,22 @@ Public Class Transactions
             PrintExcel()
             RestartTheTransactionFile()
             closeDB()
+
+            txt_Custname.Text = ""
+            txt_custemail.Clear()
+            txt_custnumber.Clear()
+            txt_custaddress.Clear()
+
+            Cb_employeeName.Text = ""
+            txt_EmpID.Clear()
+            txt_service_fee.Clear()
+
+            txt_Custname.Items.Clear()
+            LoadCustomer()
+
+            transaction_datagridview.Rows.Clear()
+
+
         Else
             MessageBox.Show("Failed to connect to the database.")
         End If
@@ -743,18 +751,6 @@ Public Class Transactions
 
         Return totalQuantity
     End Function
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     Private Sub LoadCustomer()
@@ -988,7 +984,7 @@ Public Class Transactions
             Next
 
             ' Generate the filename with the current date
-            Dim currentDate As String = DateTime.Now.ToString("yyyyMMdd")
+            Dim currentDate As String = DateTime.Now.ToString("yyyyMMdd_hhmmss")
             Dim fileName As String = $"TransReceipt_{customerId}_{currentDate}.xlsx"
 
             ' Save the Excel workbook with the filename including the current date

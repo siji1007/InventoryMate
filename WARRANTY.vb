@@ -95,7 +95,7 @@ Public Class WARRANTY
 
         Else
             If openDB() Then
-                Dim query As String = "INSERT INTO warranty VALUES(NULL, @W_duration, @W_unit, @W_type, @W_status, @W_coverage)"
+                Dim query As String = "INSERT INTO warranty VALUES(NULL,@W_duration, @W_unit, @W_type, @W_status, @W_coverage)"
                 Dim cmd As New MySqlCommand(query, Conn)
                 cmd.Parameters.AddWithValue("@W_duration", Convert.ToInt32(WarDuration))
                 cmd.Parameters.AddWithValue("@W_unit", WarUnit.ToUpper())

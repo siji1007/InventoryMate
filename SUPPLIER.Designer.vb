@@ -109,6 +109,7 @@ Partial Class SUPPLIER
         ' 
         ' sup_datagridview
         ' 
+        sup_datagridview.AllowUserToAddRows = False
         sup_datagridview.AllowUserToResizeRows = False
         sup_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         sup_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader

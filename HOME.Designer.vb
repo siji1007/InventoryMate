@@ -22,9 +22,9 @@ Partial Class HOME
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_home = New Label()
         GroupBox1 = New GroupBox()
         Total_cost = New Label()
@@ -66,7 +66,7 @@ Partial Class HOME
         GroupBox1.ForeColor = Color.White
         GroupBox1.Location = New Point(44, 99)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(679, 439)
+        GroupBox1.Size = New Size(727, 439)
         GroupBox1.TabIndex = 3
         GroupBox1.TabStop = False
         GroupBox1.Text = "DAILY TRANSACTION"
@@ -75,7 +75,7 @@ Partial Class HOME
         ' 
         Total_cost.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Total_cost.AutoSize = True
-        Total_cost.Location = New Point(545, 384)
+        Total_cost.Location = New Point(593, 384)
         Total_cost.Name = "Total_cost"
         Total_cost.Size = New Size(59, 20)
         Total_cost.TabIndex = 6
@@ -85,7 +85,7 @@ Partial Class HOME
         ' 
         Label3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         Label3.AutoSize = True
-        Label3.Location = New Point(476, 384)
+        Label3.Location = New Point(524, 384)
         Label3.Name = "Label3"
         Label3.Size = New Size(63, 20)
         Label3.TabIndex = 5
@@ -114,33 +114,33 @@ Partial Class HOME
         ' daily_datagridview
         ' 
         daily_datagridview.AllowUserToAddRows = False
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        daily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter
+        daily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         daily_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        daily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle8.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle8.ForeColor = Color.White
+        DataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
+        daily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         daily_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         daily_datagridview.Columns.AddRange(New DataGridViewColumn() {ProdName, Quantity, CustName, War_exp})
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        daily_datagridview.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle9.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle9.ForeColor = Color.White
+        DataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = DataGridViewTriState.False
+        daily_datagridview.DefaultCellStyle = DataGridViewCellStyle9
         daily_datagridview.GridColor = Color.White
         daily_datagridview.Location = New Point(0, 45)
         daily_datagridview.Name = "daily_datagridview"
         daily_datagridview.ReadOnly = True
         daily_datagridview.RowHeadersVisible = False
-        daily_datagridview.Size = New Size(679, 323)
+        daily_datagridview.Size = New Size(727, 323)
         daily_datagridview.TabIndex = 0
         ' 
         ' ProdName
@@ -178,7 +178,7 @@ Partial Class HOME
         Label1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         Label1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.White
-        Label1.Location = New Point(527, 79)
+        Label1.Location = New Point(582, 79)
         Label1.Name = "Label1"
         Label1.Size = New Size(56, 20)
         Label1.TabIndex = 2
@@ -192,7 +192,7 @@ Partial Class HOME
         daily_date.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         daily_date.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         daily_date.ForeColor = Color.White
-        daily_date.Location = New Point(589, 79)
+        daily_date.Location = New Point(644, 79)
         daily_date.Name = "daily_date"
         daily_date.Size = New Size(52, 20)
         daily_date.TabIndex = 1

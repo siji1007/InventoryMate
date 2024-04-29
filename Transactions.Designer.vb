@@ -288,6 +288,7 @@ Partial Class Transactions
         ' 
         ' transaction_datagridview
         ' 
+        transaction_datagridview.AllowUserToAddRows = False
         transaction_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         transaction_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter

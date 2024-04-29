@@ -65,6 +65,7 @@ Partial Class WARRANTY
         ' 
         ' War_datagridview
         ' 
+        War_datagridview.AllowUserToAddRows = False
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.ForeColor = Color.White
