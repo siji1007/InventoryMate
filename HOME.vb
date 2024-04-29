@@ -20,6 +20,7 @@ Public Class HOME
 
 
 
+
     Private Sub LoadDailySales()
         Try
             If openDB() Then
@@ -73,6 +74,17 @@ Public Class HOME
             closeDB()
         End Try
     End Sub
+
+
+
+
+
+
+
+
+
+
+
 
 
     Private Sub TotalCost()

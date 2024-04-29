@@ -1,4 +1,5 @@
 ﻿
+Imports System.ComponentModel
 Imports MySql.Data.MySqlClient
 Public Class PRODUCT
     Private Sub PRODUCT_Load(sender As Object, e As EventArgs)
@@ -29,18 +30,17 @@ Public Class PRODUCT
         Dim centerX As Integer = (Me.ClientSize.Width - Product_title.Width) \ 2
         Product_title.Location = New Point(centerX, Product_title.Location.Y)
 
-        LoadData()
+        LoadDataAndSort()
 
     End Sub
 
     Private Sub Btn_add_prod_Click(sender As Object, e As EventArgs) Handles Btn_add_prod.Click
         Dim P_name As String = txt_product_name.Text.Trim()
-        Dim W_ID As Integer = show_id.Text
         Dim P_model As String = txt_product_model.Text.Trim()
         Dim P_color As String = txt_product_color.Text.Trim()
-
         Dim P_stocks As Integer
         Dim P_price As Integer
+        Dim W_ID As Integer
 
         If String.IsNullOrWhiteSpace(P_name) Then
             MessageBox.Show("Please enter a product name.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -50,63 +50,87 @@ Public Class PRODUCT
             MessageBox.Show("Please enter a valid number for stocks.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ElseIf Not Integer.TryParse(txt_price.Text.Trim(), P_price) Then
             MessageBox.Show("Please enter a valid number for price.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf Not Integer.TryParse(show_id.Text.Trim(), W_ID) Then
+            MessageBox.Show("Please select a valid warranty details", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            If openDB() Then
-                ' Proceed with database insertion
-                Dim query As String = "INSERT INTO products (prod_name, Warranty_ID, prod_model, prod_color, prod_stocks, prod_price) VALUES (@P_name, @Warranty_ID, @P_model, @P_color, @P_stocks, @P_price)"
-                Dim cmd As New MySqlCommand(query, Conn)
-                cmd.Parameters.AddWithValue("@P_name", P_name.ToUpper())
-                cmd.Parameters.AddWithValue("@Warranty_ID", W_ID) ' Use W_ID as the Warranty_ID value
-                cmd.Parameters.AddWithValue("@P_model", P_model.ToUpper())
-                cmd.Parameters.AddWithValue("@P_color", P_color.ToUpper())
-                cmd.Parameters.AddWithValue("@P_stocks", P_stocks)
-                cmd.Parameters.AddWithValue("@P_price", P_price)
+            Try
+                If openDB() Then
+                    ' Check if the product already exists in the database
+                    Dim productExistsQuery As String = "SELECT COUNT(*) FROM products WHERE prod_name = @P_name AND prod_model = @P_model AND prod_color = @P_color"
+                    Using cmdCheck As New MySqlCommand(productExistsQuery, Conn)
+                        cmdCheck.Parameters.AddWithValue("@P_name", P_name)
+                        cmdCheck.Parameters.AddWithValue("@P_model", P_model)
+                        cmdCheck.Parameters.AddWithValue("@P_color", P_color)
 
+                        Dim productCount As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
+                        If productCount > 0 Then
+                            MessageBox.Show("Product with the same name, model, and color already exists. Please enter a different product.", "Duplicate Product", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Else
+                            ' Proceed with database insertion
+                            Dim query As String = "INSERT INTO products (prod_name, Warranty_ID, prod_model, prod_color, prod_stocks, prod_price) VALUES (@P_name, @Warranty_ID, @P_model, @P_color, @P_stocks, @P_price)"
+                            Using cmdInsert As New MySqlCommand(query, Conn)
+                                cmdInsert.Parameters.AddWithValue("@P_name", P_name.ToUpper())
+                                cmdInsert.Parameters.AddWithValue("@Warranty_ID", W_ID) ' Use W_ID as the Warranty_ID value
+                                cmdInsert.Parameters.AddWithValue("@P_model", P_model.ToUpper())
+                                cmdInsert.Parameters.AddWithValue("@P_color", P_color.ToUpper())
+                                cmdInsert.Parameters.AddWithValue("@P_stocks", P_stocks)
+                                cmdInsert.Parameters.AddWithValue("@P_price", P_price)
 
-                Try
-                    cmd.ExecuteNonQuery()
-                    MessageBox.Show("Product added successfully.")
-                    prod_datagridview.Rows.Clear()
-                    LoadData()
+                                cmdInsert.ExecuteNonQuery()
+                                MessageBox.Show("Product added successfully.")
+                                prod_datagridview.Rows.Clear()
+                                LoadDataAndSort()
 
-                    ' Clear textboxes after successful insertion
-                    txt_product_name.Clear()
-                    txt_product_model.Clear()
-                    txt_product_color.Clear()
-                    txt_stocks.Clear()
-                    txt_price.Clear()
-                    show_id.Text = "ID"
-                    Cb_warranty.SelectedIndex = -1
-
-                Catch ex As Exception
-                    MessageBox.Show("Error adding product: " & ex.Message)
-                Finally
-                    closeDB() ' Close the database after the insertion
-                End Try
-            Else
-                MessageBox.Show("Failed to connect to the database.")
-            End If
+                                ' Clear textboxes after successful insertion
+                                txt_product_name.Clear()
+                                txt_product_model.Clear()
+                                txt_product_color.Clear()
+                                txt_stocks.Clear()
+                                txt_price.Clear()
+                                show_id.Text = "ID"
+                                Cb_warranty.SelectedIndex = -1
+                            End Using
+                        End If
+                    End Using
+                Else
+                    MessageBox.Show("Failed to connect to the database.")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error adding product: " & ex.Message)
+            Finally
+                closeDB() ' Close the database after the insertion
+            End Try
         End If
     End Sub
 
 
-    Private Sub LoadData()
+    Private Sub LoadDataAndSort()
         Try
             If openDB() Then ' Check if database connection is successful
                 Dim query As New MySqlCommand("SELECT p.*, w.War_ID AS Warranty_ID FROM products p LEFT JOIN warranty w ON p.Warranty_ID = w.War_ID;", Conn) ' Assuming Conn is your MySqlConnection object from openDB()
                 Using dr As MySqlDataReader = query.ExecuteReader
-                    While dr.Read
-                        Dim price As Double = Convert.ToDouble(dr.Item("prod_price"))
+                    Dim dataTable As New DataTable()
+                    dataTable.Load(dr) ' Load data into DataTable
+
+                    ' Sort the DataTable based on the "prod_stocks" column in ascending order
+                    Dim sortedRows = dataTable.Select("", "prod_stocks ASC")
+
+                    ' Clear the DataGridView before adding sorted rows
+                    prod_datagridview.Rows.Clear()
+
+                    ' Add sorted rows to the DataGridView
+                    For Each row In sortedRows
+                        Dim price As Double = Convert.ToDouble(row("prod_price"))
                         Dim formattedPrice As String = FormatPrice(price) ' Format the price with peso sign and commas
 
-                        Dim rowIndex As Integer = prod_datagridview.Rows.Add(dr.Item("prod_id"), dr.Item("Warranty_ID"), dr.Item("prod_name"), dr.Item("prod_model"), dr.Item("prod_color"), dr.Item("prod_stocks"), formattedPrice)
+                        Dim rowIndex As Integer = prod_datagridview.Rows.Add(row("prod_id"), row("Warranty_ID"), row("prod_name"), row("prod_model"), row("prod_color"), row("prod_stocks"), formattedPrice)
 
                         ' Check and set row color based on prod_stocks value
-                        Dim stocks As Integer = Convert.ToInt32(dr.Item("prod_stocks"))
+                        Dim stocks As Integer = Convert.ToInt32(row("prod_stocks"))
                         If stocks = 0 Then
                             prod_datagridview.Rows(rowIndex).DefaultCellStyle.BackColor = Color.Red
                         End If
-                    End While
+                    Next
                 End Using
             Else
                 MessageBox.Show("Failed to connect to the database.")
@@ -163,7 +187,6 @@ Public Class PRODUCT
     End Sub
 
 
-
     Private Sub Btn_update_prod_Click(sender As Object, e As EventArgs) Handles Btn_update_prod.Click
         Dim P_id As Integer ' Assuming you have a product ID to identify the record to update
         If Integer.TryParse(prod_datagridview.CurrentRow.Cells("prod_id").Value.ToString(), P_id) Then
@@ -174,7 +197,7 @@ Public Class PRODUCT
             Dim P_stocks As Integer
             Dim P_price As Integer
 
-            If String.IsNullOrWhiteSpace(P_name) OrElse String.IsNullOrWhiteSpace(P_model) OrElse String.IsNullOrWhiteSpace(P_color) OrElse Not Integer.TryParse(txt_stocks.Text, P_stocks) OrElse Not Integer.TryParse(txt_price.Text, P_price) Then
+            If String.IsNullOrWhiteSpace(P_name) OrElse String.IsNullOrWhiteSpace(P_model) OrElse Not Integer.TryParse(txt_stocks.Text, P_stocks) OrElse Not Integer.TryParse(txt_price.Text, P_price) Then
                 MessageBox.Show("Please fill all information properly.", "Fill properly", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 If openDB() Then
@@ -192,7 +215,7 @@ Public Class PRODUCT
                         cmd.ExecuteNonQuery()
                         MessageBox.Show("Product updated successfully.")
                         prod_datagridview.Rows.Clear() ' Clear the DataGridView
-                        LoadData() ' Reload data into the DataGridView
+                        LoadDataAndSort() ' Reload data into the DataGridView
 
                         ' Clear textboxes after updating
                         txt_product_name.Clear()

@@ -69,7 +69,6 @@ Partial Class Transactions
         Label4 = New Label()
         Label3 = New Label()
         Transaction_panel = New Panel()
-        excel = New Button()
         GroupBox1.SuspendLayout()
         GroupBox4.SuspendLayout()
         CType(transaction_datagridview, ComponentModel.ISupportInitialize).BeginInit()
@@ -604,16 +603,6 @@ Partial Class Transactions
         Transaction_panel.Size = New Size(1032, 612)
         Transaction_panel.TabIndex = 2
         ' 
-        ' excel
-        ' 
-        excel.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        excel.Location = New Point(67, 724)
-        excel.Name = "excel"
-        excel.Size = New Size(75, 23)
-        excel.TabIndex = 12
-        excel.Text = "EXCEL"
-        excel.UseVisualStyleBackColor = True
-        ' 
         ' Transactions
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -623,7 +612,6 @@ Partial Class Transactions
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(1133, 772)
         ControlBox = False
-        Controls.Add(excel)
         Controls.Add(Print_btn)
         Controls.Add(Transaction_panel)
         Controls.Add(Lbl_transaction)
@@ -688,5 +676,4 @@ Partial Class Transactions
     Friend WithEvents dt_total As DataGridViewTextBoxColumn
     Friend WithEvents Label11 As Label
     Friend WithEvents BTN_Cbrefresh As Button
-    Friend WithEvents excel As Button
 End Class
