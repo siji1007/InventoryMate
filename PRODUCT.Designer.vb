@@ -73,6 +73,7 @@ Partial Class PRODUCT
         ' 
         ' prod_datagridview
         ' 
+        prod_datagridview.AllowUserToAddRows = False
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))

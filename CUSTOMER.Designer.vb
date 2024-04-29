@@ -63,6 +63,7 @@ Partial Class CUSTOMER
         ' 
         ' customer_datagridview
         ' 
+        customer_datagridview.AllowUserToAddRows = False
         customer_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         customer_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter

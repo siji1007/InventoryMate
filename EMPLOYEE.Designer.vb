@@ -71,6 +71,7 @@ Partial Class EMPLOYEE
         ' 
         ' emp_datagridview
         ' 
+        emp_datagridview.AllowUserToAddRows = False
         emp_datagridview.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         emp_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter

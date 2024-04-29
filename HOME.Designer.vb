@@ -22,9 +22,9 @@ Partial Class HOME
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_home = New Label()
         GroupBox1 = New GroupBox()
         Total_cost = New Label()
@@ -113,27 +113,28 @@ Partial Class HOME
         ' 
         ' daily_datagridview
         ' 
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
-        daily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        daily_datagridview.AllowUserToAddRows = False
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
+        daily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         daily_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle5.ForeColor = Color.White
-        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
-        daily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        daily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         daily_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         daily_datagridview.Columns.AddRange(New DataGridViewColumn() {ProdName, Quantity, CustName, War_exp})
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle6.ForeColor = Color.White
-        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.False
-        daily_datagridview.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle3.ForeColor = Color.White
+        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
+        daily_datagridview.DefaultCellStyle = DataGridViewCellStyle3
         daily_datagridview.GridColor = Color.White
         daily_datagridview.Location = New Point(0, 45)
         daily_datagridview.Name = "daily_datagridview"
