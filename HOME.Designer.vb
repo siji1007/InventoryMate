@@ -22,24 +22,24 @@ Partial Class HOME
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Lbl_home = New Label()
         GroupBox1 = New GroupBox()
+        Total_cost = New Label()
+        Label3 = New Label()
         Top_sale = New Label()
         Label2 = New Label()
-        datily_datagridview = New DataGridView()
+        daily_datagridview = New DataGridView()
         ProdName = New DataGridViewTextBoxColumn()
         Quantity = New DataGridViewTextBoxColumn()
         CustName = New DataGridViewTextBoxColumn()
         War_exp = New DataGridViewTextBoxColumn()
         Label1 = New Label()
         daily_date = New Label()
-        Label3 = New Label()
-        Total_cost = New Label()
         GroupBox1.SuspendLayout()
-        CType(datily_datagridview, ComponentModel.ISupportInitialize).BeginInit()
+        CType(daily_datagridview, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Lbl_home
@@ -61,7 +61,7 @@ Partial Class HOME
         GroupBox1.Controls.Add(Label3)
         GroupBox1.Controls.Add(Top_sale)
         GroupBox1.Controls.Add(Label2)
-        GroupBox1.Controls.Add(datily_datagridview)
+        GroupBox1.Controls.Add(daily_datagridview)
         GroupBox1.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         GroupBox1.ForeColor = Color.White
         GroupBox1.Location = New Point(44, 99)
@@ -70,6 +70,26 @@ Partial Class HOME
         GroupBox1.TabIndex = 3
         GroupBox1.TabStop = False
         GroupBox1.Text = "DAILY TRANSACTION"
+        ' 
+        ' Total_cost
+        ' 
+        Total_cost.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        Total_cost.AutoSize = True
+        Total_cost.Location = New Point(545, 384)
+        Total_cost.Name = "Total_cost"
+        Total_cost.Size = New Size(59, 20)
+        Total_cost.TabIndex = 6
+        Total_cost.Text = "TOTAL"
+        ' 
+        ' Label3
+        ' 
+        Label3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        Label3.AutoSize = True
+        Label3.Location = New Point(476, 384)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(63, 20)
+        Label3.TabIndex = 5
+        Label3.Text = "TOTAL:"
         ' 
         ' Top_sale
         ' 
@@ -91,36 +111,36 @@ Partial Class HOME
         Label2.TabIndex = 3
         Label2.Text = "TOP SALE PRODUCT:"
         ' 
-        ' datily_datagridview
+        ' daily_datagridview
         ' 
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter
-        datily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        datily_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle2.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        datily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        datily_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        datily_datagridview.Columns.AddRange(New DataGridViewColumn() {ProdName, Quantity, CustName, War_exp})
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
-        DataGridViewCellStyle3.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle3.ForeColor = Color.White
-        DataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        datily_datagridview.DefaultCellStyle = DataGridViewCellStyle3
-        datily_datagridview.GridColor = Color.White
-        datily_datagridview.Location = New Point(0, 45)
-        datily_datagridview.Name = "datily_datagridview"
-        datily_datagridview.ReadOnly = True
-        datily_datagridview.RowHeadersVisible = False
-        datily_datagridview.Size = New Size(679, 323)
-        datily_datagridview.TabIndex = 0
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter
+        daily_datagridview.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        daily_datagridview.BackgroundColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle5.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle5.ForeColor = Color.White
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
+        daily_datagridview.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        daily_datagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        daily_datagridview.Columns.AddRange(New DataGridViewColumn() {ProdName, Quantity, CustName, War_exp})
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(30), CByte(39), CByte(46))
+        DataGridViewCellStyle6.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        DataGridViewCellStyle6.ForeColor = Color.White
+        DataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.False
+        daily_datagridview.DefaultCellStyle = DataGridViewCellStyle6
+        daily_datagridview.GridColor = Color.White
+        daily_datagridview.Location = New Point(0, 45)
+        daily_datagridview.Name = "daily_datagridview"
+        daily_datagridview.ReadOnly = True
+        daily_datagridview.RowHeadersVisible = False
+        daily_datagridview.Size = New Size(679, 323)
+        daily_datagridview.TabIndex = 0
         ' 
         ' ProdName
         ' 
@@ -178,26 +198,6 @@ Partial Class HOME
         daily_date.Text = "DATE"
         daily_date.TextAlign = ContentAlignment.TopCenter
         ' 
-        ' Label3
-        ' 
-        Label3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Label3.AutoSize = True
-        Label3.Location = New Point(476, 384)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(63, 20)
-        Label3.TabIndex = 5
-        Label3.Text = "TOTAL:"
-        ' 
-        ' Total_cost
-        ' 
-        Total_cost.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        Total_cost.AutoSize = True
-        Total_cost.Location = New Point(545, 384)
-        Total_cost.Name = "Total_cost"
-        Total_cost.Size = New Size(59, 20)
-        Total_cost.TabIndex = 6
-        Total_cost.Text = "TOTAL"
-        ' 
         ' HOME
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -214,14 +214,14 @@ Partial Class HOME
         Name = "HOME"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
-        CType(datily_datagridview, ComponentModel.ISupportInitialize).EndInit()
+        CType(daily_datagridview, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
     Friend WithEvents Lbl_home As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents datily_datagridview As DataGridView
+    Friend WithEvents daily_datagridview As DataGridView
     Friend WithEvents ProdName As DataGridViewTextBoxColumn
     Friend WithEvents Quantity As DataGridViewTextBoxColumn
     Friend WithEvents CustName As DataGridViewTextBoxColumn

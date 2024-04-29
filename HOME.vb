@@ -57,7 +57,7 @@ Public Class HOME
 
                 Using dr As MySqlDataReader = query.ExecuteReader()
                     While dr.Read()
-                        Dim rowIndex As Integer = datily_datagridview.Rows.Add(dr("ProductName"), dr("Quantity"), dr("CustomerName"), dr("ExpirationDate"))
+                        Dim rowIndex As Integer = daily_datagridview.Rows.Add(dr("ProductName"), dr("Quantity"), dr("CustomerName"), dr("ExpirationDate"))
                     End While
                 End Using
                 UpdateTopSaleLabel()

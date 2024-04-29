@@ -45,7 +45,7 @@ Public Class DASHBOARD
         WindowState = FormWindowState.Maximized
 
         Try
-            If openDB() Then
+            If openDB Then
                 ' Assuming Product, Warranty, Customer, Supplier, and Employee are the names of your buttons
 
                 ' Check user privilege and status
@@ -108,9 +108,9 @@ Public Class DASHBOARD
                 home.TopLevel = False
                 Contents.Controls.Add(home)
                 home.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Bottom Or AnchorStyles.Right
-                home.BringToFront()
+                home.BringToFront
                 home.WindowState = FormWindowState.Maximized
-                home.Show()
+                home.Show
 
 
             Else
@@ -119,7 +119,7 @@ Public Class DASHBOARD
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message)
         Finally
-            closeDB()
+            closeDB
         End Try
     End Sub
 
